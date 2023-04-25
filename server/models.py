@@ -7,7 +7,7 @@ from config import db
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    serialize_rules = ( )
+    serialize_rules = ('-favorites', )
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -48,7 +48,7 @@ class Cart(db.Model, SerializerMixin):
 class Tattoo(db.Model, SerializerMixin):
     __tablename__ = 'tattoos'
 
-    serialize_rules = ( )
+    serialize_rules = ('-favorites', )
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -81,7 +81,7 @@ class CartTattoo(db.Model, SerializerMixin):
 class Favorite(db.Model, SerializerMixin):
     __tablename__ = 'favorites'
 
-    serialize_rules = ( )
+    serialize_rules = ('-user', 'tattoo')
 
     id = db.Column(db.Integer, primary_key=True)
     is_favorited = db.Column(db.Boolean)
