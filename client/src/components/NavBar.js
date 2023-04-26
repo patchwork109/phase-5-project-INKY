@@ -10,6 +10,7 @@ function NavBar () {
             <NavLink exact to="/tattoos">Explore Tattoos</NavLink>
             <NavLink exact to="/wishlist">Wishlist</NavLink>
             <NavLink exact to="/ourstory">Our Story</NavLink>
+            <NavLink exact to="/cart">Cart</NavLink>
         </div>
     )
 }

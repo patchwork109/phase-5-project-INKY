@@ -1,12 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TattooCard from "./TattooCard";
 
-function TattooContainer () {
-    
+function TattooContainer ({tattoos}) {
+
+    const renderTattoos = tattoos.map(tattoo => {
+        return <TattooCard key={tattoo.id}
+            id = {tattoo.id}
+            name = {tattoo.name}
+            category = {tattoo.category}
+            description = {tattoo.description}
+            size = {tattoo.size}
+            price = {tattoo.price}
+            image = {tattoo.image}
+            eachTattoo = {tattoo}
+        />
+    })
 
     return (
         <div>
             I'm the tattoo container!
+            {renderTattoos}
         </div>
     )
 }
