@@ -12,7 +12,6 @@ function TattooContainer ({tattoos}) {
             size = {tattoo.size}
             price = {tattoo.price}
             image = {tattoo.image}
-            eachTattoo = {tattoo}
         />
     })
 

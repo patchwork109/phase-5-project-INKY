@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import './App.css'
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
 import TattooContainer from "./TattooContainer";
 import Wishlist from "./Wishlist";
 import OurStory from "./OurStory";
 import Cart from "./Cart";
+import Login from "./Login";
 
 function App() {
 
     const [tattoos, setTattoos] = useState();
+    const [user, setUser] = useState(null);
 
+    useEffect(() => {
+        fetch("http://127.0.0.1:5555/check_session")
+        .then((response) => {
+            if (response.ok) {
+                response.json().then((user) => setUser(user));
+            }
+        });
+    }, []);
+		
     useEffect(() => {
         fetch('http://127.0.0.1:5555/tattoos')
         .then(response => response.json())
@@ -21,13 +31,10 @@ function App() {
     console.log(tattoos)
 
 	return (
-		<div className="App">
+		<div className="app">
 			<header className="App-header">
-				<p>
-					Phase 5 Project -- woohoo!
-				</p>
 				<Router>
-				<NavBar/>
+				<NavBar onLogout={setUser} onLogin={setUser}/>
 					<Switch>
 						<Route exact path="/">
 							<HomePage/>
@@ -43,7 +50,10 @@ function App() {
 						</Route>
                         <Route exact path="/cart">
 							<Cart/>
-						</Route>                       
+						</Route>
+                        <Route exact path="/login">
+							<Login onLogin={setUser}/>
+						</Route>                        
 					</Switch>
 				</Router>
 			</header>

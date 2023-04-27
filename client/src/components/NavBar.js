@@ -1,16 +1,32 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
 
-function NavBar () {
+function NavBar ({onLogout}) {
 
+    const handleLogoutClick = () => {
+        fetch("http://127.0.0.1:5555/logout", {
+            method: "DELETE",
+        }).then(() => onLogout(null));
+    }
 
     return (
         <div>
-            <NavLink exact to="/">Home</NavLink>
-            <NavLink exact to="/tattoos">Explore Tattoos</NavLink>
-            <NavLink exact to="/wishlist">Wishlist</NavLink>
-            <NavLink exact to="/ourstory">Our Story</NavLink>
-            <NavLink exact to="/cart">Cart</NavLink>
+            <Box>
+                <AppBar position="static">
+                    <Toolbar>
+                        <NavLink className="navBar" exact to="/">Home</NavLink>
+                        <NavLink className="navBar" exact to="/tattoos">Explore Tattoos</NavLink>
+                        <NavLink className="navBar" exact to="/wishlist">Wishlist</NavLink>
+                        <NavLink className="navBar" exact to="/ourstory">Our Story</NavLink>
+                        <NavLink className="navBar" exact to="/cart">Cart</NavLink>
+                        <NavLink className="navBar" exact to="/login">Log In</NavLink>
+                        <NavLink className="navBar" exact to="/" onClick={handleLogoutClick}>Log Out</NavLink>
+                    </Toolbar>
+                </AppBar>
+            </Box>
         </div>
     )
 }

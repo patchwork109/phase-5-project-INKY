@@ -27,11 +27,10 @@ if __name__ == '__main__':
         db.session.add_all([cloud, dino])
         db.session.commit()
 
-        favorite1 = Favorite(is_favorited=True, user=sam, tattoo=cloud)
-        favorite2 = Favorite(is_favorited=False, user=sam, tattoo=dino)
-        favorite3 = Favorite(is_favorited=True, user=tom, tattoo=dino)
+        # favorite1 = Favorite(is_favorited=True, user=sam, tattoo=cloud)
+        favorite2 = Favorite(is_favorited=True, user=tom, tattoo=dino)
 
-        db.session.add_all([favorite1, favorite2, favorite3])
+        db.session.add_all([favorite2])
         db.session.commit()
 
         print("Seed done!")

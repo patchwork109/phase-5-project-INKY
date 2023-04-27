@@ -1,10 +1,11 @@
 from flask import request, make_response, session
 from flask_restful import Resource
-from flask_cors import CORS
 from flask_session import Session
+from sqlalchemy.exc import IntegrityError
 
 from config import app, db, api
 from models import User, Order, Cart, Tattoo, CartTattoo, Favorite
+
 
 class Home(Resource):
     def get(self):
@@ -79,12 +80,83 @@ class FavoritesById(Resource):
             db.session.commit()
         except:
             response_body = {"error" : "Unable to update favorite"}
-            
+
         response = make_response(favorite.to_dict(), 200)
         return response
         
 api.add_resource(FavoritesById, '/favorites/<int:id>')
 
+
+class Signup(Resource):
+    def post(self):
+        data = request.get_json()
+        name = data.get('name')
+        email = data.get('email')
+        username = data.get('username')
+        password = data.get('password')
+
+        user = User(
+            name = name,
+            email = email,
+            username = username, 
+        )
+
+        user.password_hash = password
+
+        try:
+            db.session.add(user)
+            db.session.commit()
+
+            session['user_id'] = user.id
+            response = make_response(user.to_dict(), 201)
+            return response
+        except IntegrityError:
+            response_body = {"error" : "422 Unprocessable Entity"}
+            response = make_response(response_body, 422)
+            return response
+        
+api.add_resource(Signup, '/signup', endpoint='signup')
+
+
+class Login(Resource):
+    def post(self):
+
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+
+        user = User.query.filter(User.username == username).first()
+
+        if user:
+            if user.authenticate(password):
+                session['user_id'] = user.id
+                return make_response(user.to_dict(), 200)
+        
+        return make_response({"message":"401: Not Authorized!"}, 401)
+
+api.add_resource(Login, '/login', endpoint='login')
+
+
+class Logout(Resource):
+    def delete(self):
+        if session.get('user_id'):
+            session['user_id'] = None
+            return {'message': '204 No Content'}, 204
+        
+        return make_response({"message":"401: Not Authorized!"}, 401)
+
+api.add_resource(Logout, '/logout', endpoint='logout')
+
+
+class CheckSession(Resource):
+    def get(self):
+        if session.get('user_id'):
+            current_user = User.query.filter(User.id == session['user_id']).first()
+            return make_response(current_user.to_dict(), 200) 
+        
+        return make_response({"message":"401: Not Authorized!"}, 401)
+
+api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 
 
 if __name__ == '__main__':
