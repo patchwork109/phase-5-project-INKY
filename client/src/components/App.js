@@ -12,6 +12,8 @@ function App() {
 
     const [tattoos, setTattoos] = useState();
     const [user, setUser] = useState(null);
+	// const [currentOrder, setCurrentOrder] = useState('')
+	// const [showAllTattoos, setshowAllTattoos] = useState(false)
 
     useEffect(() => {
         fetch("http://127.0.0.1:5555/check_session")

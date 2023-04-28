@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function SignUpForm({onLogin}) {
 
@@ -6,6 +7,7 @@ function SignUpForm({onLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const history = useHistory()
 
     const handleSignUpSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +23,8 @@ function SignUpForm({onLogin}) {
           })
         .then((r) => r.json())
         .then((user) => onLogin(user));
+
+        history.push('/')
     }
 
     return (

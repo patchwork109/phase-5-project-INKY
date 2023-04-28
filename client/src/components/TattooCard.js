@@ -14,11 +14,15 @@ function TattooCard ({id, name, category, description, size, price, image, user}
 
         setToggleFavorited(toggleFavorited => !toggleFavorited)
 
+        // user.id is showing as undefined which errors out the POST
+        // hardcoding for now, but need to revisit
         const newFavoritedTattoo = {
             is_favorited: toggleFavorited,
             user_id: user.id,
             tattoo_id: id
         }
+
+        console.log(user)
 
         const handleResponse = r => {
             if (r.ok) {

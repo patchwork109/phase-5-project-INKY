@@ -23,6 +23,6 @@ db.init_app(app)
 
 api = Api(app)
 
-CORS(app)
+CORS(app, supports_credentials=True, allow_headers=['Content-Type', 'session'])
 
 bcrypt = Bcrypt(app)

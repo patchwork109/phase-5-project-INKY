@@ -2,9 +2,12 @@ from flask import request, make_response, session
 from flask_restful import Resource
 from flask_session import Session
 from sqlalchemy.exc import IntegrityError
+from flask_session import Session
 
 from config import app, db, api
 from models import User, Order, Cart, Tattoo, CartTattoo, Favorite
+
+Session(app)
 
 
 class Home(Resource):
@@ -80,9 +83,26 @@ class FavoritesById(Resource):
             db.session.commit()
         except:
             response_body = {"error" : "Unable to update favorite"}
+            response = make_response(response_body, 400)
+            return response
 
         response = make_response(favorite.to_dict(), 200)
         return response
+    
+    def delete(self, id):
+        favorite = Favorite.query.filter(Favorite.id == id).first()
+        if not favorite:
+            response_body = {"error" : "Favorite not found"}
+            response = make_response(response_body, 404)
+            return response
+        
+        try: 
+            db.session.delete(favorite)
+            db.session.commit()
+        except: 
+            response_body = {"error" : "Unable to update favorite"}
+            response = make_response(response_body, 400)
+            return response
         
 api.add_resource(FavoritesById, '/favorites/<int:id>')
 
@@ -130,7 +150,8 @@ class Login(Resource):
                 session['user_id'] = user.id
                 return make_response(user.to_dict(), 200)
         
-        return make_response({"message":"401: Not Authorized!"}, 401)
+        response = make_response({"message":"401: Not Authorized!"}, 401)
+        return response
 
 api.add_resource(Login, '/login', endpoint='login')
 

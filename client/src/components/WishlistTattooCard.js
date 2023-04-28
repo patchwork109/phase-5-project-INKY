@@ -1,8 +1,26 @@
 import React from "react";
 import Card from '@mui/material/Card';
 
-function WishlistTattooCard ({id, name, category, description, size, price, image}) {
+function WishlistTattooCard ({id, name, category, description, size, price, image, handleRemoveFavoritedTattoo}) {
+        
+    const handleDeleteResponse = r => {
+        if (r.ok) {
+            console.log( "STATUS:", r.status)
+            r.json().then(console.log)  
+        } else {
+            console.error("STATUS:", r.status)
+            r.text().then(console.warn)
+        }
+    }
 
+    const handleRemoveFavoriteClick = () => {
+        fetch(`http://127.0.0.1:5555/favorites/${id}`, {
+            method: "DELETE",
+        })
+        .then(r => handleDeleteResponse(r))
+
+        handleRemoveFavoritedTattoo(id)
+    }
 
     return (
         <div>
@@ -18,6 +36,7 @@ function WishlistTattooCard ({id, name, category, description, size, price, imag
                 <br/>
                 <img src={image} alt={name} />
                 <br/>
+                <button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</button>
             </Card>
         </div>
     )
