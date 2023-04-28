@@ -1,7 +1,7 @@
 import React from "react";
 import TattooCard from "./TattooCard";
 
-function TattooContainer ({tattoos}) {
+function TattooContainer ({user, tattoos}) {
 
     const renderTattoos = tattoos.map(tattoo => {
         return <TattooCard key={tattoo.id}
@@ -12,6 +12,7 @@ function TattooContainer ({tattoos}) {
             size = {tattoo.size}
             price = {tattoo.price}
             image = {tattoo.image}
+            user = {user}
         />
     })
 

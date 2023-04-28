@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Card from '@mui/material/Card';
 
 
-// this is the id of the tattoo, not the favorite
-function TattooCard ({id, name, category, description, size, price, image}) {
+function TattooCard ({id, name, category, description, size, price, image, user}) {
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
+    // use association proxy?
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
 
@@ -14,9 +14,10 @@ function TattooCard ({id, name, category, description, size, price, image}) {
 
         setToggleFavorited(toggleFavorited => !toggleFavorited)
 
-        // should I add tattoo_id = id and user_id = someId? 
         const newFavoritedTattoo = {
-            is_favorited: toggleFavorited
+            is_favorited: toggleFavorited,
+            user_id: user.id,
+            tattoo_id: id
         }
 
         const handleResponse = r => {
@@ -29,13 +30,8 @@ function TattooCard ({id, name, category, description, size, price, image}) {
             }
         }
 
-        console.log(id)
-
-        // is this actually the right id?
-        // Favorting the dinosaur results in an error
-        // should this be a post (to add a new favorite), then a delete to remove it?
-        fetch(`http://127.0.0.1:5555/favorites/${id}`, {
-            method: "PATCH",
+        fetch("http://127.0.0.1:5555/favorites", {
+            method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(newFavoritedTattoo)
         })

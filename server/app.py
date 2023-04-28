@@ -91,13 +91,11 @@ class Signup(Resource):
     def post(self):
         data = request.get_json()
         name = data.get('name')
-        email = data.get('email')
         username = data.get('username')
         password = data.get('password')
 
         user = User(
             name = name,
-            email = email,
             username = username, 
         )
 

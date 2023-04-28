@@ -28,8 +28,6 @@ function App() {
         .then(setTattoos)
     }, [])
 
-    console.log(tattoos)
-
 	return (
 		<div className="app">
 			<header className="App-header">
@@ -40,7 +38,7 @@ function App() {
 							<HomePage/>
 						</Route>
 						<Route exact path="/tattoos">
-							<TattooContainer tattoos={tattoos}/>
+							<TattooContainer user={user} tattoos={tattoos}/>
 						</Route>
 						<Route exact path="/wishlist">
 							<Wishlist/>
@@ -52,7 +50,7 @@ function App() {
 							<Cart/>
 						</Route>
                         <Route exact path="/login">
-							<Login onLogin={setUser}/>
+							<Login user={user} onLogin={setUser}/>
 						</Route>                        
 					</Switch>
 				</Router>
