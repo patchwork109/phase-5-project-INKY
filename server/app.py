@@ -1,14 +1,9 @@
 from flask import request, make_response, session
 from flask_restful import Resource
-from flask_session import Session
 from sqlalchemy.exc import IntegrityError
-from flask_session import Session
 
 from config import app, db, api
 from models import User, Order, Cart, Tattoo, CartTattoo, Favorite
-
-Session(app)
-
 
 class Home(Resource):
     def get(self):

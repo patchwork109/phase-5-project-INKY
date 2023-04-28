@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 function NavBar ({onLogout}) {
 
     const handleLogoutClick = () => {
-        fetch("http://127.0.0.1:5555/logout", {
+        fetch("/logout", {
             method: "DELETE",
         }).then(() => onLogout(null));
     }
@@ -22,7 +22,6 @@ function NavBar ({onLogout}) {
                         <NavLink className="navBar" exact to="/wishlist">Wishlist</NavLink>
                         <NavLink className="navBar" exact to="/ourstory">Our Story</NavLink>
                         <NavLink className="navBar" exact to="/cart">Cart</NavLink>
-                        <NavLink className="navBar" exact to="/login">Log In</NavLink>
                         <NavLink className="navBar" exact to="/" onClick={handleLogoutClick}>Log Out</NavLink>
                     </Toolbar>
                 </AppBar>

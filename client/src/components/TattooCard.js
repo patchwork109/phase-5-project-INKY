@@ -34,7 +34,7 @@ function TattooCard ({id, name, category, description, size, price, image, user}
             }
         }
 
-        fetch("http://127.0.0.1:5555/favorites", {
+        fetch("/favorites", {
             method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(newFavoritedTattoo)

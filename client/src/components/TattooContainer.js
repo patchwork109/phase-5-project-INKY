@@ -1,7 +1,8 @@
 import React from "react";
 import TattooCard from "./TattooCard";
+import Login from "./Login";
 
-function TattooContainer ({user, tattoos}) {
+function TattooContainer ({user, onLogin, tattoos}) {
 
     const renderTattoos = tattoos.map(tattoo => {
         return <TattooCard key={tattoo.id}
@@ -16,10 +17,12 @@ function TattooContainer ({user, tattoos}) {
         />
     })
 
+    // if the user is not logged in, then show the login form
+    // otherwise just show all of the tattoo cards
     return (
         <div>
             I'm the tattoo container!
-            {renderTattoos}
+            <div>{(user === null) ? <Login onLogin={onLogin}/> : renderTattoos}</div>
         </div>
     )
 }

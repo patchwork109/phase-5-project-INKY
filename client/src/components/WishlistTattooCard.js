@@ -14,7 +14,7 @@ function WishlistTattooCard ({id, name, category, description, size, price, imag
     }
 
     const handleRemoveFavoriteClick = () => {
-        fetch(`http://127.0.0.1:5555/favorites/${id}`, {
+        fetch(`/favorites/${id}`, {
             method: "DELETE",
         })
         .then(r => handleDeleteResponse(r))

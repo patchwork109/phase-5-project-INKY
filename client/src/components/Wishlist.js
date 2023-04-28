@@ -5,8 +5,9 @@ function Wishlist () {
 
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
 
+    // need to only fetch favorited tattoos that have been favorited by a specific user
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/favorites')
+        fetch('/favorites')
         .then(response => response.json())
         .then(setFavoritedTattoos)
     }, [])

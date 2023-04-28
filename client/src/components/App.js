@@ -16,7 +16,7 @@ function App() {
 	// const [showAllTattoos, setshowAllTattoos] = useState(false)
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5555/check_session")
+        fetch("/check_session")
         .then((response) => {
             if (response.ok) {
                 response.json().then((user) => setUser(user));
@@ -25,7 +25,7 @@ function App() {
     }, []);
 		
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/tattoos')
+        fetch('/tattoos')
         .then(response => response.json())
         .then(setTattoos)
     }, [])
@@ -34,13 +34,13 @@ function App() {
 		<div className="app">
 			<header className="App-header">
 				<Router>
-				<NavBar onLogout={setUser} onLogin={setUser}/>
+				<NavBar onLogout={setUser}/>
 					<Switch>
 						<Route exact path="/">
 							<HomePage/>
 						</Route>
 						<Route exact path="/tattoos">
-							<TattooContainer user={user} tattoos={tattoos}/>
+							<TattooContainer user={user} onLogin={setUser} tattoos={tattoos}/>
 						</Route>
 						<Route exact path="/wishlist">
 							<Wishlist/>
@@ -51,9 +51,6 @@ function App() {
                         <Route exact path="/cart">
 							<Cart/>
 						</Route>
-                        <Route exact path="/login">
-							<Login user={user} onLogin={setUser}/>
-						</Route>                        
 					</Switch>
 				</Router>
 			</header>
