@@ -4,7 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 
-function NavBar ({onLogout}) {
+function NavBar ({user, onLogout}) {
 
     const handleLogoutClick = () => {
         fetch("/logout", {
@@ -22,7 +22,7 @@ function NavBar ({onLogout}) {
                         <NavLink className="navBar" exact to="/wishlist">Wishlist</NavLink>
                         <NavLink className="navBar" exact to="/ourstory">Our Story</NavLink>
                         <NavLink className="navBar" exact to="/cart">Cart</NavLink>
-                        <NavLink className="navBar" exact to="/" onClick={handleLogoutClick}>Log Out</NavLink>
+                        <NavLink className="navBar" exact to="/" onClick={handleLogoutClick}>{(user===null)? "":"Log Out"}</NavLink>
                     </Toolbar>
                 </AppBar>
             </Box>

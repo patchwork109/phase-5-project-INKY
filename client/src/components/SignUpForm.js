@@ -24,7 +24,7 @@ function SignUpForm({onLogin}) {
         .then((r) => r.json())
         .then((user) => onLogin(user));
 
-        history.push('/')
+        history.push('/tattoos')
     }
 
     return (

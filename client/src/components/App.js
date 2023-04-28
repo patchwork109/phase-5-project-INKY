@@ -6,7 +6,6 @@ import TattooContainer from "./TattooContainer";
 import Wishlist from "./Wishlist";
 import OurStory from "./OurStory";
 import Cart from "./Cart";
-import Login from "./Login";
 
 function App() {
 
@@ -34,7 +33,7 @@ function App() {
 		<div className="app">
 			<header className="App-header">
 				<Router>
-				<NavBar onLogout={setUser}/>
+				<NavBar user={user} onLogout={setUser}/>
 					<Switch>
 						<Route exact path="/">
 							<HomePage/>

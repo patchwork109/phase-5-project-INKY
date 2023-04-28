@@ -17,7 +17,7 @@ function LoginForm({user, onLogin}) {
         .then((user) => onLogin(user));
 
         console.log(user)
-        history.push('/')
+        history.push('/tattoos')
     }
   
     return (
