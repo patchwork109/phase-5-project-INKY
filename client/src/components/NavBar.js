@@ -9,7 +9,7 @@ function NavBar ({user, onLogout}) {
     const handleLogoutClick = () => {
         fetch("/logout", {
             method: "DELETE",
-        }).then(() => onLogout(null));
+        }).then(() => onLogout());
     }
 
     return (

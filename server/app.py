@@ -3,23 +3,17 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 
 from config import app, db, api
-from models import User, Order, Cart, Tattoo, CartTattoo, Favorite
+from models import User, Cart, Tattoo, CartTattoo, Favorite
 
 class Home(Resource):
     def get(self):
         return make_response({"message":"Phase 5 Project - woohoo!"})
-    
-api.add_resource(Home, '/' )
-
 
 class Tattoos(Resource):
     def get(self):
         tattoos = [tattoo.to_dict() for tattoo in Tattoo.query.all()]
         response = make_response(tattoos, 200)
         return response
-    
-api.add_resource(Tattoos, '/tattoos')
-
 
 class Favorites(Resource):
     def get(self):
@@ -47,11 +41,8 @@ class Favorites(Resource):
         new_favorite_dict = new_favorite.to_dict()
         response = make_response(new_favorite_dict, 201)
         return response
-        
-api.add_resource(Favorites, '/favorites')
 
-
-class FavoritesById(Resource):
+class FavoriteById(Resource):
     def get(self, id):
         favorite = Favorite.query.filter(Favorite.id == id).first()
         if not favorite:
@@ -95,13 +86,111 @@ class FavoritesById(Resource):
             db.session.delete(favorite)
             db.session.commit()
         except: 
-            response_body = {"error" : "Unable to update favorite"}
+            response_body = {"error" : "Unable to delete favorite"}
+            response = make_response(response_body, 400)
+            return response
+
+class CartTattoos(Resource):
+    def get(self):
+        cart_tattoos = [cart_tattoo.to_dict() for cart_tattoo in CartTattoo.query.all()]
+        response = make_response(cart_tattoos, 200)
+        return response
+    
+    def post(self):
+        data = request.get_json()
+
+        try:
+            new_cart_tattoo = CartTattoo(
+                quantity = data['quantity'],
+                cart_id = data['cart_id'],
+                tattoo_id = data['tattoo_id']
+            )
+
+            db.session.add(new_cart_tattoo)
+            db.session.commit()
+        except:
+            response_body = {"error" : "Not able to create new cart_tattoo"}
             response = make_response(response_body, 400)
             return response
         
-api.add_resource(FavoritesById, '/favorites/<int:id>')
+        new_cart_tattoo_dict = new_cart_tattoo.to_dict()
+        response = make_response(new_cart_tattoo_dict, 201)
+        return response
+    
+class CartTattooById(Resource):
+    def get(self, id):
+        cart_tattoo = CartTattoo.query.filter(CartTattoo.id == id).first()
+        if not cart_tattoo:
+            response_body = {"error" : "Cart tattoo not found"}
+            response = make_response(response_body, 404)
+            return response
+        
+        response = make_response(cart_tattoo.to_dict(), 200)
+        return response
+    
+    def patch(self, id):
+        cart_tattoo = CartTattoo.query.filter(CartTattoo.id == id).first()
+        if not cart_tattoo:
+            response_body = {"error" : "Cart tattoo not found"}
+            response = make_response(response_body, 404)
+            return response
+        
+        data = request.get_json()
+        try:
+            for key in data.keys():
+                setattr(cart_tattoo, key, data[key])
+            
+            db.session.add(cart_tattoo)
+            db.session.commit()
+        except:
+            response_body = {"error" : "Unable to update cart tattoo"}
+            response = make_response(response_body, 400)
+            return response
 
+        response = make_response(cart_tattoo.to_dict(rules=('tattoo', )), 200)
+        return response
 
+    def delete(self, id):
+        cart_tattoo = CartTattoo.query.filter(CartTattoo.id == id).first()
+        if not cart_tattoo:
+            response_body = {"error" : "Cart tattoo not found"}
+            response = make_response(response_body, 404)
+            return response
+        
+        try: 
+            db.session.delete(cart_tattoo)
+            db.session.commit()
+        except: 
+            response_body = {"error" : "Unable to delete cart tattoo"}
+            response = make_response(response_body, 400)
+            return response
+    
+class CartById(Resource):
+    def get(self, id):
+        cart = Cart.query.filter(Cart.id == id).first()
+        if not cart:
+            response_body = {"error" : "Cart not found"}
+            response = make_response(response_body, 404)
+            return response
+        
+        response = make_response(cart.to_dict(rules=('tattoos', 'cart_tattoos', 'cart_tattoos.tattoo')), 200)
+        return response
+    
+    def delete(self, id):
+        cart = Cart.query.filter(Cart.id == id).first()
+        if not cart:
+            response_body = {"error" : "Cart not found"}
+            response = make_response(response_body, 404)
+            return response
+        
+        try: 
+            db.session.delete(cart)
+            db.session.commit()
+        except: 
+            response_body = {"error" : "Unable to delete cart"}
+            response = make_response(response_body, 400)
+            return response
+    
 class Signup(Resource):
     def post(self):
         data = request.get_json()
@@ -127,9 +216,6 @@ class Signup(Resource):
             response_body = {"error" : "422 Unprocessable Entity"}
             response = make_response(response_body, 422)
             return response
-        
-api.add_resource(Signup, '/signup', endpoint='signup')
-
 
 class Login(Resource):
     def post(self):
@@ -148,9 +234,6 @@ class Login(Resource):
         response = make_response({"message":"401: Not Authorized!"}, 401)
         return response
 
-api.add_resource(Login, '/login', endpoint='login')
-
-
 class Logout(Resource):
     def delete(self):
         if session.get('user_id'):
@@ -158,9 +241,6 @@ class Logout(Resource):
             return {'message': '204 No Content'}, 204
         
         return make_response({"message":"401: Not Authorized!"}, 401)
-
-api.add_resource(Logout, '/logout', endpoint='logout')
-
 
 class CheckSession(Resource):
     def get(self):
@@ -170,6 +250,17 @@ class CheckSession(Resource):
         
         return make_response({"message":"401: Not Authorized!"}, 401)
 
+
+api.add_resource(Home, '/' )
+api.add_resource(Tattoos, '/tattoos')
+api.add_resource(Favorites, '/favorites')
+api.add_resource(FavoriteById, '/favorites/<int:id>')
+api.add_resource(CartTattoos, '/cart_tattoos')
+api.add_resource(CartTattooById, '/cart_tattoos/<int:id>')
+api.add_resource(CartById, '/carts/<int:id>')
+api.add_resource(Signup, '/signup', endpoint='signup')
+api.add_resource(Login, '/login', endpoint='login')
+api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 
 

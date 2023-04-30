@@ -6,16 +6,11 @@ function TattooCard ({id, name, category, description, size, price, image, user}
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
-    // use association proxy?
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
 
     const handleFavoriteClick = () => {
 
-        setToggleFavorited(toggleFavorited => !toggleFavorited)
-
-        // user.id is showing as undefined which errors out the POST
-        // hardcoding for now, but need to revisit
         const newFavoritedTattoo = {
             is_favorited: toggleFavorited,
             user_id: user.id,
@@ -27,7 +22,7 @@ function TattooCard ({id, name, category, description, size, price, image, user}
         const handleResponse = r => {
             if (r.ok) {
                 console.log( "STATUS:", r.status)
-                r.json().then(console.log)
+                r.json().then(setToggleFavorited(toggleFavorited => !toggleFavorited))
             } else {
                 console.error("STATUS:", r.status)
                 r.text().then(console.warn)
@@ -44,7 +39,31 @@ function TattooCard ({id, name, category, description, size, price, image, user}
 
 
     const handleAddToCartClick = () => {
-        setToggleAddToCart(toggleAddToCart => !toggleAddToCart)
+
+        // need to create a cart instance and add the cart_id here
+        // for now, just hardcoded to test the post functionality
+        const newCartTattoo = {
+            quantity: 1,
+            cart_id: 1,
+            tattoo_id: id
+        }
+
+        const handleResponse = r => {
+            if (r.ok) {
+                console.log( "STATUS:", r.status)
+                r.json().then(setToggleAddToCart(toggleAddToCart => !toggleAddToCart))
+            } else {
+                console.error("STATUS:", r.status)
+                r.text().then(console.warn)
+            }
+        }
+
+        fetch("/cart_tattoos", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(newCartTattoo)
+        })
+            .then(r => handleResponse(r))
     }
 
     return (
@@ -65,14 +84,16 @@ function TattooCard ({id, name, category, description, size, price, image, user}
                     {toggleFavorited ? (
                         <button onClick={handleFavoriteClick}>Add to Wishlist!</button>
                     ) : (
-                        <button onClick={handleFavoriteClick}>Remove from Wishlist</button>
+                        // <button onClick={handleFavoriteClick}>Remove from Wishlist</button>
+                        null
                     )}
                 </div>
                 <div>
                     {toggleAddToCart ? (
                         <button onClick={handleAddToCartClick}>Add to Cart!</button>
                     ) : (
-                        <button onClick={handleAddToCartClick}>Remove from Cart</button>
+                        // <button onClick={handleAddToCartClick}>Remove from Cart</button>
+                        null
                     )}
                 </div>
             </Card>

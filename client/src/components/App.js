@@ -11,8 +11,7 @@ function App() {
 
     const [tattoos, setTattoos] = useState();
     const [user, setUser] = useState(null);
-	// const [currentOrder, setCurrentOrder] = useState('')
-	// const [showAllTattoos, setshowAllTattoos] = useState(false)
+	const [currentOrder, setCurrentOrder] = useState('')
 
     useEffect(() => {
         fetch("/check_session")
@@ -29,17 +28,22 @@ function App() {
         .then(setTattoos)
     }, [])
 
+	const onLogout = () => {
+		setUser(null)
+		setCurrentOrder('')
+	}
+
 	return (
 		<div className="app">
 			<header className="App-header">
 				<Router>
-				<NavBar user={user} onLogout={setUser}/>
+				<NavBar user={user} onLogout={onLogout}/>
 					<Switch>
 						<Route exact path="/">
 							<HomePage/>
 						</Route>
 						<Route exact path="/tattoos">
-							<TattooContainer user={user} onLogin={setUser} tattoos={tattoos}/>
+							<TattooContainer user={user} onLogin={setUser} tattoos={tattoos} setCurrentOrder={setCurrentOrder}/>
 						</Route>
 						<Route exact path="/wishlist">
 							<Wishlist/>

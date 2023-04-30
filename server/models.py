@@ -37,10 +37,10 @@ class User(db.Model, SerializerMixin):
             self._password_hash, password.encode('utf-8'))
 
 
-class Order(db.Model, SerializerMixin):
-    __tablename__ = 'orders'
+class Cart(db.Model, SerializerMixin):
+    __tablename__ = 'carts'
 
-    serialize_rules = ( )
+    serialize_rules = ('-cart_tattoos',)
 
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
@@ -48,23 +48,14 @@ class Order(db.Model, SerializerMixin):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-
-class Cart(db.Model, SerializerMixin):
-    __tablename__ = 'carts'
-
-    serialize_rules = ( )
-
-    id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-
-    order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
+    cart_tattoos = db.relationship('CartTattoo', backref='cart')
+    tattoos = association_proxy('cart_tattoos', 'tattoo')
 
 
 class Tattoo(db.Model, SerializerMixin):
     __tablename__ = 'tattoos'
 
-    serialize_rules = ('-favorites', )
+    serialize_rules = ('-favorites', '-cart_tattoos')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -78,6 +69,9 @@ class Tattoo(db.Model, SerializerMixin):
 
     favorites = db.relationship('Favorite', backref='tattoo')
     users = association_proxy('favorites', 'user')
+
+    cart_tattoos = db.relationship('CartTattoo', backref='tattoo')
+    carts = association_proxy('cart_tattoos', 'cart')
 
 
 class CartTattoo(db.Model, SerializerMixin):
@@ -97,7 +91,7 @@ class CartTattoo(db.Model, SerializerMixin):
 class Favorite(db.Model, SerializerMixin):
     __tablename__ = 'favorites'
 
-    serialize_rules = ('-user', 'tattoo')
+    serialize_rules = ('user', 'tattoo')
 
     id = db.Column(db.Integer, primary_key=True)
     is_favorited = db.Column(db.Boolean)
