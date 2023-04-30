@@ -10,13 +10,14 @@ function Cart () {
     // const [isEditMode, setIsEditMode] = useState(false)
     // const [selectedCartItem, setSelectedCartItem] = useState('')
 
+    // need to figure out why the areTattoosFound isn't working
     const handleResponse = r => {
         if (r.ok) {
             console.log("STATUS:", r.status)
             r.json().then(r => {
                 setTattoosInCart(r.cart_tattoos)
-                setAreTattoosFound(true)
             })
+            setAreTattoosFound(true)
         } else {
             console.error("STATUS:", r.status)
             r.text().then(r => {
@@ -68,23 +69,21 @@ function Cart () {
     const history = useHistory();
     const handleOrderSubmit = (e) => {
         e.preventDefault()
-        history.push("/tattoos");
+        history.push("/ordersuccess");
     }
 
     return (
         <div>
             I'm the cart page!
-            <div>
-                {areTattoosFound ? 
+            {areTattoosFound ? 
                 <div>
                     {displayCartTattoos}
                     <form onSubmit={handleOrderSubmit}>
                         <button type="submit">PLACE YOUR ORDER</button>
                     </form>
                 </div> :
-                    <EmptyCart />
-                }
-            </div>
+                <EmptyCart />
+            }
         </div>
     )
 }

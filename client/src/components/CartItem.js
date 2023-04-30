@@ -31,6 +31,8 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart})
                 <br/>
                 Size: {cartTattoo.tattoo.size}
                 <br/>
+                Quantity: {cartTattoo.quantity}
+                <br/>
                 Price: ${cartTattoo.tattoo.price}
                 <br/>
                 <img src={cartTattoo.tattoo.image} alt={cartTattoo.tattoo.name} />

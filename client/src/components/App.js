@@ -6,6 +6,7 @@ import TattooContainer from "./TattooContainer";
 import Wishlist from "./Wishlist";
 import OurStory from "./OurStory";
 import Cart from "./Cart";
+import OrderSuccess from "./OrderSuccess";
 
 function App() {
 
@@ -53,6 +54,9 @@ function App() {
 						</Route>
                         <Route exact path="/cart">
 							<Cart/>
+						</Route>
+						<Route exact path="/ordersuccess">
+							<OrderSuccess/>
 						</Route>
 					</Switch>
 				</Router>
