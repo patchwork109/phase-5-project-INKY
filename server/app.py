@@ -164,7 +164,32 @@ class CartTattooById(Resource):
             response_body = {"error" : "Unable to delete cart tattoo"}
             response = make_response(response_body, 400)
             return response
+
+class Carts(Resource):
+    def get(self):
+        carts = [cart.to_dict() for cart in Cart.query.all()]
+        response = make_response(carts, 200)
+        return response
     
+    def post(self):
+        data = request.get_json()
+
+        try:
+            new_cart = Cart(
+                user_id = data['user_id']
+            )
+
+            db.session.add(new_cart)
+            db.session.commit()
+        except:
+            response_body = {"error" : "Not able to create new cart"}
+            response = make_response(response_body, 400)
+            return response
+        
+        new_cart_dict = new_cart.to_dict()
+        response = make_response(new_cart_dict, 201)
+        return response
+        
 class CartById(Resource):
     def get(self, id):
         cart = Cart.query.filter(Cart.id == id).first()
@@ -257,6 +282,7 @@ api.add_resource(Favorites, '/favorites')
 api.add_resource(FavoriteById, '/favorites/<int:id>')
 api.add_resource(CartTattoos, '/cart_tattoos')
 api.add_resource(CartTattooById, '/cart_tattoos/<int:id>')
+api.add_resource(Carts, '/carts')
 api.add_resource(CartById, '/carts/<int:id>')
 api.add_resource(Signup, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')

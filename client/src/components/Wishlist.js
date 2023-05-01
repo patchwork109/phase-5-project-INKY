@@ -1,9 +1,36 @@
 import React, { useState, useEffect } from "react";
 import WishlistTattooCard from "./WishlistTattooCard";
+import EmptyWishlist from "./EmptyWishlist";
 
 function Wishlist () {
 
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
+    // const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
+
+    // const handleResponse = r => {
+    //     if (r.ok) {
+    //         console.log("STATUS:", r.status)
+    //         r.json().then(r => {
+    //             console.log(r)
+    //             setFavoritedTattoos(r)
+    //             console.log(areWishlistTattoosFound)
+    //             console.log(favoritedTattoos)
+    //             setAreWishlistTattoosFound(true)
+    //             console.log(areWishlistTattoosFound)
+    //             console.log(favoritedTattoos)
+    //         })
+    //     } else {
+    //         console.error("STATUS:", r.status)
+    //         r.text().then(r => {
+    //             console.warn(r)
+    //             console.log(areWishlistTattoosFound)
+    //             console.log(favoritedTattoos)
+    //             setAreWishlistTattoosFound(false)
+    //             console.log(areWishlistTattoosFound)
+    //             console.log(favoritedTattoos)
+    //         })
+    //     }
+    // }
 
     // need to only fetch favorited tattoos that have been favorited by a specific user
     useEffect(() => {
@@ -11,6 +38,11 @@ function Wishlist () {
         .then(response => response.json())
         .then(setFavoritedTattoos)
     }, [])
+
+    // useEffect(() => {
+    //     fetch('/favorites')
+    //     .then(r => handleResponse(r))
+    // }, [])
 
     const handleRemoveFavoritedTattoo = doomedFavoriteId => {
         console.log("I'm about to get deleted:", doomedFavoriteId)
@@ -21,20 +53,6 @@ function Wishlist () {
 
         setFavoritedTattoos(afterDeletedItems)
     }
-
-    // const updateFavoritedTattoo = aFavoriteObject => {
-    //     console.log("I'm about to get updated:", aFavoriteObject);
-    
-    //     const updatedFavorites = favoritedTattoos.map(favoritedTattoo => {
-    //         if (favoritedTattoo.id !== aFavoriteObject.id) {
-    //             return favoritedTattoo
-    //         } else {
-    //             return aFavoriteObject
-    //         }
-    //     })
-    //     console.log(updatedFavorites)
-    //     setFavoritedTattoos(updatedFavorites)
-    // }
 
     const renderFavoritedTattoos = favoritedTattoos.map(favoritedTattoo => {
         return <WishlistTattooCard key={favoritedTattoo.id}
@@ -54,6 +72,9 @@ function Wishlist () {
         <div>
             I'm the wishlist!
             {renderFavoritedTattoos}
+            {/* { areWishlistTattoosFound ? 
+                {renderFavoritedTattoos} : <EmptyWishlist />
+            } */}
         </div>
     )
 }

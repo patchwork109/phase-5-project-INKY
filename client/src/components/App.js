@@ -12,7 +12,7 @@ function App() {
 
     const [tattoos, setTattoos] = useState();
     const [user, setUser] = useState(null);
-	const [currentOrder, setCurrentOrder] = useState('')
+	const [currentCart, setCurrentCart] = useState(null)
 
     useEffect(() => {
         fetch("/check_session")
@@ -31,7 +31,7 @@ function App() {
 
 	const onLogout = () => {
 		setUser(null)
-		setCurrentOrder('')
+		setCurrentCart(" ")
 	}
 
 	return (
@@ -44,7 +44,13 @@ function App() {
 							<HomePage/>
 						</Route>
 						<Route exact path="/tattoos">
-							<TattooContainer user={user} onLogin={setUser} tattoos={tattoos} setCurrentOrder={setCurrentOrder}/>
+							<TattooContainer 
+								user={user} 
+								onLogin={setUser} 
+								tattoos={tattoos} 
+								currentCart={currentCart}
+								setCurrentCart={setCurrentCart}
+							/>
 						</Route>
 						<Route exact path="/wishlist">
 							<Wishlist/>
@@ -53,7 +59,7 @@ function App() {
 							<OurStory/>
 						</Route>
                         <Route exact path="/cart">
-							<Cart setCurrentOrder={setCurrentOrder}/>
+							<Cart currentCart={currentCart} setCurrentCart={setCurrentCart}/>
 						</Route>
 						<Route exact path="/ordersuccess">
 							<OrderSuccess/>
