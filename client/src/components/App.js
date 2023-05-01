@@ -53,7 +53,7 @@ function App() {
 							<OurStory/>
 						</Route>
                         <Route exact path="/cart">
-							<Cart/>
+							<Cart setCurrentOrder={setCurrentOrder}/>
 						</Route>
 						<Route exact path="/ordersuccess">
 							<OrderSuccess/>

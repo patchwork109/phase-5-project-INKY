@@ -1,7 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from '@mui/material/Card';
 
 function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart}) {
+
+    const [quantity, setQuantity] = useState(cartTattoo.quantity)
+
+    const handleQuantityIncrease = () => {
+        setQuantity(quantity => (quantity + 1))
+
+        const updatedQuantity = {
+            quantity: (quantity + 1)
+        }
+
+        fetch(`/cart_tattoos/${cartTattoo.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(updatedQuantity)
+        })
+        .then((r) => r.json())
+        .then(handleEditTattooInCart);
+    }
+
+    const handleQuantityDecrease = () => {
+        setQuantity(quantity => (quantity - 1))
+
+        const updatedQuantity = {
+            quantity: (quantity - 1)
+        }
+
+        fetch(`/cart_tattoos/${cartTattoo.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(updatedQuantity)
+        })
+        .then((r) => r.json())
+        .then(handleEditTattooInCart);
+    }
+
 
     const handleDeleteResponse = r => {
         if (r.ok) {
@@ -31,7 +66,10 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart})
                 <br/>
                 Size: {cartTattoo.tattoo.size}
                 <br/>
-                Quantity: {cartTattoo.quantity}
+                Quantity: 
+                    <button onClick={handleQuantityDecrease}>-</button>
+                    {cartTattoo.quantity}
+                    <button onClick={handleQuantityIncrease}>+</button>
                 <br/>
                 Price: ${cartTattoo.tattoo.price}
                 <br/>

@@ -3,12 +3,10 @@ import { useHistory } from "react-router-dom";
 import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
 
-function Cart () {
+function Cart ({setCurrentOrder}) {
 
     const [tattoosInCart, setTattoosInCart] = useState([])
     const [areTattoosFound, setAreTattoosFound] = useState(false)
-    // const [isEditMode, setIsEditMode] = useState(false)
-    // const [selectedCartItem, setSelectedCartItem] = useState('')
 
     // need to figure out why the areTattoosFound isn't working
     const handleResponse = r => {
@@ -35,9 +33,7 @@ function Cart () {
     }, [])
 
     const handleEditTattooInCart = (updatedCartTattooObj) => {
-        console.log(updatedCartTattooObj)
         const updatedTattoos = tattoosInCart.map((cartTattoo) => {
-            console.log(cartTattoo)
             if(cartTattoo.id === updatedCartTattooObj.id) {
                 return updatedCartTattooObj;
             } else {
@@ -45,7 +41,6 @@ function Cart () {
             }
         })
         setTattoosInCart(updatedTattoos)
-        console.log(tattoosInCart)
     }
 
     const handleRemoveItemInCart = doomedCartTattooId => {
@@ -70,6 +65,9 @@ function Cart () {
     const handleOrderSubmit = (e) => {
         e.preventDefault()
         history.push("/ordersuccess");
+
+        setCurrentOrder(null)
+        // need to reset state here in order to clear the cart
     }
 
     return (
@@ -82,7 +80,7 @@ function Cart () {
                         <button type="submit">PLACE YOUR ORDER</button>
                     </form>
                 </div> :
-                <EmptyCart />
+                    <EmptyCart />
             }
         </div>
     )
