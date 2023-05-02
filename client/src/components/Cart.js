@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
+import { UserContext } from "../context/user";
 
-function Cart ({currentCart, setCurrentCart}) {
+function Cart () {
 
     const [tattoosInCart, setTattoosInCart] = useState([])
     const [areTattoosFound, setAreTattoosFound] = useState(false)
+    const { currentCart, setCurrentCart } = useContext(UserContext);
 
     console.log(currentCart)
 

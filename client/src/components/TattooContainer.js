@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import TattooCard from "./TattooCard";
 import Login from "./Login";
+import { UserContext } from "../context/user";
 
-function TattooContainer ({user, onLogin, tattoos, currentCart, setCurrentCart}) {
+function TattooContainer ({user, onLogin, tattoos}) {
+
+    const { setCurrentCart } = useContext(UserContext);
 
     const checkIfCartIsNullAndPostNewCart = (currentCartObj) => {
         if (currentCartObj == null) {
@@ -29,8 +32,6 @@ function TattooContainer ({user, onLogin, tattoos, currentCart, setCurrentCart})
             price = {tattoo.price}
             image = {tattoo.image}
             user = {user}
-            currentCart = {currentCart}
-            setCurrentCart = {setCurrentCart}
             checkIfCartIsNullAndPostNewCart = {checkIfCartIsNullAndPostNewCart}
         />
     })

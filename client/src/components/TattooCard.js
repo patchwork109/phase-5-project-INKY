@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/user";
 import Card from '@mui/material/Card';
 
 
-function TattooCard ({id, name, category, description, size, price, image, user, currentCart, setCurrentCart, checkIfCartIsNullAndPostNewCart}) {
+function TattooCard ({id, name, category, description, size, price, image, user, checkIfCartIsNullAndPostNewCart}) {
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
+    const { currentCart } = useContext(UserContext);
 
     const handleFavoriteClick = () => {
 

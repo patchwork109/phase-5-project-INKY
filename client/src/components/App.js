@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
@@ -7,12 +7,13 @@ import Wishlist from "./Wishlist";
 import OurStory from "./OurStory";
 import Cart from "./Cart";
 import OrderSuccess from "./OrderSuccess";
+import { UserContext } from "../context/user";
 
 function App() {
 
-    const [tattoos, setTattoos] = useState();
+    const [tattoos, setTattoos] = useState([]);
     const [user, setUser] = useState(null);
-	const [currentCart, setCurrentCart] = useState(null)
+	const { currentCart, setCurrentCart } = useContext(UserContext);
 
 	console.log("I'm the current cart", currentCart)
 
@@ -33,7 +34,7 @@ function App() {
 
 	const onLogout = () => {
 		setUser(null)
-		setCurrentCart(" ")
+		setCurrentCart(null)
 	}
 
 	return (
@@ -50,8 +51,6 @@ function App() {
 								user={user} 
 								onLogin={setUser} 
 								tattoos={tattoos} 
-								currentCart={currentCart}
-								setCurrentCart={setCurrentCart}
 							/>
 						</Route>
 						<Route exact path="/wishlist">
@@ -61,7 +60,7 @@ function App() {
 							<OurStory/>
 						</Route>
                         <Route exact path="/cart">
-							<Cart currentCart={currentCart} setCurrentCart={setCurrentCart}/>
+							<Cart/>
 						</Route>
 						<Route exact path="/ordersuccess">
 							<OrderSuccess/>
