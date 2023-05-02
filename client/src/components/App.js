@@ -13,6 +13,7 @@ function App() {
 
     const [tattoos, setTattoos] = useState([]);
     const [user, setUser] = useState(null);
+	const [searchString, setSearchString] = useState("");
 	const { currentCart, setCurrentCart } = useContext(UserContext);
 
 	console.log("I'm the current cart", currentCart)
@@ -37,6 +38,14 @@ function App() {
 		setCurrentCart(null)
 	}
 
+	const searchedValue = aNewStringFromSearchBar => {
+		setSearchString(aNewStringFromSearchBar);
+	}
+
+	const searchedTattoos = tattoos.filter(tattoo => {
+		return tattoo.name.toLowerCase().includes(searchString.toLowerCase());
+	})
+
 	return (
 		<div className="app">
 			<header className="App-header">
@@ -50,7 +59,8 @@ function App() {
 							<TattooContainer 
 								user={user} 
 								onLogin={setUser} 
-								tattoos={tattoos} 
+								tattoos={searchedTattoos} 
+								searchedValue={searchedValue}
 							/>
 						</Route>
 						<Route exact path="/wishlist">

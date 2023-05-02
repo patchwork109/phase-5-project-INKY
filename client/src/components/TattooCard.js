@@ -3,11 +3,12 @@ import { UserContext } from "../context/user";
 import Card from '@mui/material/Card';
 
 
-function TattooCard ({id, name, category, description, size, price, image, user, checkIfCartIsNullAndPostNewCart}) {
+function TattooCard ({tattoo, id, name, category, description, size, price, image, user, checkIfCartIsNullAndPostNewCart}) {
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
-    // check out quantity example
+    // tattoos have favorites, can access the is_favorited attribute useState(tattooInstance.favorite.is_favorited)?
+    console.log(tattoo.favorites[0].is_favorited)
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
     const { currentCart } = useContext(UserContext);

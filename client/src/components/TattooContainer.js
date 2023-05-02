@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import TattooCard from "./TattooCard";
 import Login from "./Login";
 import { UserContext } from "../context/user";
+import Search from "./Search";
 
-function TattooContainer ({user, onLogin, tattoos}) {
+function TattooContainer ({user, onLogin, tattoos, searchedValue}) {
 
     const { setCurrentCart } = useContext(UserContext);
 
@@ -24,6 +25,7 @@ function TattooContainer ({user, onLogin, tattoos}) {
 
     const renderTattoos = tattoos.map(tattoo => {
         return <TattooCard key={tattoo.id}
+            tattoo = {tattoo}
             id = {tattoo.id}
             name = {tattoo.name}
             category = {tattoo.category}
@@ -39,7 +41,7 @@ function TattooContainer ({user, onLogin, tattoos}) {
     return (
         <div>
             I'm the tattoo container!
-            <div>{(user === null) ? <Login onLogin={onLogin}/> : renderTattoos}</div>
+            <div>{(user === null) ? <Login onLogin={onLogin}/> : <div><Search searchedValue={searchedValue}/> {renderTattoos}</div>}</div>
         </div>
     )
 }

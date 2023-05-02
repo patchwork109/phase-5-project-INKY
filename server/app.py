@@ -11,7 +11,7 @@ class Home(Resource):
 
 class Tattoos(Resource):
     def get(self):
-        tattoos = [tattoo.to_dict() for tattoo in Tattoo.query.all()]
+        tattoos = [tattoo.to_dict(rules=('favorites', 'favorites.tattoo')) for tattoo in Tattoo.query.all()]
         response = make_response(tattoos, 200)
         return response
 
