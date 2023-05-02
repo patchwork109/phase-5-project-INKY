@@ -35,62 +35,41 @@ function TattooCard ({id, name, category, description, size, price, image, user,
         .then(r => handleResponse(r))
     }
 
+    console.log("is current cart null?:", currentCart == null)
+    console.log(currentCart)
 
-    const handleAddToCartClick = () => {
-
-        // if currentCart is null, create (POST) a new cart instance and add cart_tattoos to it
-        // if currentCart exists, just add cart_tattoos to it
-        console.log("is current cart null?:", currentCart == null)
-        console.log(currentCart)
+    const checkIfCartIsNullAndPostNewCart = () => {
         if (currentCart == null) {
 
-            console.log("inside no cart if")
-            const new_cart= {
-                user_id: user.id
-            }
+            const new_cart= {user_id: user.id}
     
-            const handleNewCartResponse = r => {
-                if (r.ok) {
-                    console.log( "STATUS:", r.status)
-                    r.json().then(cartObj => setCurrentCart(cartObj))
-                } else {
-                    console.error("STATUS:", r.status)
-                    r.text().then(console.warn)
-                }
-            }
-
             fetch("/carts", {
                 method: "POST",
                 headers:{"Content-Type":"application/json"},
                 body: JSON.stringify(new_cart)
             })
-            .then(r => handleNewCartResponse(r))
-
-        } else {
-
-            const newCartTattoo = {
-                quantity: 1,
-                cart_id: currentCart.id,
-                tattoo_id: id
-            }
-    
-            const handleResponse = r => {
-                if (r.ok) {
-                    console.log( "STATUS:", r.status)
-                    r.json().then(setToggleAddToCart(toggleAddToCart => !toggleAddToCart))
-                } else {
-                    console.error("STATUS:", r.status)
-                    r.text().then(console.warn)
-                }
-            }
-    
-            fetch("/cart_tattoos", {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(newCartTattoo)
-            })
-            .then(r => handleResponse(r))
+            .then(r => r.json())
+            .then(cartObj => setCurrentCart(cartObj))
         }
+    }
+
+    checkIfCartIsNullAndPostNewCart()
+
+    const handleAddToCartClick = () => {
+
+        const newCartTattoo = {
+            quantity: 1,
+            cart_id: currentCart.id,
+            tattoo_id: id
+        }
+    
+        fetch("/cart_tattoos", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(newCartTattoo)
+        })
+        .then(r => r.json())
+        .then(setToggleAddToCart(toggleAddToCart => !toggleAddToCart))
     }
 
     return (
