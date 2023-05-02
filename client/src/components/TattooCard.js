@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from '@mui/material/Card';
 
 
-function TattooCard ({id, name, category, description, size, price, image, user, currentCart, setCurrentCart}) {
+function TattooCard ({id, name, category, description, size, price, image, user, currentCart, setCurrentCart, checkIfCartIsNullAndPostNewCart}) {
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
@@ -37,23 +37,7 @@ function TattooCard ({id, name, category, description, size, price, image, user,
 
     console.log("is current cart null?:", currentCart == null)
     console.log(currentCart)
-
-    const checkIfCartIsNullAndPostNewCart = () => {
-        if (currentCart == null) {
-
-            const new_cart= {user_id: user.id}
-    
-            fetch("/carts", {
-                method: "POST",
-                headers:{"Content-Type":"application/json"},
-                body: JSON.stringify(new_cart)
-            })
-            .then(r => r.json())
-            .then(cartObj => setCurrentCart(cartObj))
-        }
-    }
-
-    checkIfCartIsNullAndPostNewCart()
+    checkIfCartIsNullAndPostNewCart(currentCart)
 
     const handleAddToCartClick = () => {
 

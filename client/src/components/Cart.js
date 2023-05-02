@@ -5,45 +5,26 @@ import EmptyCart from "./EmptyCart";
 
 function Cart ({currentCart, setCurrentCart}) {
 
-    // tattoosInCart relates to CartTattoo instances (not Carts!)
     const [tattoosInCart, setTattoosInCart] = useState([])
     const [areTattoosFound, setAreTattoosFound] = useState(false)
 
     console.log(currentCart)
 
-    // need to figure out why the areTattoosFound isn't working
-    const handleResponse = r => {
-        if (r.ok) {
-            console.log("STATUS:", r.status)
-            r.json().then(r => {
-                console.log(r)
-                setTattoosInCart(r.cart_tattoos)
-                // console.log(areTattoosFound)
-                // console.log(tattoosInCart)
-                setAreTattoosFound(true)
-                // console.log(areTattoosFound)
-                // console.log(tattoosInCart)
-            })
-        } else {
-            console.error("STATUS:", r.status)
-            r.text().then(r => {
-                console.warn(r)
-                // console.log(areTattoosFound)
-                // console.log(tattoosInCart)
-                setAreTattoosFound(false)
-                // console.log(areTattoosFound)
-                // console.log(tattoosInCart)
-            })
-        }
-    }
-
+    // this solution doesn't work if a user removes all of the items in their cart
+    // they don't hit an error, so the catch isn't triggered
     useEffect(() => {
-        fetch(`/carts/${currentCart.id}`)
-        .then(r => handleResponse(r))
+        try {
+            fetch(`/carts/${currentCart.id}`)
+            .then(r => r.json())
+            .then(r => {
+                console.log(r)
+                setAreTattoosFound(true)
+                setTattoosInCart(r.cart_tattoos)
+            })
+        } catch {
+            setAreTattoosFound(false)
+        }
     }, [])
-
-    // console.log(areTattoosFound)
-    // console.log(tattoosInCart)
 
     const handleEditTattooInCart = (updatedCartTattooObj) => {
         const updatedTattoos = tattoosInCart.map((cartTattoo) => {
