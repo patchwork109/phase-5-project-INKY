@@ -5,16 +5,23 @@ import EmptyWishlist from "./EmptyWishlist";
 function Wishlist ({user}) {
 
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
-    // const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
+    const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
 
+    // try getting the user from the cookie instead of state
     console.log(user)
 
     useEffect(() => {
         fetch(`/users/${user.id}`)
         .then(r => r.json())
         .then(r => {
-            console.log(r)
-            setFavoritedTattoos(r.favorites)
+            if (r.favorites.length === 0) {
+                console.log("No favorites to see here!")
+                setAreWishlistTattoosFound(false)
+            } else {
+                console.log(r)
+                setAreWishlistTattoosFound(true)
+                setFavoritedTattoos(r.favorites)
+            }
         })
     }, [])
 
@@ -25,7 +32,12 @@ function Wishlist ({user}) {
             return favoritedTattoo.id !== doomedFavoriteId
         })
 
-        setFavoritedTattoos(afterDeletedItems)
+        if (afterDeletedItems.length === 0) {
+            setAreWishlistTattoosFound(false)
+            setFavoritedTattoos(afterDeletedItems)
+        } else {
+            setFavoritedTattoos(afterDeletedItems)
+        }
     }
 
     const renderFavoritedTattoos = favoritedTattoos.map(favoritedTattoo => {
@@ -44,10 +56,10 @@ function Wishlist ({user}) {
     return (
         <div>
             I'm the wishlist!
-            {renderFavoritedTattoos}
-            {/* { areWishlistTattoosFound ? 
-                {renderFavoritedTattoos} : <EmptyWishlist />
-            } */}
+            {/* {renderFavoritedTattoos} */}
+            { areWishlistTattoosFound ? 
+                renderFavoritedTattoos : <EmptyWishlist />
+            }
         </div>
     )
 }
