@@ -2,19 +2,31 @@ import React, { useState, useEffect } from "react";
 import WishlistTattooCard from "./WishlistTattooCard";
 import EmptyWishlist from "./EmptyWishlist";
 
-function Wishlist () {
+function Wishlist ({user}) {
 
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
     // const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
 
+    console.log(user)
 
     // need to only fetch favorited tattoos that have been favorited by a specific user
     // fetch to the user/id route 
     useEffect(() => {
-        fetch('/favorites')
-        .then(response => response.json())
-        .then(setFavoritedTattoos)
+        fetch(`/users/${user.id}`)
+        .then(r => r.json())
+        .then(r => {
+            console.log(r)
+            setFavoritedTattoos(r.favorites)
+        })
     }, [])
+
+    // fetch(`/carts/${currentCart.id}`)
+    // .then(r => r.json())
+    // .then(r => {
+    //     console.log(r)
+    //     setAreTattoosFound(true)
+    //     setTattoosInCart(r.cart_tattoos)
+    // })
 
     const handleRemoveFavoritedTattoo = doomedFavoriteId => {
         console.log("I'm about to get deleted:", doomedFavoriteId)

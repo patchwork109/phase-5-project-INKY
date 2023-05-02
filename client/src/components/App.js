@@ -54,7 +54,7 @@ function App() {
 							/>
 						</Route>
 						<Route exact path="/wishlist">
-							<Wishlist/>
+							<Wishlist user={user}/>
 						</Route>
 						<Route exact path="/ourstory">
 							<OurStory/>

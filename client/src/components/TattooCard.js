@@ -7,6 +7,7 @@ function TattooCard ({id, name, category, description, size, price, image, user,
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
+    // check out quantity example
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
     const { currentCart } = useContext(UserContext);

@@ -14,6 +14,7 @@ function Cart () {
 
     // this solution doesn't work if a user removes all of the items in their cart
     // they don't hit an error, so the catch isn't triggered
+    // try if cart_tattoos is empty, then setAreTattoosFound(false)
     useEffect(() => {
         try {
             fetch(`/carts/${currentCart.id}`)
