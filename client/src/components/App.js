@@ -14,6 +14,8 @@ function App() {
     const [user, setUser] = useState(null);
 	const [currentCart, setCurrentCart] = useState(null)
 
+	console.log("I'm the current cart", currentCart)
+
     useEffect(() => {
         fetch("/check_session")
         .then((response) => {

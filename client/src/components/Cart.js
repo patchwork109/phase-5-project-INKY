@@ -5,11 +5,11 @@ import EmptyCart from "./EmptyCart";
 
 function Cart ({currentCart, setCurrentCart}) {
 
+    // tattoosInCart relates to CartTattoo instances (not Carts!)
     const [tattoosInCart, setTattoosInCart] = useState([])
     const [areTattoosFound, setAreTattoosFound] = useState(false)
 
     console.log(currentCart)
-    console.log(currentCart.id)
 
     // need to figure out why the areTattoosFound isn't working
     const handleResponse = r => {
@@ -39,7 +39,6 @@ function Cart ({currentCart, setCurrentCart}) {
 
     useEffect(() => {
         fetch(`/carts/${currentCart.id}`)
-        // fetch('carts/1')
         .then(r => handleResponse(r))
     }, [])
 
@@ -80,7 +79,7 @@ function Cart ({currentCart, setCurrentCart}) {
         e.preventDefault()
         history.push("/ordersuccess");
 
-        setCurrentCart()
+        setCurrentCart(null)
     }
 
     return (

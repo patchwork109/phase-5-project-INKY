@@ -16,7 +16,6 @@ function LoginForm({user, onLogin}) {
         .then((r) => r.json())
         .then((user) => onLogin(user));
 
-        console.log(user)
         history.push('/tattoos')
     }
   

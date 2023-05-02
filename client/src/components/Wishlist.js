@@ -7,42 +7,14 @@ function Wishlist () {
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
     // const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
 
-    // const handleResponse = r => {
-    //     if (r.ok) {
-    //         console.log("STATUS:", r.status)
-    //         r.json().then(r => {
-    //             console.log(r)
-    //             setFavoritedTattoos(r)
-    //             console.log(areWishlistTattoosFound)
-    //             console.log(favoritedTattoos)
-    //             setAreWishlistTattoosFound(true)
-    //             console.log(areWishlistTattoosFound)
-    //             console.log(favoritedTattoos)
-    //         })
-    //     } else {
-    //         console.error("STATUS:", r.status)
-    //         r.text().then(r => {
-    //             console.warn(r)
-    //             console.log(areWishlistTattoosFound)
-    //             console.log(favoritedTattoos)
-    //             setAreWishlistTattoosFound(false)
-    //             console.log(areWishlistTattoosFound)
-    //             console.log(favoritedTattoos)
-    //         })
-    //     }
-    // }
 
     // need to only fetch favorited tattoos that have been favorited by a specific user
+    // fetch to the user/id route 
     useEffect(() => {
         fetch('/favorites')
         .then(response => response.json())
         .then(setFavoritedTattoos)
     }, [])
-
-    // useEffect(() => {
-    //     fetch('/favorites')
-    //     .then(r => handleResponse(r))
-    // }, [])
 
     const handleRemoveFavoritedTattoo = doomedFavoriteId => {
         console.log("I'm about to get deleted:", doomedFavoriteId)
@@ -63,7 +35,6 @@ function Wishlist () {
             size = {favoritedTattoo.tattoo.size}
             price = {favoritedTattoo.tattoo.price}
             image = {favoritedTattoo.tattoo.image}
-            // updateFavoritedTattoo = {updateFavoritedTattoo}
             handleRemoveFavoritedTattoo = {handleRemoveFavoritedTattoo}
         />
     })

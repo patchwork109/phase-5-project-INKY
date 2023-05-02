@@ -90,6 +90,17 @@ class FavoriteById(Resource):
             response = make_response(response_body, 400)
             return response
 
+class UserById(Resource):
+    def get(self, id):
+        user = User.query.filter(User.id == id).first()
+        if not user:
+            response_body = {"error" : "User not found"}
+            response = make_response(response_body, 404)
+            return response
+        
+        response = make_response(user.to_dict(rules=('tattoos', 'favorites', 'favorites.tattoo')), 200)
+        return response
+
 class CartTattoos(Resource):
     def get(self):
         cart_tattoos = [cart_tattoo.to_dict() for cart_tattoo in CartTattoo.query.all()]
@@ -280,6 +291,7 @@ api.add_resource(Home, '/' )
 api.add_resource(Tattoos, '/tattoos')
 api.add_resource(Favorites, '/favorites')
 api.add_resource(FavoriteById, '/favorites/<int:id>')
+api.add_resource(UserById, '/users/<int:id>')
 api.add_resource(CartTattoos, '/cart_tattoos')
 api.add_resource(CartTattooById, '/cart_tattoos/<int:id>')
 api.add_resource(Carts, '/carts')

@@ -13,13 +13,14 @@ if __name__ == '__main__':
         Tattoo.query.delete()
         Favorite.query.delete()
         Cart.query.delete()
+        CartTattoo.query.delete()
 
         print("Starting to re-seed...")
 
-        # sam = User(name="Sam", username="samieg", password_hash="1234")
+        sam = User(name="Sam", username="samieg", password_hash="1234")
         tom = User(name="Tom", username="shullt", password_hash="5678")
 
-        db.session.add_all([tom])
+        db.session.add_all([sam, tom])
         db.session.commit()
 
         cloud = Tattoo(name="Cloud", description="A very fluffy cloud", size="Small", category="Nature", price=3.0, image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_21461_20200730041744_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=355&fit=max&auto=compress,format&q=50&dpr=2")
