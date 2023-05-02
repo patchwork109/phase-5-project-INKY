@@ -23,7 +23,7 @@ function Wishlist ({user}) {
                 setFavoritedTattoos(r.favorites)
             }
         })
-    }, [])
+    }, []) // eslint-disable-line
 
     const handleRemoveFavoritedTattoo = doomedFavoriteId => {
         console.log("I'm about to get deleted:", doomedFavoriteId)
@@ -56,7 +56,6 @@ function Wishlist ({user}) {
     return (
         <div>
             I'm the wishlist!
-            {/* {renderFavoritedTattoos} */}
             { areWishlistTattoosFound ? 
                 renderFavoritedTattoos : <EmptyWishlist />
             }

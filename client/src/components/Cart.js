@@ -29,7 +29,7 @@ function Cart () {
         } catch {
             setAreTattoosFound(false)
         }
-    }, [])
+    }, []) // eslint-disable-line
 
     const handleEditTattooInCart = (updatedCartTattooObj) => {
         const updatedTattoos = tattoosInCart.map((cartTattoo) => {
