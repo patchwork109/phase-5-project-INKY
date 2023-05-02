@@ -6,6 +6,9 @@ function LoginForm({user, onLogin}) {
     const [password, setPassword] = useState("");
     const history = useHistory()
   
+
+    // need to add a response handler here so that the page doesn't
+    // redirect if the login isn't successful
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch("/login", {

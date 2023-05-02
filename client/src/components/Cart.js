@@ -12,17 +12,19 @@ function Cart () {
 
     console.log(currentCart)
 
-    // this solution doesn't work if a user removes all of the items in their cart
-    // they don't hit an error, so the catch isn't triggered
-    // try if cart_tattoos is empty, then setAreTattoosFound(false)
     useEffect(() => {
         try {
             fetch(`/carts/${currentCart.id}`)
             .then(r => r.json())
             .then(r => {
-                console.log(r)
-                setAreTattoosFound(true)
-                setTattoosInCart(r.cart_tattoos)
+                if (r.cart_tattoos.length === 0) {
+                    console.log("Cart tattoos is empty!")
+                    setAreTattoosFound(false)
+                } else {
+                    console.log(r)
+                    setAreTattoosFound(true)
+                    setTattoosInCart(r.cart_tattoos)
+                }
             })
         } catch {
             setAreTattoosFound(false)
@@ -44,8 +46,13 @@ function Cart () {
         const afterDeletedItems = tattoosInCart.filter(cartTattoo => {
           return cartTattoo.id !== doomedCartTattooId
         })
-    
-        setTattoosInCart(afterDeletedItems)
+
+        if (afterDeletedItems.length === 0) {
+            setAreTattoosFound(false)
+            setTattoosInCart(afterDeletedItems)
+        } else {
+            setTattoosInCart(afterDeletedItems)
+        }
     }
 
     const displayCartTattoos = tattoosInCart.map(cartTattoo => {
