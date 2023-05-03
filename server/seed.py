@@ -23,6 +23,7 @@ if __name__ == '__main__':
         db.session.add_all([sam, tom])
         db.session.commit()
 
+        # Nature, Dinosaurs, Animals, Objects, Words and Quotes
         cloud = Tattoo(name="Cloud", description="A very fluffy cloud", size="Small", category="Nature", price=3.0, image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_21461_20200730041744_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=355&fit=max&auto=compress,format&q=50&dpr=2")
         dino = Tattoo(name="Dino", description="A small dino friend", size="Small", category="Dinosaurs", price=4.0, image="https://inkboxdesigns.imgix.net/product_stencils/4805914361934_printable_1623704515.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=355&fit=max&auto=compress,format&q=50&dpr=2")
 

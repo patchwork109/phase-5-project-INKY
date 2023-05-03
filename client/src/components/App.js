@@ -14,6 +14,7 @@ function App() {
     const [tattoos, setTattoos] = useState([]);
     const [user, setUser] = useState(null);
 	const [searchString, setSearchString] = useState("");
+	const [categoryValue, setCategoryValue] = useState("");
 	const { currentCart, setCurrentCart } = useContext(UserContext);
 
 	console.log("I'm the current cart", currentCart)
@@ -42,8 +43,20 @@ function App() {
 		setSearchString(aNewStringFromSearchBar);
 	}
 
-	const searchedTattoos = tattoos.filter(tattoo => {
-		return tattoo.name.toLowerCase().includes(searchString.toLowerCase());
+	const handleCategoryInputChange = (e) => {
+
+        const {value, checked} = e.target;
+
+        if (checked) {
+            setCategoryValue([...categoryValue, value]);
+        } else {
+			setCategoryValue("");
+        }
+    }
+
+	const searchedAndFilteredTattoos = tattoos.filter(tattoo => {
+		return tattoo.name.toLowerCase().includes(searchString.toLowerCase()) && 
+		(categoryValue === "" || categoryValue.includes(tattoo.category))
 	})
 
 	return (
@@ -59,8 +72,9 @@ function App() {
 							<TattooContainer 
 								user={user} 
 								onLogin={setUser} 
-								tattoos={searchedTattoos} 
+								tattoos={searchedAndFilteredTattoos} 
 								searchedValue={searchedValue}
+								handleCategoryInputChange={handleCategoryInputChange}
 							/>
 						</Route>
 						<Route exact path="/wishlist">

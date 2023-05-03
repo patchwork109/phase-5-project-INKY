@@ -3,8 +3,9 @@ import TattooCard from "./TattooCard";
 import Login from "./Login";
 import { UserContext } from "../context/user";
 import Search from "./Search";
+import CategoryFilter from "./CategoryFilter";
 
-function TattooContainer ({user, onLogin, tattoos, searchedValue}) {
+function TattooContainer ({user, onLogin, tattoos, searchedValue, filteredCategoryValue, handleCategoryInputChange}) {
 
     const { setCurrentCart } = useContext(UserContext);
 
@@ -41,7 +42,19 @@ function TattooContainer ({user, onLogin, tattoos, searchedValue}) {
     return (
         <div>
             I'm the tattoo container!
-            <div>{(user === null) ? <Login onLogin={onLogin}/> : <div><Search searchedValue={searchedValue}/> {renderTattoos}</div>}</div>
+            <div>
+                {(user === null) ? 
+                    <Login onLogin={onLogin}/> : 
+                    <div>
+                        <Search searchedValue={searchedValue}/> 
+                        <CategoryFilter 
+                            filteredCategoryValue={filteredCategoryValue}
+                            handleCategoryInputChange={handleCategoryInputChange}
+                        />
+                        {renderTattoos}
+                    </div>
+                }
+            </div>
         </div>
     )
 }
