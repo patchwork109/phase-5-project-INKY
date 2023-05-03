@@ -1,4 +1,4 @@
-from flask import request, make_response, session
+from flask import request, make_response, session, jsonify
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 
@@ -248,9 +248,12 @@ class Signup(Resource):
             session['user_id'] = user.id
             response = make_response(user.to_dict(), 201)
             return response
-        except IntegrityError:
-            response_body = {"error" : "422 Unprocessable Entity"}
-            response = make_response(response_body, 422)
+        except ValueError:
+            response_body = {"error" : "422: Didn't meet validation requirements"}
+            # response_body = {"error" : str(e)}
+            # response = make_response(response_body, 422)
+            response = jsonify(response_body)
+            response.status_code = 422
             return response
 
 class Login(Resource):

@@ -1,29 +1,38 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function LoginForm({user, onLogin}) {
+function LoginForm({onLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [logInErrorMessage, setLogInErrorMessage] = useState('');
     const history = useHistory()
-  
 
-    // need to add a response handler here so that the page doesn't
-    // redirect if the login isn't successful
-    const handleSubmit = (e) => {
+    const handleResponse = (r) => {
+        if (r.ok) {
+            console.log("STATUS:", r.status)
+            r.json().then(user => {
+                onLogin(user)
+                console.log(user)
+                history.push('/tattoos')
+            })
+        } else {
+            console.log("STATUS:", r.status)
+            setLogInErrorMessage("Invalid username or password. Try again!");
+        }
+    }
+
+    const handleLogInSubmit = (e) => {
         e.preventDefault();
         fetch("/login", {
             method: "POST",
             headers: {"Content-Type": "application/json",},
             body: JSON.stringify({username, password}),
         })
-        .then((r) => r.json())
-        .then((user) => onLogin(user));
-
-        history.push('/tattoos')
+        .then(r => handleResponse(r))
     }
   
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogInSubmit}>
             <label>Username: </label>
             <input
                 type="text"
@@ -37,6 +46,8 @@ function LoginForm({user, onLogin}) {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Login</button>
+
+            {logInErrorMessage && (<div>{logInErrorMessage}</div>)}
         </form>
     );
 }

@@ -12,8 +12,8 @@ class User(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    username = db.Column(db.String, unique=True, nullable=False)
-    _password_hash = db.Column(db.String, nullable=False)
+    username = db.Column(db.String)
+    _password_hash = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
@@ -51,9 +51,9 @@ class User(db.Model, SerializerMixin):
         if value in usernames:
             raise ValueError('Username must be unique')
         if len(value) < 4:
-            raise ValueError('Username must be more than 3 characters')
+            raise ValueError('Username must be at least 4 characters')
         if len(value) > 15:
-            raise ValueError('Username must be 15 or fewer characters')
+            raise ValueError('Username must be no more than 15 characters')
         return value
     
     @validates('_password_hash')
@@ -65,7 +65,7 @@ class User(db.Model, SerializerMixin):
         if value in passwords:
             raise ValueError('Password must be unique')
         if len(value) < 5:
-            raise ValueError('Password must be more than 4 characters')
+            raise ValueError('Password must be at least 5 characters')
         return value
 
 

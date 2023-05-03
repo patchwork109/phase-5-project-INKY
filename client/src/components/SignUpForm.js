@@ -1,13 +1,28 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function SignUpForm({onLogin}) {
+function SignUpForm({user, onLogin}) {
 
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
     const history = useHistory()
+
+    const handleResponse = (r) => {
+        if (r.ok) {
+            console.log("STATUS:", r.status)
+            r.json().then(user => {
+                onLogin(user)
+                console.log(user)
+                history.push('/tattoos')
+            })
+        } else {
+            console.log("STATUS:", r.status)
+            setErrorMessage("Invalid username or password. Try again!");
+        }
+    }
 
     const handleSignUpSubmit = (e) => {
         e.preventDefault();
@@ -20,11 +35,8 @@ function SignUpForm({onLogin}) {
                 password: password,
                 password_confirmation: passwordConfirmation,
             }),
-          })
-        .then((r) => r.json())
-        .then((user) => onLogin(user));
-
-        history.push('/tattoos')
+        })
+        .then(r => handleResponse(r))
     }
 
     return (
@@ -63,6 +75,8 @@ function SignUpForm({onLogin}) {
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                 />
                 <button type="submit">Sign Up!</button>
+                
+                {errorMessage && (<div>{errorMessage}</div>)}
             </form>
        </div>
     );
