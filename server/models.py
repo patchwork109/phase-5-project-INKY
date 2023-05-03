@@ -36,6 +36,12 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
     
+    @validates('name')
+    def validate_name(self, key, value):
+        if not value:
+            raise ValueError('Name is required')
+        return value
+    
     @validates('username')
     def validate_username(self, key, value):
         users = User.query.all()
@@ -44,8 +50,22 @@ class User(db.Model, SerializerMixin):
             raise ValueError('Username is required')
         if value in usernames:
             raise ValueError('Username must be unique')
-        if len(value) > 7:
-            raise ValueError('Username must less then 7 characters')
+        if len(value) < 4:
+            raise ValueError('Username must be more than 3 characters')
+        if len(value) > 15:
+            raise ValueError('Username must be 15 or fewer characters')
+        return value
+    
+    @validates('_password_hash')
+    def validate_password(self, key, value):
+        users = User.query.all()
+        passwords = [password for password in users]
+        if not value:
+            raise ValueError('Password is required')
+        if value in passwords:
+            raise ValueError('Password must be unique')
+        if len(value) < 5:
+            raise ValueError('Password must be more than 4 characters')
         return value
 
 
