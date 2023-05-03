@@ -7,7 +7,6 @@ function Wishlist ({user}) {
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
     const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
 
-    // try getting the user from the cookie instead of state
     console.log(user)
 
     useEffect(() => {

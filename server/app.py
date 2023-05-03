@@ -251,9 +251,9 @@ class Signup(Resource):
         except ValueError:
             response_body = {"error" : "422: Didn't meet validation requirements"}
             # response_body = {"error" : str(e)}
-            # response = make_response(response_body, 422)
-            response = jsonify(response_body)
-            response.status_code = 422
+            response = make_response(response_body, 422)
+            # response = jsonify(response_body)
+            # response.status_code = 422
             return response
 
 class Login(Resource):

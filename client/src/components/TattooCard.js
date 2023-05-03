@@ -3,7 +3,7 @@ import { UserContext } from "../context/user";
 import Card from '@mui/material/Card';
 
 
-function TattooCard ({tattoo, id, name, category, description, size, price, image, user, checkIfCartIsNullAndPostNewCart}) {
+function TattooCard ({tattoo, id, name, category, description, size, price, image, user}) {
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
@@ -41,7 +41,6 @@ function TattooCard ({tattoo, id, name, category, description, size, price, imag
 
     console.log("is current cart null?:", currentCart == null)
     console.log(currentCart)
-    checkIfCartIsNullAndPostNewCart(currentCart)
 
     const handleAddToCartClick = () => {
 

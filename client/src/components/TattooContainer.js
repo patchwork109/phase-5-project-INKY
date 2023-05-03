@@ -5,24 +5,9 @@ import { UserContext } from "../context/user";
 import Search from "./Search";
 import CategoryFilter from "./CategoryFilter";
 
-function TattooContainer ({user, onLogin, tattoos, searchedValue, filteredCategoryValue, handleCategoryInputChange}) {
+function TattooContainer ({user, onLogin, tattoos, searchedValue, filteredCategoryValue, handleCategoryInputChange, checkIfCartIsNullAndPostNewCart}) {
 
-    const { setCurrentCart } = useContext(UserContext);
-
-    const checkIfCartIsNullAndPostNewCart = (currentCartObj) => {
-        if (currentCartObj == null) {
-
-            const new_cart= {user_id: user.id}
-    
-            fetch("/carts", {
-                method: "POST",
-                headers:{"Content-Type":"application/json"},
-                body: JSON.stringify(new_cart)
-            })
-            .then(r => r.json())
-            .then(cartObj => setCurrentCart(cartObj))
-        }
-    }
+    const { currentCart } = useContext(UserContext);
 
     const renderTattoos = tattoos.map(tattoo => {
         return <TattooCard key={tattoo.id}
@@ -35,7 +20,6 @@ function TattooContainer ({user, onLogin, tattoos, searchedValue, filteredCatego
             price = {tattoo.price}
             image = {tattoo.image}
             user = {user}
-            checkIfCartIsNullAndPostNewCart = {checkIfCartIsNullAndPostNewCart}
         />
     })
 
@@ -52,6 +36,7 @@ function TattooContainer ({user, onLogin, tattoos, searchedValue, filteredCatego
                             handleCategoryInputChange={handleCategoryInputChange}
                         />
                         {renderTattoos}
+                        {checkIfCartIsNullAndPostNewCart(currentCart)}
                     </div>
                 }
             </div>

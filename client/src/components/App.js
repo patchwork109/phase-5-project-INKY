@@ -34,6 +34,21 @@ function App() {
         .then(setTattoos)
     }, [])
 
+	const checkIfCartIsNullAndPostNewCart = (currentCartObj) => {
+        if (currentCartObj == null) {
+
+            const new_cart= {user_id: user.id}
+		
+            fetch("/carts", {
+                method: "POST",
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify(new_cart)
+            })
+            .then(r => r.json())
+            .then(cartObj => setCurrentCart(cartObj))
+        }
+    }
+
 	const onLogout = () => {
 		setUser(null)
 		setCurrentCart(null)
@@ -75,6 +90,7 @@ function App() {
 								tattoos={searchedAndFilteredTattoos} 
 								searchedValue={searchedValue}
 								handleCategoryInputChange={handleCategoryInputChange}
+								checkIfCartIsNullAndPostNewCart={checkIfCartIsNullAndPostNewCart}
 							/>
 						</Route>
 						<Route exact path="/wishlist">

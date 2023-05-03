@@ -6,11 +6,15 @@ import { UserContext } from "../context/user";
 
 function Cart () {
 
-    const [tattoosInCart, setTattoosInCart] = useState([])
-    const [areTattoosFound, setAreTattoosFound] = useState(false)
+    const [tattoosInCart, setTattoosInCart] = useState([]);
+    const [areTattoosFound, setAreTattoosFound] = useState(false);
     const { currentCart, setCurrentCart } = useContext(UserContext);
 
     console.log(currentCart)
+
+    // getting an error on reload and hitting the catch block
+    // when page is reloaded, the currentCart is set to null so the fetch breaks
+    // the currentCart is set when someone visits the tattoo page
 
     useEffect(() => {
         try {
@@ -27,6 +31,7 @@ function Cart () {
                 }
             })
         } catch {
+            console.log("Are we hitting this catch block?")
             setAreTattoosFound(false)
         }
     }, []) // eslint-disable-line
