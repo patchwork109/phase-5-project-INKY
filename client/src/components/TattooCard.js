@@ -3,12 +3,12 @@ import { UserContext } from "../context/user";
 import Card from '@mui/material/Card';
 
 
-function TattooCard ({tattoo, id, name, category, description, size, price, image, user}) {
+function TattooCard ({id, name, category, description, size, price, image, user}) {
 
     // need to update my default value for state
     // to be whatever is the current values is in the DB
     // tattoos have favorites, can access the is_favorited attribute useState(tattooInstance.favorite.is_favorited)?
-    // console.log(tattoo.favorites[0].is_favorited)
+
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
     const { currentCart } = useContext(UserContext);
@@ -21,10 +21,16 @@ function TattooCard ({tattoo, id, name, category, description, size, price, imag
             tattoo_id: id
         }
 
+        // if r.tattoo_id is in favorites, then do not POST new favorite
+        // otherwise POST new favorite
         const handleResponse = r => {
             if (r.ok) {
                 console.log( "STATUS:", r.status)
-                r.json().then(setToggleFavorited(toggleFavorited => !toggleFavorited))
+                r.json().then(r => {
+                    console.log(r)
+                    console.log(r.is_favorited)
+                    setToggleFavorited(!toggleFavorited)
+                })
             } else {
                 console.error("STATUS:", r.status)
                 r.text().then(console.warn)
@@ -77,8 +83,8 @@ function TattooCard ({tattoo, id, name, category, description, size, price, imag
                     {toggleFavorited ? (
                         <button onClick={handleFavoriteClick}>Add to Wishlist!</button>
                     ) : (
-                        // <button onClick={handleFavoriteClick}>Remove from Wishlist</button>
-                        null
+                        <button onClick={handleFavoriteClick}>Remove from Wishlist</button>
+                        // null
                     )}
                 </div>
                 <div>

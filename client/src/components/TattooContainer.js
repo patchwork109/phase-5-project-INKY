@@ -3,15 +3,18 @@ import TattooCard from "./TattooCard";
 import Login from "./Login";
 import { UserContext } from "../context/user";
 import Search from "./Search";
-import CategoryFilter from "./CategoryFilter";
+import Filter from "./Filter";
 
-function TattooContainer ({user, onLogin, tattoos, searchedValue, filteredCategoryValue, handleCategoryInputChange, checkIfCartIsNullAndPostNewCart}) {
+function TattooContainer ({user, onLogin, tattoos, 
+                            searchedValue, filteredCategoryValue, 
+                            handleCategoryInputChange, handleSizeInputChange, 
+                            checkIfCartIsNullAndPostNewCart
+                        }) {
 
     const { currentCart } = useContext(UserContext);
 
     const renderTattoos = tattoos.map(tattoo => {
         return <TattooCard key={tattoo.id}
-            tattoo = {tattoo}
             id = {tattoo.id}
             name = {tattoo.name}
             category = {tattoo.category}
@@ -31,9 +34,10 @@ function TattooContainer ({user, onLogin, tattoos, searchedValue, filteredCatego
                     <Login onLogin={onLogin}/> : 
                     <div>
                         <Search searchedValue={searchedValue}/> 
-                        <CategoryFilter 
+                        <Filter 
                             filteredCategoryValue={filteredCategoryValue}
                             handleCategoryInputChange={handleCategoryInputChange}
+                            handleSizeInputChange={handleSizeInputChange}
                         />
                         {renderTattoos}
                         {checkIfCartIsNullAndPostNewCart(currentCart)}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function CategoryFilter({handleCategoryInputChange}) {
+function Filter({handleCategoryInputChange, handleSizeInputChange}) {
     
 
     return (
@@ -38,8 +38,33 @@ function CategoryFilter({handleCategoryInputChange}) {
                 />
                 Objects
             </label>
+            <h3>Choose a size:</h3>
+            <label>
+                <input
+                    type="checkbox"
+                    value="Small"
+                    onChange={handleSizeInputChange}
+                />
+                Small
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    value="Medium"
+                    onChange={handleSizeInputChange}
+                />
+                Medium
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    value="Large"
+                    onChange={handleSizeInputChange}
+                />
+                Large
+            </label>
         </div>
     );
 }
 
-export default CategoryFilter;
+export default Filter;

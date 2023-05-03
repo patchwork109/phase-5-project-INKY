@@ -15,6 +15,7 @@ function App() {
     const [user, setUser] = useState(null);
 	const [searchString, setSearchString] = useState("");
 	const [categoryValue, setCategoryValue] = useState("");
+	const [sizeValue, setSizeValue] = useState("");
 	const { currentCart, setCurrentCart } = useContext(UserContext);
 
 	console.log("I'm the current cart", currentCart)
@@ -69,9 +70,21 @@ function App() {
         }
     }
 
+	const handleSizeInputChange = (e) => {
+
+        const {value, checked} = e.target;
+
+        if (checked) {
+			setSizeValue([...sizeValue, value]);
+        } else {
+			setSizeValue("");
+        }
+    }
+
 	const searchedAndFilteredTattoos = tattoos.filter(tattoo => {
 		return tattoo.name.toLowerCase().includes(searchString.toLowerCase()) && 
-		(categoryValue === "" || categoryValue.includes(tattoo.category))
+		(categoryValue === "" || categoryValue.includes(tattoo.category)) &&
+		(sizeValue === "" || sizeValue.includes(tattoo.size))
 	})
 
 	return (
@@ -90,6 +103,7 @@ function App() {
 								tattoos={searchedAndFilteredTattoos} 
 								searchedValue={searchedValue}
 								handleCategoryInputChange={handleCategoryInputChange}
+								handleSizeInputChange={handleSizeInputChange}
 								checkIfCartIsNullAndPostNewCart={checkIfCartIsNullAndPostNewCart}
 							/>
 						</Route>
