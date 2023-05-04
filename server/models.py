@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.exc import IntegrityError
 
 from config import db, bcrypt
 
@@ -10,10 +11,11 @@ class User(db.Model, SerializerMixin):
 
     serialize_rules = ('-favorites', )
 
+    # Added constraints to the table to test, can remove / change as needed
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    username = db.Column(db.String)
-    _password_hash = db.Column(db.String)
+    name = db.Column(db.String(2), nullable=False)
+    username = db.Column(db.String(2), nullable=False, unique=True)
+    _password_hash = db.Column(db.String(2), nullable=False, unique=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 

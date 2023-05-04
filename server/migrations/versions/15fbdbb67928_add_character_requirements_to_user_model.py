@@ -1,8 +1,8 @@
-"""Add user_id attribute to Cart model
+"""Add character requirements to User model
 
-Revision ID: 6b96b9c33520
+Revision ID: 15fbdbb67928
 Revises: 
-Create Date: 2023-04-28 17:31:49.724470
+Create Date: 2023-05-04 08:11:53.229542
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6b96b9c33520'
+revision = '15fbdbb67928'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,12 +32,13 @@ def upgrade():
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(), nullable=True),
-    sa.Column('username', sa.String(), nullable=False),
-    sa.Column('_password_hash', sa.String(), nullable=False),
+    sa.Column('name', sa.String(length=2), nullable=False),
+    sa.Column('username', sa.String(length=2), nullable=False),
+    sa.Column('_password_hash', sa.String(length=2), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('_password_hash'),
     sa.UniqueConstraint('username')
     )
     op.create_table('carts',
