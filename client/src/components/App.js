@@ -16,6 +16,7 @@ function App() {
 	const [searchString, setSearchString] = useState("");
 	const [categoryValue, setCategoryValue] = useState("");
 	const [sizeValue, setSizeValue] = useState("");
+	const [sortOrder, setSortOrder] = useState(null);
 	const { currentCart, setCurrentCart } = useContext(UserContext);
 
 	console.log("I'm the current cart", currentCart)
@@ -60,7 +61,6 @@ function App() {
 	}
 
 	const handleCategoryInputChange = (e) => {
-
         const {value, checked} = e.target;
 
         if (checked) {
@@ -71,7 +71,6 @@ function App() {
     }
 
 	const handleSizeInputChange = (e) => {
-
         const {value, checked} = e.target;
 
         if (checked) {
@@ -80,6 +79,22 @@ function App() {
 			setSizeValue("");
         }
     }
+
+	const sortData = () => {
+		const sortedTattoos = tattoos.sort((a, b) => {
+			if (sortOrder === 'asc') {
+				return a.price - b.price;
+		  	} else if (sortOrder === 'desc') {
+				return b.price - a.price; 
+		  	} else if (sortOrder === null) {
+				return b.price - a.price;
+			} else {
+				return 0;
+		  	}
+		})
+	  
+		setTattoos(sortedTattoos);
+	}
 
 	const searchedAndFilteredTattoos = tattoos.filter(tattoo => {
 		return tattoo.name.toLowerCase().includes(searchString.toLowerCase()) && 
@@ -105,6 +120,9 @@ function App() {
 								handleCategoryInputChange={handleCategoryInputChange}
 								handleSizeInputChange={handleSizeInputChange}
 								checkIfCartIsNullAndPostNewCart={checkIfCartIsNullAndPostNewCart}
+								sortData={sortData}
+								sortOrder={sortOrder}
+								setSortOrder={setSortOrder}
 							/>
 						</Route>
 						<Route exact path="/wishlist">

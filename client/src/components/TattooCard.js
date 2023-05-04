@@ -57,8 +57,33 @@ function TattooCard ({id, name, category, description, size, price, image, user}
         .then(r => handleResponse(r))
     }
 
-    console.log("is current cart null?:", currentCart == null)
-    console.log(currentCart)
+
+    // const handleRemoveFavoriteClick = () => {
+
+    //     const handleDeleteResponse = r => {
+    //         if (r.ok) {
+    //             console.log( "STATUS:", r.status)
+    //             r.json().then(r => {
+    //                 console.log(r)
+    //                 console.log("Is this the right id?:", r.id)
+    //             })  
+    //         } else {
+    //             console.error("STATUS:", r.status)
+    //             r.text().then(console.warn)
+    //         }
+    //     }
+
+    //     // need to update id here
+    //     fetch(`/favorites/20`, {
+    //         method: "DELETE",
+    //     })
+    //     .then(r => handleDeleteResponse(r))
+
+    //     handleRemoveFavoritedTattoo(20)
+    // }
+
+    // console.log("is current cart null?:", currentCart == null)
+    // console.log(currentCart)
 
     const handleAddToCartClick = () => {
 
@@ -95,8 +120,8 @@ function TattooCard ({id, name, category, description, size, price, image, user}
                     {toggleFavorited ? (
                         <button onClick={handleFavoriteClick}>Add to Wishlist!</button>
                     ) : (
-                        <button onClick={handleFavoriteClick}>Remove from Wishlist</button>
-                        // null
+                        // <button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</button>
+                        null
                     )}
                 </div>
                 <div>

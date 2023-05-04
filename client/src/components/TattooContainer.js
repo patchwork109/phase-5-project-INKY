@@ -4,11 +4,12 @@ import Login from "./Login";
 import { UserContext } from "../context/user";
 import Search from "./Search";
 import Filter from "./Filter";
+import Sort from "./Sort";
 
 function TattooContainer ({user, onLogin, tattoos, 
                             searchedValue, filteredCategoryValue, 
                             handleCategoryInputChange, handleSizeInputChange, 
-                            checkIfCartIsNullAndPostNewCart
+                            checkIfCartIsNullAndPostNewCart, sortData, sortOrder, setSortOrder
                         }) {
 
     const { currentCart } = useContext(UserContext);
@@ -39,6 +40,7 @@ function TattooContainer ({user, onLogin, tattoos,
                             handleCategoryInputChange={handleCategoryInputChange}
                             handleSizeInputChange={handleSizeInputChange}
                         />
+                        <Sort sortData={sortData} sortOrder={sortOrder} setSortOrder={setSortOrder}/>
                         {renderTattoos}
                         {checkIfCartIsNullAndPostNewCart(currentCart)}
                     </div>
