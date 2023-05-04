@@ -22,7 +22,6 @@ function SignUpForm({user, onLogin}) {
             console.log("STATUS:", r.status)
             r.json().then(data => {
                 console.log(data.error)
-                console.log(data.statusText)
                 setErrorMessage(data.error)
             })
         }

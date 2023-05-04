@@ -9,6 +9,20 @@ function TattooCard ({id, name, category, description, size, price, image, user}
     // to be whatever is the current values is in the DB
     // tattoos have favorites, can access the is_favorited attribute useState(tattooInstance.favorite.is_favorited)?
 
+    // What do we want to happen? Well,...
+
+    // If a user clicks "Add to Wishlist", 
+    // // 1. The tattoo is added (POSTed) to their favorites,
+    // // 2. State is updated to show the correct favorites list with the new favorited tattoo,
+    // // 3. The "Add to Wishlist" button changes to "Remove from Wishlist",
+    // // 4. State is updated to show the correct button text
+
+    // If a user clicks "Remove from Wishlist",
+    // // 1. The tattoo is removed (DELETEd) from their favorites,
+    // // 2. State is updated to show the correct favorites list w/o the tattoo,
+    // // 3. The "Remove from Wishlist" button changes to "Add to Wishlist"
+    // // 4. State is updated to show the correct button text
+
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
     const { currentCart } = useContext(UserContext);
@@ -21,14 +35,12 @@ function TattooCard ({id, name, category, description, size, price, image, user}
             tattoo_id: id
         }
 
-        // if r.tattoo_id is in favorites, then do not POST new favorite
-        // otherwise POST new favorite
         const handleResponse = r => {
             if (r.ok) {
                 console.log( "STATUS:", r.status)
                 r.json().then(r => {
                     console.log(r)
-                    console.log(r.is_favorited)
+                    console.log("Am I favorited?:", r.is_favorited)
                     setToggleFavorited(!toggleFavorited)
                 })
             } else {

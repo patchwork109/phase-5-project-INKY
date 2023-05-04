@@ -11,12 +11,10 @@ class User(db.Model, SerializerMixin):
 
     serialize_rules = ('-favorites', )
 
-    # Added constraints to the table to test, can remove / change as needed
-    # Does this work?
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(2), nullable=False)
-    username = db.Column(db.String(2), nullable=False, unique=True)
-    _password_hash = db.Column(db.String(2), nullable=False, unique=True)
+    name = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False, unique=True)
+    _password_hash = db.Column(db.String, nullable=False, unique=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 

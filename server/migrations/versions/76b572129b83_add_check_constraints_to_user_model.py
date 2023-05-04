@@ -1,8 +1,8 @@
-"""Add character requirements to User model
+"""Add check constraints to User model
 
-Revision ID: 15fbdbb67928
+Revision ID: 76b572129b83
 Revises: 
-Create Date: 2023-05-04 08:11:53.229542
+Create Date: 2023-05-04 09:38:51.069722
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '15fbdbb67928'
+revision = '76b572129b83'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,9 +32,9 @@ def upgrade():
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=2), nullable=False),
-    sa.Column('username', sa.String(length=2), nullable=False),
-    sa.Column('_password_hash', sa.String(length=2), nullable=False),
+    sa.Column('name', sa.String(), nullable=False),
+    sa.Column('username', sa.String(), nullable=False),
+    sa.Column('_password_hash', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
