@@ -20,7 +20,11 @@ function SignUpForm({user, onLogin}) {
             })
         } else {
             console.log("STATUS:", r.status)
-            setErrorMessage("Invalid username or password. Try again!");
+            r.json().then(data => {
+                console.log(data.error)
+                console.log(data.statusText)
+                setErrorMessage(data.error)
+            })
         }
     }
 
