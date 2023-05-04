@@ -54,6 +54,12 @@ function Cart () {
             }
         })
         setTattoosInCart(updatedTattoos)
+
+        let newTotal = 0;
+        updatedTattoos.forEach(cart_tattoo => {
+            newTotal += cart_tattoo.quantity * cart_tattoo.tattoo.price
+        })
+        setTotal(newTotal)
     }
 
     const handleRemoveItemInCart = doomedCartTattooId => {
@@ -67,6 +73,12 @@ function Cart () {
         } else {
             setTattoosInCart(afterDeletedItems)
         }
+
+        let newTotal = 0;
+        afterDeletedItems.forEach(cart_tattoo => {
+        newTotal += cart_tattoo.quantity * cart_tattoo.tattoo.price
+        })
+        setTotal(newTotal)
     }
 
     const displayCartTattoos = tattoosInCart.map(cartTattoo => {
