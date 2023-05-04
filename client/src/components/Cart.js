@@ -8,6 +8,7 @@ function Cart () {
 
     const [tattoosInCart, setTattoosInCart] = useState([]);
     const [areTattoosFound, setAreTattoosFound] = useState(false);
+    const [total, setTotal] = useState(null);
     const { currentCart, setCurrentCart } = useContext(UserContext);
 
     console.log(currentCart)
@@ -20,14 +21,22 @@ function Cart () {
         try {
             fetch(`/carts/${currentCart.id}`)
             .then(r => r.json())
-            .then(r => {
-                if (r.cart_tattoos.length === 0) {
+            .then(cart => {
+                if (cart.cart_tattoos.length === 0) {
                     console.log("Cart tattoos is empty!")
                     setAreTattoosFound(false)
                 } else {
-                    console.log(r)
+                    console.log(cart)
+                    console.log(cart.tattoo)
+
+                    let total = 0;
+                    cart.cart_tattoos.forEach(cart_tattoo => {
+                        total += cart_tattoo.quantity * cart_tattoo.tattoo.price
+                    });
+
                     setAreTattoosFound(true)
-                    setTattoosInCart(r.cart_tattoos)
+                    setTattoosInCart(cart.cart_tattoos)
+                    setTotal(total)
                 }
             })
         } catch {
@@ -84,6 +93,7 @@ function Cart () {
             {areTattoosFound ? (
                 <div>
                     {displayCartTattoos}
+                    <h3>Total: ${total.toFixed(2)}</h3>
                     <form onSubmit={handleOrderSubmit}>
                         <button type="submit">PLACE YOUR ORDER</button>
                     </form>

@@ -74,7 +74,9 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart})
                     {cartTattoo.quantity}
                     <button onClick={handleQuantityIncrease}>+</button>
                 <br/>
-                Price: ${cartTattoo.tattoo.price}
+                Price: ${cartTattoo.tattoo.price.toFixed(2)}
+                <br/>
+                Total: ${cartTattoo.quantity * cartTattoo.tattoo.price.toFixed(2)}
                 <br/>
                 <img src={cartTattoo.tattoo.image} alt={cartTattoo.tattoo.name} />
                 <br/>

@@ -83,6 +83,13 @@ class Cart(db.Model, SerializerMixin):
     cart_tattoos = db.relationship('CartTattoo', backref='cart')
     tattoos = association_proxy('cart_tattoos', 'tattoo')
 
+    def get_total(self):
+        total = 0
+        for cart_tattoo in self.cart_tattoos:
+            tattoo_price = cart_tattoo.tattoo.price
+            total += cart_tattoo.quantity * tattoo_price
+        return total
+
 
 class Tattoo(db.Model, SerializerMixin):
     __tablename__ = 'tattoos'
