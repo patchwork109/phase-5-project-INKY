@@ -1,13 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/user";
 import Card from '@mui/material/Card';
 
 
 function TattooCard ({id, name, category, description, size, price, image, user}) {
-
-    // need to update my default value for state
-    // to be whatever is the current values is in the DB
-    // tattoos have favorites, can access the is_favorited attribute useState(tattooInstance.favorite.is_favorited)?
 
     // What do we want to happen? Well,...
 
@@ -26,6 +22,17 @@ function TattooCard ({id, name, category, description, size, price, image, user}
     const [toggleFavorited, setToggleFavorited] = useState(true)
     const [toggleAddToCart, setToggleAddToCart] = useState(true)
     const { currentCart } = useContext(UserContext);
+
+    // useEffect(() => {
+	// 	if (user) {
+	// 		fetch(`/users/${user.id}`)
+	// 		.then(r => r.json())
+	// 		.then(r => {
+    //             // what here? do we need state to set the favorites?
+    //             // someting like setFavoritesbyUser(r.favorites) ?
+    //         })
+	// 	}
+    // }, [user])
 
     const handleFavoriteClick = () => {
 

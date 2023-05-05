@@ -6,7 +6,6 @@ function Form({addNewTattooToState}) {
     const [tattooDescription, setTattooDescription] = useState("")
     const [tattooSize, setTattooSize] = useState("")
     const [tattooCategory, setTattooCategory] = useState("")
-    // const [tattooPrice, setTattooPrice] = useState("")
     const [tattooImage, setTattooImage] = useState("")
 
     const handleTattooNameChange = (e) => {
@@ -24,10 +23,6 @@ function Form({addNewTattooToState}) {
     const handleTattooCategoryChange = (e) => {
         setTattooCategory(e.target.value);
     }
-
-    // const handleTattooPriceChange = (e) => {
-    //     setTattooPrice(e.target.value);
-    // }
 
     const handleTattooImageChange = (e) => {
         setTattooImage(e.target.value);
@@ -124,14 +119,6 @@ function Form({addNewTattooToState}) {
                     <option value="Other">Other</option>
                 </select>
                 <br />
-                {/* <label>Price:</label>
-                <input
-                    type="text"
-                    name="price"
-                    placeholder="Enter a price."
-                    onChange={handleTattooPriceChange}
-                />
-                <br /> */}
                 <label>Image:</label>
                 <input
                     type="text"

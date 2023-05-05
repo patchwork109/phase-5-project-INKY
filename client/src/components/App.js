@@ -30,12 +30,15 @@ function App() {
             }
         });
     }, []);
-		
+	
+	// updated fetch to add a conditional checking for the current user
     useEffect(() => {
-        fetch('/tattoos')
-        .then(response => response.json())
-        .then(setTattoos)
-    }, [])
+		if (user) {
+			fetch('/tattoos')
+			.then(response => response.json())
+			.then(setTattoos)
+		}
+    }, [user])
 
 	const checkIfCartIsNullAndPostNewCart = (currentCartObj) => {
         if (currentCartObj == null) {

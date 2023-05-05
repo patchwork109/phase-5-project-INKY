@@ -3,6 +3,7 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.exc import IntegrityError
+from flask import session
 
 from config import db, bcrypt
 
@@ -46,7 +47,7 @@ class User(db.Model, SerializerMixin):
     @validates('username')
     def validate_username(self, key, value):
         users = User.query.all()
-        usernames = [username for username in users]
+        usernames = [user.username for user in users]
         if not value:
             raise ValueError('Username is required')
         if value in usernames:
@@ -60,7 +61,7 @@ class User(db.Model, SerializerMixin):
     @validates('_password_hash')
     def validate_password(self, key, value):
         users = User.query.all()
-        passwords = [password for password in users]
+        passwords = [user._password_hash for user in users]
         if not value:
             raise ValueError('Password is required')
         if value in passwords:
@@ -95,7 +96,8 @@ class Cart(db.Model, SerializerMixin):
 class Tattoo(db.Model, SerializerMixin):
     __tablename__ = 'tattoos'
 
-    serialize_rules = ('-favorites', '-cart_tattoos')
+    serialize_rules = ('-favorites', '-cart_tattoos', )
+    # 'is_favorited', 'is_in_cart'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -113,6 +115,20 @@ class Tattoo(db.Model, SerializerMixin):
     cart_tattoos = db.relationship('CartTattoo', backref='tattoo')
     carts = association_proxy('cart_tattoos', 'cart')
 
+    # @property
+    # def is_favorited(self):
+    #     if session.get('user_id'):
+    #         favorite_instance = Favorite.query.filter(Favorite.user_id == session['user_id']).first()
+    #         return favorite_instance
+    #     return False
+    
+    # @property
+    # def is_in_cart(self):
+    #     if session.get('user_id'):
+    #         cart_instance = Cart.query.filter(Cart.user_id == session['user_id']).first()
+    #         return cart_instance
+    #     return False
+    
 
 class CartTattoo(db.Model, SerializerMixin):
     __tablename__ = 'cart_tattoos'

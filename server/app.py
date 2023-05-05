@@ -276,13 +276,7 @@ class Signup(Resource):
             error_message = str(e)
             if 'UNIQUE' and 'username' in error_message:
                 return make_response({'error': 'Username already taken. Please enter a different username.'}, 422)
-            # if username == '' or None:
-            #     return make_response({'error': 'Username is required.'}, 422)
             return make_response({'error': error_message}, 422)
-        # except ValueError:
-        #     if username == "" or not username:
-        #         return make_response({'error': 'Username is required.'}, 422)
-            # return make_response({'error': error_message}, 422)
         # except ValueError as e:
         #     db.session.rollback()
         #     error_message = str(e)
