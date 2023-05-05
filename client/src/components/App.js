@@ -135,7 +135,7 @@ function App() {
 							/>
 						</Route>
 						<Route exact path="/wishlist">
-							<Wishlist user={user}/>
+							<Wishlist user={user} onLogin={setUser}/>
 						</Route>
 						<Route exact path="/customtattoos">
 							<CustomTattoo addNewTattooToState={addNewTattooToState}/>
@@ -144,7 +144,7 @@ function App() {
 							<OurStory/>
 						</Route>
                         <Route exact path="/cart">
-							<Cart/>
+							<Cart user={user} onLogin={setUser}/>
 						</Route>
 						<Route exact path="/ordersuccess">
 							<OrderSuccess/>

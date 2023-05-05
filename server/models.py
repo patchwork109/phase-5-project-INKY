@@ -106,6 +106,7 @@ class Tattoo(db.Model, SerializerMixin):
     category = db.Column(db.String)
     price = db.Column(db.Float)
     image = db.Column(db.String)
+    is_custom = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
@@ -150,7 +151,6 @@ class Favorite(db.Model, SerializerMixin):
     serialize_rules = ('user', 'tattoo')
 
     id = db.Column(db.Integer, primary_key=True)
-    is_favorited = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 

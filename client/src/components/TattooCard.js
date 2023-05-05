@@ -37,7 +37,6 @@ function TattooCard ({id, name, category, description, size, price, image, user}
     const handleFavoriteClick = () => {
 
         const newFavoritedTattoo = {
-            is_favorited: toggleFavorited,
             user_id: user.id,
             tattoo_id: id
         }
@@ -47,7 +46,6 @@ function TattooCard ({id, name, category, description, size, price, image, user}
                 console.log( "STATUS:", r.status)
                 r.json().then(r => {
                     console.log(r)
-                    console.log("Am I favorited?:", r.is_favorited)
                     setToggleFavorited(!toggleFavorited)
                 })
             } else {

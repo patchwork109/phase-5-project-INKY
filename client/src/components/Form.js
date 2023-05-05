@@ -37,7 +37,8 @@ function Form({addNewTattooToState}) {
             size: tattooSize, 
             category: tattooCategory,
             price: Math.floor(Math.random() * 12) + 3,
-            image: tattooImage
+            image: tattooImage,
+            is_custom: true
         }
 
         const handleNewTattooResponse = r => {
@@ -132,7 +133,6 @@ function Form({addNewTattooToState}) {
                     type="submit"
                     name="submit"
                     value="Submit a New Tattoo"
-                    className="submit"
                 />
             </form>
         </div>

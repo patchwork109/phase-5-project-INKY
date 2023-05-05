@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import WishlistTattooCard from "./WishlistTattooCard";
 import EmptyWishlist from "./EmptyWishlist";
+import Login from "./Login";
 
-function Wishlist ({user}) {
+function Wishlist ({user, onLogin}) {
 
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
     const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
@@ -10,18 +11,23 @@ function Wishlist ({user}) {
     console.log(user)
 
     useEffect(() => {
-        fetch(`/users/${user.id}`)
-        .then(r => r.json())
-        .then(r => {
-            if (r.favorites.length === 0) {
-                console.log("No favorites to see here!")
-                setAreWishlistTattoosFound(false)
-            } else {
-                console.log(r)
-                setAreWishlistTattoosFound(true)
-                setFavoritedTattoos(r.favorites)
-            }
-        })
+        try {
+            fetch(`/users/${user.id}`)
+            .then(r => r.json())
+            .then(r => {
+                if (r.favorites.length === 0) {
+                    console.log("No favorites to see here!")
+                    setAreWishlistTattoosFound(false)
+                } else {
+                    console.log(r)
+                    setAreWishlistTattoosFound(true)
+                    setFavoritedTattoos(r.favorites)
+                }
+            })
+        } catch {
+            console.log("Are we hitting this catch block?")
+            setAreWishlistTattoosFound(false)
+        }
     }, []) // eslint-disable-line
 
     const handleRemoveFavoritedTattoo = doomedFavoriteId => {
@@ -55,8 +61,11 @@ function Wishlist ({user}) {
     return (
         <div>
             I'm the wishlist!
-            { areWishlistTattoosFound ? 
-                renderFavoritedTattoos : <EmptyWishlist />
+            {(user === null) ? 
+                <div>Log in or create an account to start adding tattoos to your Wishlist!<Login onLogin={onLogin}/></div> : 
+                <div>
+                    { areWishlistTattoosFound ? renderFavoritedTattoos : <EmptyWishlist />}
+                </div>
             }
         </div>
     )

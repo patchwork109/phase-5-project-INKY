@@ -25,7 +25,8 @@ class Tattoos(Resource):
                 size = data['size'],
                 category = data['category'],
                 price = data['price'],
-                image = data['image']
+                image = data['image'],
+                is_custom = data['is_custom']
             )
             db.session.add(new_tattoo)
             db.session.commit()
@@ -49,7 +50,6 @@ class Favorites(Resource):
 
         try:
             new_favorite = Favorite(
-                is_favorited = data['is_favorited'],
                 user_id = data['user_id'],
                 tattoo_id = data['tattoo_id']
             )

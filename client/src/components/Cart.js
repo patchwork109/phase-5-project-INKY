@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
+import Login from "./Login";
 import { UserContext } from "../context/user";
 
-function Cart () {
+function Cart ({user, onLogin}) {
 
     const [tattoosInCart, setTattoosInCart] = useState([]);
     const [areTattoosFound, setAreTattoosFound] = useState(false);
@@ -102,15 +103,19 @@ function Cart () {
     return (
         <div>
             I'm the cart page!
-            {areTattoosFound ? (
-                <div>
-                    {displayCartTattoos}
-                    <h3>Total: ${total.toFixed(2)}</h3>
-                    <form onSubmit={handleOrderSubmit}>
-                        <button type="submit">PLACE YOUR ORDER</button>
-                    </form>
-                </div> ) : (
-                    <EmptyCart /> )
+            {(user === null) ?
+                <div>Log in or create an account to start adding tattoos to your cart!<Login onLogin={onLogin}/></div> :
+                <div>{areTattoosFound ? (
+                    <div>
+                        {displayCartTattoos}
+                        <h3>Total: ${total.toFixed(2)}</h3>
+                        <form onSubmit={handleOrderSubmit}>
+                            <button type="submit">PLACE YOUR ORDER</button>
+                        </form>
+                    </div> ) : 
+                    (<EmptyCart />)
+                    }
+                </div>
             }
         </div>
     )
