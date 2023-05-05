@@ -3,8 +3,9 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 
-function SignUpForm({user, onLogin}) {
-
+function SignUpForm({onLogin}) {
+    
+    const [signInErrorMessage, setSignInErrorMessage] = useState('');
     const history = useHistory()
 
     const formSchema = Yup.object().shape({
@@ -23,9 +24,7 @@ function SignUpForm({user, onLogin}) {
             })
         } else {
             console.log("STATUS:", r.status)
-            r.json().then(data => {
-                console.log(data.error)
-            })
+            setSignInErrorMessage("Unable to sign up. Please try again!")
         }
     }
 
@@ -43,7 +42,7 @@ function SignUpForm({user, onLogin}) {
                 credentials: "include",
                 body: JSON.stringify(values)
             })
-                .then(handleResponse)
+            .then(handleResponse)
         }
     })
 
@@ -64,10 +63,11 @@ function SignUpForm({user, onLogin}) {
                 <input type="password" name="password" value={formik.values.password} onChange={formik.handleChange} />
                 <p style={{ color: "red" }}> {formik.errors.password}</p>
             </div>
+            {signInErrorMessage && <p style={{ color: "red" }}>{signInErrorMessage}</p>}
             <button type="submit">Sign Up</button>
         </form>
-      );
-    }
+    );
+}
 
 //     const [name, setName] = useState("");
 //     const [username, setUsername] = useState("");

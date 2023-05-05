@@ -23,7 +23,7 @@ function Login({user, onLogin}) {
                 </>
             ) : (
                 <>
-                    <SignUpForm user={user} onLogin={onLogin}/>
+                    <SignUpForm onLogin={onLogin}/>
                     <p>Already have an account?</p>
                     <button onClick={handleAlreadyHaveAccountClick}>Log In!</button>
                 </>
