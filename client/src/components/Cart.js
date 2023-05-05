@@ -102,7 +102,6 @@ function Cart ({user, onLogin}) {
 
     return (
         <div>
-            I'm the cart page!
             {(user === null) ?
                 <div>Log in or create an account to start adding tattoos to your cart!<Login onLogin={onLogin}/></div> :
                 <div>{areTattoosFound ? (

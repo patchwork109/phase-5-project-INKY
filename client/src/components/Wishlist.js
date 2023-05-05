@@ -60,7 +60,6 @@ function Wishlist ({user, onLogin}) {
 
     return (
         <div>
-            I'm the wishlist!
             {(user === null) ? 
                 <div>Log in or create an account to start adding tattoos to your Wishlist!<Login onLogin={onLogin}/></div> : 
                 <div>
