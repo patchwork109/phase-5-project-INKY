@@ -7,6 +7,7 @@ import Wishlist from "./Wishlist";
 import OurStory from "./OurStory";
 import Cart from "./Cart";
 import OrderSuccess from "./OrderSuccess";
+import CustomTattoo from "./CustomTattoo";
 import { UserContext } from "../context/user";
 
 function App() {
@@ -102,6 +103,11 @@ function App() {
 		(sizeValue === "" || sizeValue.includes(tattoo.size))
 	})
 
+	const addNewTattooToState = aNewTattooObj => {
+		console.log("I'm that new tattoo:", aNewTattooObj)
+		setTattoos([...tattoos, aNewTattooObj]);
+	}
+
 	return (
 		<div className="app">
 			<header className="App-header">
@@ -127,6 +133,9 @@ function App() {
 						</Route>
 						<Route exact path="/wishlist">
 							<Wishlist user={user}/>
+						</Route>
+						<Route exact path="/customtattoos">
+							<CustomTattoo addNewTattooToState={addNewTattooToState}/>
 						</Route>
 						<Route exact path="/ourstory">
 							<OurStory/>

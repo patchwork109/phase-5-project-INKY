@@ -20,6 +20,7 @@ function NavBar ({user, onLogout}) {
                         <NavLink className="navBar" exact to="/">Home</NavLink>
                         <NavLink className="navBar" exact to="/tattoos">Explore Tattoos</NavLink>
                         <NavLink className="navBar" exact to="/wishlist">Wishlist</NavLink>
+                        <NavLink className="navBar" exact to="/customtattoos">Custom Tattoos</NavLink>
                         <NavLink className="navBar" exact to="/ourstory">Our Story</NavLink>
                         <NavLink className="navBar" exact to="/cart">Cart</NavLink>
                         <NavLink className="navBar" exact to="/" onClick={handleLogoutClick}>{(user===null)? "":"Log Out"}</NavLink>

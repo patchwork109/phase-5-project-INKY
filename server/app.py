@@ -14,6 +14,29 @@ class Tattoos(Resource):
         tattoos = [tattoo.to_dict(rules=('favorites', 'favorites.tattoo')) for tattoo in Tattoo.query.all()]
         response = make_response(tattoos, 200)
         return response
+    
+    def post(self):
+        data = request.get_json()
+
+        try:
+            new_tattoo = Tattoo(
+                name = data['name'],
+                description = data['description'],
+                size = data['size'],
+                category = data['category'],
+                price = data['price'],
+                image = data['image']
+            )
+            db.session.add(new_tattoo)
+            db.session.commit()
+        except:
+            response_body = {"error" : "Not able to create new tattoo"}
+            response = make_response(response_body, 400)
+            return response
+        
+        new_tattoo_dict = new_tattoo.to_dict()
+        response = make_response(new_tattoo_dict, 201)
+        return response
 
 class Favorites(Resource):
     def get(self):
