@@ -1,4 +1,9 @@
 import React from "react";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function Sort({sortData, sortOrder, setSortOrder}) {
 
@@ -12,16 +17,24 @@ function Sort({sortData, sortOrder, setSortOrder}) {
             setSortOrder('asc');
         }
 
-    console.log("What is the sort order?", sortOrder);
-    console.log("What does this equal?:", (sortOrder === 'asc'));
+        console.log("What is the sort order?", sortOrder);
     }
 
     return (
         <div>
-            <h3>Sort Tattoos by Price:</h3>
-            {(sortOrder === 'asc') ? 
-                <button onClick={toggleSortOrder}>Sort by Low to High</button> : 
-                <button onClick={toggleSortOrder}>Sort by High to Low</button>}
+            <Box sx={{ maxWidth: 200 }}>
+                <FormControl fullWidth>
+                    <InputLabel>Sort:</InputLabel>
+                    <Select
+                        value={sortOrder}
+                        label="Sort"
+                        onChange={toggleSortOrder}
+                    >
+                        <MenuItem value='desc'>Price: Low to High</MenuItem>
+                        <MenuItem value='asc'>Price: High to Low</MenuItem>
+                    </Select>       
+                </FormControl>
+            </Box>
         </div>
     );
 }

@@ -29,7 +29,6 @@ function TattooContainer ({user, onLogin, tattoos,
 
     return (
         <div>
-            I'm the tattoo container!
             <div>
                 {(user === null) ? 
                     <Login onLogin={onLogin}/> : 

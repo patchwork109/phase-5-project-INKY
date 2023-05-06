@@ -17,7 +17,7 @@ function App() {
 	const [searchString, setSearchString] = useState("");
 	const [categoryValue, setCategoryValue] = useState("");
 	const [sizeValue, setSizeValue] = useState("");
-	const [sortOrder, setSortOrder] = useState(null);
+	const [sortOrder, setSortOrder] = useState('asc');
 	const { currentCart, setCurrentCart } = useContext(UserContext);
 
 	console.log("I'm the current cart", currentCart)
@@ -89,8 +89,6 @@ function App() {
 			if (sortOrder === 'asc') {
 				return a.price - b.price;
 		  	} else if (sortOrder === 'desc') {
-				return b.price - a.price; 
-		  	} else if (sortOrder === null) {
 				return b.price - a.price;
 			} else {
 				return 0;

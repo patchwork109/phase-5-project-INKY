@@ -1,68 +1,95 @@
 import React from "react";
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
 
 function Filter({handleCategoryInputChange, handleSizeInputChange}) {
     
 
     return (
         <div>
-            <h3>Choose a category:</h3>
-            <label>
-                <input
-                    type="checkbox"
-                    value="Nature"
-                    onChange={handleCategoryInputChange}
-                />
-                Nature
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    value="Dinosaurs"
-                    onChange={handleCategoryInputChange}
-                />
-                Dinosaurs
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    value="Animals"
-                    onChange={handleCategoryInputChange}
-                />
-                Animals
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    value="Objects"
-                    onChange={handleCategoryInputChange}
-                />
-                Objects
-            </label>
-            <h3>Choose a size:</h3>
-            <label>
-                <input
-                    type="checkbox"
-                    value="Small"
-                    onChange={handleSizeInputChange}
-                />
-                Small
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    value="Medium"
-                    onChange={handleSizeInputChange}
-                />
-                Medium
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    value="Large"
-                    onChange={handleSizeInputChange}
-                />
-                Large
-            </label>
+            <Box sx={{ display: 'flex' }}>
+                <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+                <FormLabel component="legend">Choose a category:</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleCategoryInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Nature"
+                            />} 
+                            label="Nature"
+                        />
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleCategoryInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Dinosaurs"
+                            />} 
+                            label="Dinosaurs"
+                        />
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleCategoryInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Animals"
+                            />} 
+                            label="Animals"
+                        />            
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleCategoryInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Objects"
+                            />} 
+                            label="Objects"
+                        />             
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleCategoryInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Other"
+                            />} 
+                            label="Other"
+                        />            
+                    </FormGroup>
+                </FormControl>
+            </Box>
+
+            <Box sx={{ display: 'flex' }}>
+                <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+                <FormLabel component="legend">Choose a size:</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleSizeInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Small"
+                            />} 
+                            label="Small"
+                        />
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleSizeInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Medium"
+                            />} 
+                            label="Medium"
+                        />
+                        <FormControlLabel control={
+                            <Checkbox 
+                                onChange={handleSizeInputChange} 
+                                inputProps={{ 'aria-label': 'controlled' }}
+                                value="Large"
+                            />} 
+                            label="Large"
+                        />             
+                    </FormGroup>
+                </FormControl>
+            </Box>
         </div>
     );
 }
