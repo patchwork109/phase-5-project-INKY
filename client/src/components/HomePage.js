@@ -7,6 +7,14 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import whale from '../images/whale.png';
+import lemon from '../images/lemon.png';
+import dragonfly from '../images/dragonfly.png';
+import palmtree from '../images/palmtree.png';
+import turtle from '../images/turtle.png';
+import earth from '../images/earth.png';
 
 function HomePage () {
 
@@ -14,7 +22,56 @@ function HomePage () {
     return (
         <div>
             <h2>for now, not forever</h2>
-            <h4>placeholder section for images</h4>
+            <ImageList sx={{ overflow: 'scroll' }} cols={6} rowHeight={264}>
+                <ImageListItem>
+                    <img
+                        src={`${whale}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${whale}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt="whale"
+                        loading="lazy"
+                    />
+                </ImageListItem>
+                <ImageListItem>
+                    <img
+                        src={`${lemon}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${lemon}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt="lemon"
+                        loading="lazy"
+                    />
+                </ImageListItem>
+                <ImageListItem>
+                    <img
+                        src={`${dragonfly}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${dragonfly}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt="dragonfly"
+                        loading="lazy"
+                    />
+                </ImageListItem>
+                <ImageListItem>
+                    <img
+                        src={`${palmtree}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${palmtree}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt="palmtree"
+                        loading="lazy"
+                    />
+                </ImageListItem>
+                <ImageListItem>
+                    <img
+                        src={`${turtle}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${turtle}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt="turtle"
+                        loading="lazy"
+                    />
+                </ImageListItem>
+                <ImageListItem>
+                    <img
+                        src={`${earth}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${earth}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt="earth"
+                        loading="lazy"
+                    />
+                </ImageListItem>
+             </ImageList>
             <Box sx={{ bgcolor: '#cfe8fc', height: '30vh'}}>placeholder section for popular categories</Box>
             <br/>
             <Link to="/tattoos">
