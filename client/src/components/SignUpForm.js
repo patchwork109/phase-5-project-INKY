@@ -97,7 +97,7 @@ function SignUpForm({onLogin}) {
                                 variant="outlined"
                                 type={showPassword ? 'text' : 'password'}
                                 {...formik.getFieldProps('password')}
-                                error={formik.touched.password && Boolean((formik.errors.password))}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
                                 helperText={formik.touched.password && formik.errors.password}
                                 InputProps={{
                                     endAdornment: (

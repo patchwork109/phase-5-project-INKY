@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import Button from '@mui/material/Button';
 
 function Login({user, onLogin}) {
     const [showLogin, setShowLogin] = useState(true);
@@ -19,13 +20,13 @@ function Login({user, onLogin}) {
                 <>
                     <LoginForm user={user} onLogin={onLogin}/>
                     <p>Don't have an account?</p>
-                    <button onClick={handleNoAccountSignUpClick}>Sign Up!</button>
+                    <Button variant="contained" onClick={handleNoAccountSignUpClick}>Sign Up!</Button>
                 </>
             ) : (
                 <>
                     <SignUpForm onLogin={onLogin}/>
                     <p>Already have an account?</p>
-                    <button onClick={handleAlreadyHaveAccountClick}>Log In!</button>
+                    <Button variant="contained" onClick={handleAlreadyHaveAccountClick}>Log In!</Button>
                 </>
             )
             }
