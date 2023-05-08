@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Card from '@mui/material/Card';
 
-function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart}) {
+function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, setTattoos}) {
 
     const [quantity, setQuantity] = useState(cartTattoo.quantity)
 
@@ -57,6 +57,19 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart})
         .then(r => handleDeleteResponse(r))
 
         handleRemoveItemInCart(cartTattoo.id)
+
+        setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
+            if (eachCurrentTattoo.id === cartTattoo.id ) {
+                const theCurrentTattoo = {
+                    ...eachCurrentTattoo,
+                    is_in_cart: null
+                }
+                return theCurrentTattoo
+            } else {
+                return eachCurrentTattoo
+            }
+        })
+        )
     }
 
     return (

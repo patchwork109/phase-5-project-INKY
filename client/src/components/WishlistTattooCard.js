@@ -1,7 +1,7 @@
 import React from "react";
 import Card from '@mui/material/Card';
 
-function WishlistTattooCard ({id, name, category, description, size, price, image, handleRemoveFavoritedTattoo}) {
+function WishlistTattooCard ({id, name, category, description, size, price, image, handleRemoveFavoritedTattoo, setTattoos, is_favorited}) {
         
     const handleDeleteResponse = r => {
         if (r.ok) {
@@ -20,6 +20,19 @@ function WishlistTattooCard ({id, name, category, description, size, price, imag
         .then(r => handleDeleteResponse(r))
 
         handleRemoveFavoritedTattoo(id)
+
+        setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
+            if (eachCurrentTattoo.id === id ) {
+                const theCurrentTattoo = {
+                    ...eachCurrentTattoo,
+                    is_favorited: null
+                }
+                return theCurrentTattoo
+            } else {
+                return eachCurrentTattoo
+            }
+        })
+        )
     }
 
     return (

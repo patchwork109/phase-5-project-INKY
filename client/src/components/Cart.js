@@ -5,7 +5,7 @@ import EmptyCart from "./EmptyCart";
 import Login from "./Login";
 import { UserContext } from "../context/user";
 
-function Cart ({user, onLogin}) {
+function Cart ({user, onLogin, setTattoos}) {
 
     const [tattoosInCart, setTattoosInCart] = useState([]);
     const [areTattoosFound, setAreTattoosFound] = useState(false);
@@ -88,6 +88,7 @@ function Cart ({user, onLogin}) {
                 cartTattoo={cartTattoo}
                 handleEditTattooInCart={handleEditTattooInCart}
                 handleRemoveItemInCart={handleRemoveItemInCart}
+                setTattoos={setTattoos}
             />
         )
     })

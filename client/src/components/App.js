@@ -31,7 +31,6 @@ function App() {
         });
     }, []);
 	
-	// updated fetch to add a conditional checking for the current user
     useEffect(() => {
 		if (user) {
 			fetch('/tattoos')
@@ -130,10 +129,11 @@ function App() {
 								sortData={sortData}
 								sortOrder={sortOrder}
 								setSortOrder={setSortOrder}
+								setTattoos={setTattoos}
 							/>
 						</Route>
 						<Route exact path="/wishlist">
-							<Wishlist user={user} onLogin={setUser}/>
+							<Wishlist user={user} onLogin={setUser} setTattoos={setTattoos}/>
 						</Route>
 						<Route exact path="/customtattoos">
 							<CustomTattoo addNewTattooToState={addNewTattooToState}/>
@@ -142,10 +142,10 @@ function App() {
 							<OurStory/>
 						</Route>
                         <Route exact path="/cart">
-							<Cart user={user} onLogin={setUser}/>
+							<Cart user={user} onLogin={setUser} setTattoos={setTattoos}/>
 						</Route>
 						<Route exact path="/ordersuccess">
-							<OrderSuccess/>
+							<OrderSuccess user={user}/>
 						</Route>
 					</Switch>
 				</Router>

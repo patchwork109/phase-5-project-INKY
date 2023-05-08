@@ -3,7 +3,7 @@ import WishlistTattooCard from "./WishlistTattooCard";
 import EmptyWishlist from "./EmptyWishlist";
 import Login from "./Login";
 
-function Wishlist ({user, onLogin}) {
+function Wishlist ({user, onLogin, setTattoos}) {
 
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
     const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
@@ -19,7 +19,7 @@ function Wishlist ({user, onLogin}) {
                     console.log("No favorites to see here!")
                     setAreWishlistTattoosFound(false)
                 } else {
-                    console.log(r)
+                    console.log(r.favorites)
                     setAreWishlistTattoosFound(true)
                     setFavoritedTattoos(r.favorites)
                 }
@@ -55,6 +55,8 @@ function Wishlist ({user, onLogin}) {
             price = {favoritedTattoo.tattoo.price}
             image = {favoritedTattoo.tattoo.image}
             handleRemoveFavoritedTattoo = {handleRemoveFavoritedTattoo}
+            setTattoos = {setTattoos}
+            is_favorited = {favoritedTattoo.tattoo.is_favorited}
         />
     })
 

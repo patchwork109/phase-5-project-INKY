@@ -9,7 +9,7 @@ import Sort from "./Sort";
 function TattooContainer ({user, onLogin, tattoos, 
                             searchedValue, filteredCategoryValue, 
                             handleCategoryInputChange, handleSizeInputChange, 
-                            checkIfCartIsNullAndPostNewCart, sortData, sortOrder, setSortOrder
+                            checkIfCartIsNullAndPostNewCart, sortData, sortOrder, setSortOrder, setTattoos
                         }) {
 
     const { currentCart } = useContext(UserContext);
@@ -24,6 +24,9 @@ function TattooContainer ({user, onLogin, tattoos,
             price = {tattoo.price}
             image = {tattoo.image}
             user = {user}
+            is_favorited = {tattoo.is_favorited}
+            is_in_cart = {tattoo.is_in_cart}
+            setTattoos = {setTattoos}
         />
     })
 

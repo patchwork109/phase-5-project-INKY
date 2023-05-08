@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from 'react-material-ui-carousel'
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import { Paper } from "@mui/material";
+// import { Paper } from "@mui/material";
 
 function HomePageCarousel() {
     // sx={{ display: 'flex', justifyContent: 'center'

@@ -1,38 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import Card from '@mui/material/Card';
 
 
-function TattooCard ({id, name, category, description, size, price, image, user}) {
+function TattooCard ({id, name, category, description, size, price, image, user, is_favorited, is_in_cart, setTattoos}) {
 
-    // What do we want to happen? Well,...
-
-    // If a user clicks "Add to Wishlist", 
-    // // 1. The tattoo is added (POSTed) to their favorites,
-    // // 2. State is updated to show the correct favorites list with the new favorited tattoo,
-    // // 3. The "Add to Wishlist" button changes to "Remove from Wishlist",
-    // // 4. State is updated to show the correct button text
-
-    // If a user clicks "Remove from Wishlist",
-    // // 1. The tattoo is removed (DELETEd) from their favorites,
-    // // 2. State is updated to show the correct favorites list w/o the tattoo,
-    // // 3. The "Remove from Wishlist" button changes to "Add to Wishlist"
-    // // 4. State is updated to show the correct button text
-
-    const [toggleFavorited, setToggleFavorited] = useState(true)
-    const [toggleAddToCart, setToggleAddToCart] = useState(true)
     const { currentCart } = useContext(UserContext);
-
-    // useEffect(() => {
-	// 	if (user) {
-	// 		fetch(`/users/${user.id}`)
-	// 		.then(r => r.json())
-	// 		.then(r => {
-    //             // what here? do we need state to set the favorites?
-    //             // someting like setFavoritesbyUser(r.favorites) ?
-    //         })
-	// 	}
-    // }, [user])
 
     const handleFavoriteClick = () => {
 
@@ -46,7 +19,18 @@ function TattooCard ({id, name, category, description, size, price, image, user}
                 console.log( "STATUS:", r.status)
                 r.json().then(r => {
                     console.log(r)
-                    setToggleFavorited(!toggleFavorited)
+                    console.log(r.id)
+                    setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
+                        if (eachCurrentTattoo.id === id ) {
+                            const theCurrentTattoo = {
+                                ...eachCurrentTattoo,
+                                is_favorited: r
+                            }
+                            return theCurrentTattoo
+                        } else {
+                            return eachCurrentTattoo
+                        }
+                    }))
                 })
             } else {
                 console.error("STATUS:", r.status)
@@ -63,32 +47,38 @@ function TattooCard ({id, name, category, description, size, price, image, user}
     }
 
 
-    // const handleRemoveFavoriteClick = () => {
+    const handleRemoveFavoriteClick = () => {
 
-    //     const handleDeleteResponse = r => {
-    //         if (r.ok) {
-    //             console.log( "STATUS:", r.status)
-    //             r.json().then(r => {
-    //                 console.log(r)
-    //                 console.log("Is this the right id?:", r.id)
-    //             })  
-    //         } else {
-    //             console.error("STATUS:", r.status)
-    //             r.text().then(console.warn)
-    //         }
-    //     }
+        const handleDeleteResponse = r => {
+            if (r.ok) {
+                console.log( "STATUS:", r.status)
+                r.json().then(r => {
+                    console.log(r)
+                })  
+            } else {
+                console.error("STATUS:", r.status)
+                r.text().then(console.warn)
+            }
+        }
 
-    //     // need to update id here
-    //     fetch(`/favorites/20`, {
-    //         method: "DELETE",
-    //     })
-    //     .then(r => handleDeleteResponse(r))
+        fetch(`/favorites/${is_favorited.id}`, {
+            method: "DELETE",
+        })
+        .then(r => handleDeleteResponse(r))
 
-    //     handleRemoveFavoritedTattoo(20)
-    // }
-
-    // console.log("is current cart null?:", currentCart == null)
-    // console.log(currentCart)
+        setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
+            if (eachCurrentTattoo.id === id ) {
+                const theCurrentTattoo = {
+                    ...eachCurrentTattoo,
+                    is_favorited: null
+                }
+                return theCurrentTattoo
+            } else {
+                return eachCurrentTattoo
+            }
+        })
+        )
+    }
 
     const handleAddToCartClick = () => {
 
@@ -97,14 +87,69 @@ function TattooCard ({id, name, category, description, size, price, image, user}
             cart_id: currentCart.id,
             tattoo_id: id
         }
-    
+
+        const handleResponse = r => {
+            if (r.ok) {
+                console.log( "STATUS:", r.status)
+                r.json().then(r => {
+                    console.log(r)
+                    setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
+                        if (eachCurrentTattoo.id === id ) {
+                            const theCurrentTattoo = {
+                                ...eachCurrentTattoo,
+                                is_in_cart: r
+                            }
+                            return theCurrentTattoo
+                        } else {
+                            return eachCurrentTattoo
+                        }
+                    }))
+                })
+            } else {
+                console.error("STATUS:", r.status)
+                r.text().then(console.warn)
+            }
+        }
+
         fetch("/cart_tattoos", {
             method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(newCartTattoo)
         })
-        .then(r => r.json())
-        .then(setToggleAddToCart(toggleAddToCart => !toggleAddToCart))
+        .then(r => handleResponse(r))
+    }
+
+    const handleRemoveFromCartClick = () => {
+
+        const handleDeleteResponse = r => {
+            if (r.ok) {
+                console.log( "STATUS:", r.status)
+                r.json().then(r => {
+                    console.log(r)
+                })  
+            } else {
+                console.error("STATUS:", r.status)
+                r.text().then(console.warn)
+            }
+        }
+
+        fetch(`/cart_tattoos/${is_in_cart.id}`, {
+            method: "DELETE",
+        })
+        .then(r => handleDeleteResponse(r))
+
+        setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
+            if (eachCurrentTattoo.id === id ) {
+                const theCurrentTattoo = {
+                    ...eachCurrentTattoo,
+                    is_in_cart: null
+                }
+                return theCurrentTattoo
+            } else {
+                return eachCurrentTattoo
+            }
+        })
+        )
     }
 
     return (
@@ -122,19 +167,17 @@ function TattooCard ({id, name, category, description, size, price, image, user}
                 <img src={image} alt={name} />
                 <br/>
                 <div>
-                    {toggleFavorited ? (
+                    { (!is_favorited) ? (
                         <button onClick={handleFavoriteClick}>Add to Wishlist!</button>
                     ) : (
-                        // <button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</button>
-                        null
+                        <button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</button>
                     )}
                 </div>
                 <div>
-                    {toggleAddToCart ? (
+                    { (!is_in_cart) ? (
                         <button onClick={handleAddToCartClick}>Add to Cart!</button>
                     ) : (
-                        // <button onClick={handleAddToCartClick}>Remove from Cart</button>
-                        null
+                        <button onClick={handleRemoveFromCartClick}>Remove from Cart</button>
                     )}
                 </div>
             </Card>

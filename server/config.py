@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from flask_bcrypt import Bcrypt
-from flask_session import Session
+
 
 
 app = Flask(__name__)
@@ -28,4 +28,3 @@ CORS(app, supports_credentials=True, allow_headers=['Content-Type', 'session'])
 
 bcrypt = Bcrypt(app)
 
-Session(app)
