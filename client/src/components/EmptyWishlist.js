@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 function EmptyWishlist () {
 
@@ -8,8 +9,9 @@ function EmptyWishlist () {
         <div>
             Your Wishlist is empty. Check out tattoos!
             <br/>
+            <br/>
             <Link to="/tattoos">
-                <button>Explore Tattoos</button>
+                <Button variant="contained">Explore Tattoos</Button>
             </Link>
         </div>
     )

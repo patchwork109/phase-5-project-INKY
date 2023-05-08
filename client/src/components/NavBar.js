@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function NavBar ({user, onLogout}) {
 
@@ -14,18 +18,38 @@ function NavBar ({user, onLogout}) {
 
     return (
         <div>
-            <Box>
-                <AppBar position="static">
+            <Box sx={{ flexGrow: 1 }} >
+                <AppBar>
                     <Toolbar>
-                        <NavLink className="navBar" exact to="/">Home</NavLink>
-                        <NavLink className="navBar" exact to="/tattoos">Explore Tattoos</NavLink>
-                        <NavLink className="navBar" exact to="/wishlist">Wishlist</NavLink>
-                        <NavLink className="navBar" exact to="/customtattoos">Custom Tattoos</NavLink>
-                        <NavLink className="navBar" exact to="/ourstory">Our Story</NavLink>
-                        <NavLink className="navBar" exact to="/cart">Cart</NavLink>
-                        <NavLink className="navBar" exact to="/" onClick={handleLogoutClick}>{(user===null)? "":"Log Out"}</NavLink>
+                        <NavLink exact to="/">
+                            <Button sx={{ color: "white" }}>Home</Button>
+                        </NavLink>
+                        <NavLink exact to="/tattoos">
+                            <Button sx={{ color: "white" }}>Explore Tattoos</Button>
+                        </NavLink>
+                        <NavLink exact to="/customtattoos">
+                            <Button sx={{ color: "white" }}>Custom Tattoos</Button>
+                        </NavLink>
+                        <NavLink exact to="/ourstory">
+                            <Button sx={{ color: "white", justifyContent: "right" }}>Our Story</Button>
+                        </NavLink>
+                        <Box flexGrow={1} />
+                        <NavLink exact to="/wishlist">
+                            <IconButton>
+                                <FavoriteBorderIcon sx={{ color: "white", justifyContent: "right" }}/>
+                            </IconButton>
+                        </NavLink>
+                        <NavLink exact to="/cart"> 
+                            <IconButton>
+                                <ShoppingCartIcon sx={{ color: "white", justifyContent: "right" }}/>
+                            </IconButton>
+                        </NavLink>
+                        <NavLink exact to="/" onClick={handleLogoutClick}> 
+                            {(user===null)? "" : <Button sx={{ color: "white", justifyContent: "right" }}>Log Out</Button>}
+                        </NavLink>
                     </Toolbar>
                 </AppBar>
+            <Toolbar />
             </Box>
         </div>
     )
