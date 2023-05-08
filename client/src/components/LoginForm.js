@@ -63,7 +63,10 @@ function LoginForm({onLogin}) {
     })
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <div>
+        <h3>Nice to see you again!</h3>
+        <p>Log into your INKY account to continue.</p>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
             <form onSubmit={formik.handleSubmit}>
                 <Stack spacing={3}>
                     <FormGroup>
@@ -102,12 +105,14 @@ function LoginForm({onLogin}) {
                                 }}
                             />
                         </FormControl>
+                        <Button sx={{ m: 1, width: '42ch' }} type="submit" variant="contained">Log In</Button>
                     </FormGroup>
                 </Stack>
+                <br/>
                 {logInErrorMessage && <p style={{ color: "red" }}>{logInErrorMessage}</p>}
-                <Button type="submit" variant="contained">Log In</Button>
             </form>
         </Box>
+        </div>
     );
 }
 

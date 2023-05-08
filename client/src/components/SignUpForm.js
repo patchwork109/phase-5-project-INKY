@@ -66,7 +66,10 @@ function SignUpForm({onLogin}) {
     })
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <div>
+        <h3>Create your account</h3>
+        <p>Start finding tattoos that make you <em>you.</em></p>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
             <form onSubmit={formik.handleSubmit}>
                 <Stack spacing={3}>
                     <FormGroup>
@@ -115,12 +118,14 @@ function SignUpForm({onLogin}) {
                                 }}
                             />
                         </FormControl>
+                        <Button sx={{ m: 1, width: '42ch' }} type="submit" variant="contained">Sign Up</Button>
                     </FormGroup>
                 </Stack>
+                <br/>
                 {signInErrorMessage && <p style={{ color: "red" }}>{signInErrorMessage}</p>}
-                <Button type="submit" variant="contained">Sign Up</Button>
             </form>
         </Box>
+        </div>
     );
 }
 

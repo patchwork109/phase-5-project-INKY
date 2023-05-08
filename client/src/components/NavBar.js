@@ -18,11 +18,11 @@ function NavBar ({user, onLogout}) {
 
     return (
         <div>
-            <Box sx={{ flexGrow: 1 }} >
+            <Box sx={{ flexGrow: 1 }}>
                 <AppBar>
                     <Toolbar>
                         <NavLink exact to="/">
-                            <Button sx={{ color: "white" }}>Home</Button>
+                            <Button sx={{ color: "white" }}><strong>INKY</strong></Button>
                         </NavLink>
                         <NavLink exact to="/tattoos">
                             <Button sx={{ color: "white" }}>Explore Tattoos</Button>

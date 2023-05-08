@@ -19,13 +19,13 @@ function Login({user, onLogin}) {
             {showLogin ? (
                 <>
                     <LoginForm user={user} onLogin={onLogin}/>
-                    <p>Don't have an account?</p>
+                    <p>New to INKY? Sign up.</p>
                     <Button variant="contained" onClick={handleNoAccountSignUpClick}>Sign Up!</Button>
                 </>
             ) : (
                 <>
                     <SignUpForm onLogin={onLogin}/>
-                    <p>Already have an account?</p>
+                    <p>Already an INKY member?</p>
                     <Button variant="contained" onClick={handleAlreadyHaveAccountClick}>Log In!</Button>
                 </>
             )
