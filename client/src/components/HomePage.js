@@ -146,6 +146,8 @@ function HomePage () {
                 <Button variant="contained">Explore Tattoos</Button>
             </Link>
             
+            <br/>
+            <br/>
             <h4>Questions? We have answers.</h4>
             <Box sx={{ display: 'flex', justifyContent: 'center'}}>
                 <Stack spacing={2}>
