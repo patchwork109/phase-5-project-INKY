@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import Button from '@mui/material/Button';
+import FormGroup from '@mui/material/FormGroup';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import Stack from '@mui/system/Stack';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 function Form({addNewTattooToState}) {
 
@@ -86,55 +95,72 @@ function Form({addNewTattooToState}) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <h3>Add a tattoo!</h3>
-                <label>Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="What should we call this tattoo?"
-                    onChange={handleTattooNameChange}
-                />
-                <br />
-                <label>Description:</label>
-                <input
-                    type="text"
-                    name="description"
-                    placeholder="Describe the tattoo."
-                    onChange={handleTattooDescriptionChange}
-                />
-                <br />
-                <label>Choose a size:</label>
-                <select name="size" onChange={handleTattooSizeChange}>
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-                </select>
-                <br />
-                <label>Choose a category:</label>
-                <select name="category" onChange={handleTattooCategoryChange}>
-                    <option value="Nature">Nature</option>
-                    <option value="Animals">Animals</option>
-                    <option value="Dinosaurs">Dinosaurs</option>
-                    <option value="Objects">Objects</option>
-                    <option value="Other">Other</option>
-                </select>
-                <br />
-                <label>Image:</label>
-                <input
-                    type="text"
-                    name="image"
-                    placeholder="Enter an image URL."
-                    onChange={handleTattooImageChange}
-                />
-                <br />
-                <br />
-                <input
-                    type="submit"
-                    name="submit"
-                    value="Submit a New Tattoo"
-                />
-            </form>
+            <h3>Add a tattoo!</h3>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                <form onSubmit={handleSubmit}>
+                    <Stack spacing={3}>
+                        <FormGroup>
+                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                                <TextField
+                                    type="text"
+                                    name="name"
+                                    label="Name"
+                                    variant="outlined"
+                                    placeholder="What should we call this tattoo?"
+                                    onChange={handleTattooNameChange}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                                <TextField
+                                    type="text"
+                                    name="description"
+                                    label="Description"
+                                    variant="outlined"
+                                    placeholder="Describe the tattoo."
+                                    onChange={handleTattooDescriptionChange}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                                <InputLabel>Size</InputLabel>
+                                <Select
+                                    value={tattooSize}
+                                    label="Size"
+                                    onChange={handleTattooSizeChange}
+                                >
+                                    <MenuItem value='Small'>Small</MenuItem>
+                                    <MenuItem value='Medium'>Medium</MenuItem>
+                                    <MenuItem value='Large'>Large</MenuItem>
+                                </Select>       
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                                <InputLabel>Category</InputLabel>
+                                <Select
+                                    value={tattooCategory}
+                                    label="Category"
+                                    onChange={handleTattooCategoryChange}
+                                >
+                                    <MenuItem value='Nature'>Nature</MenuItem>
+                                    <MenuItem value='Animals'>Animals</MenuItem>
+                                    <MenuItem value='Dinosaurs'>Dinosaurs</MenuItem>
+                                    <MenuItem value='Objects'>Objects</MenuItem>
+                                    <MenuItem value='Other'>Other</MenuItem>
+                                </Select>       
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                                <TextField
+                                    type="text"
+                                    name="image"
+                                    label="Image"
+                                    variant="outlined"
+                                    placeholder="Enter an image URL."
+                                    onChange={handleTattooImageChange}
+                                />
+                            </FormControl>
+                            <Button sx={{ m: 1, width: '56ch' }} type="submit" variant="contained">Submit a New Tattoo</Button>
+                        </FormGroup>
+                    </Stack>
+                </form>
+            </Box>
         </div>
     );
 }
