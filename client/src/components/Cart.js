@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
 import Login from "./Login";
 import { UserContext } from "../context/user";
+import Grid from '@mui/material/Grid';
 
 function Cart ({user, onLogin, setTattoos}) {
 
@@ -107,7 +108,9 @@ function Cart ({user, onLogin, setTattoos}) {
                 <div>Log in or create an account to start adding tattoos to your cart!<Login onLogin={onLogin}/></div> :
                 <div>{areTattoosFound ? (
                     <div>
-                        {displayCartTattoos}
+                        <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5, border: 5 }}>
+                            {displayCartTattoos}
+                        </Grid>
                         <h3>Total: ${total.toFixed(2)}</h3>
                         <form onSubmit={handleOrderSubmit}>
                             <button type="submit">PLACE YOUR ORDER</button>

@@ -1,12 +1,21 @@
 import React, { useState } from "react";
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import { grey } from "@mui/material/colors";
 
 function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, setTattoos}) {
 
     const [quantity, setQuantity] = useState(cartTattoo.quantity)
-
-    console.log(cartTattoo)
-    console.log(cartTattoo.tattoo)
 
     const handleQuantityIncrease = () => {
         setQuantity(quantity => (quantity + 1))
@@ -77,27 +86,47 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
 
     return (
         <div>
-            <Card sx={{  maxWidth: 345}} className="tattooCard">
-                <h3>{cartTattoo.tattoo.name}</h3>
-                Category: {cartTattoo.tattoo.category}
-                <br/>
-                Description: {cartTattoo.tattoo.description}
-                <br/>
-                Size: {cartTattoo.tattoo.size}
-                <br/>
-                Quantity: 
-                    <button onClick={handleQuantityDecrease}>-</button>
-                    {cartTattoo.quantity}
-                    <button onClick={handleQuantityIncrease}>+</button>
-                <br/>
-                Price: ${cartTattoo.tattoo.price.toFixed(2)}
-                <br/>
-                Total: ${cartTattoo.quantity * cartTattoo.tattoo.price.toFixed(2)}
-                <br/>
-                <img src={cartTattoo.tattoo.image} alt={cartTattoo.tattoo.name} />
-                <br/>
-                <button onClick={handleDeleteClick}>Remove from Cart</button>
-            </Card>
+            <Grid item xs={6} sm={4} md={3} sx={{ justifyContent: 'center', m: 2 }}>
+                <Card sx={{ display: 'flex', width: 850, height: 300, textAlign: 'left' }}>
+                    <CardMedia
+                            component="img"
+                            sx={{ width: 280 }}
+                            image={cartTattoo.tattoo.image}
+                            alt={cartTattoo.tattoo.name}
+                        />
+                    <Box sx={{ display: 'flex', flexDirection: 'column', width: 350 }}>
+                        <CardContent sx={{ flex: '1 0 auto' }}>
+                            {<strong>{cartTattoo.tattoo.name}</strong>} 
+                            <Typography sx={{ mt: 3 }}gutterBottom>
+                                {cartTattoo.tattoo.category}, {cartTattoo.tattoo.size}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {cartTattoo.tattoo.description}
+                            </Typography>
+                            <Box sx={{ mt: 4}}>
+                                <Typography>
+                                    <strong>Quantity</strong>
+                                    <br />
+                                    <ButtonGroup sx={{ mt: .5}} variant="contained" aria-label="outlined primary button group">
+                                        <IconButton sx={{  }} onClick={handleQuantityDecrease}><RemoveIcon sx={{ fontSize: 15 }}/></IconButton>
+                                        <Box sx={{ mt: .5, pl: 1, pr: 1}}>{cartTattoo.quantity}</Box>
+                                        <IconButton sx={{  }} onClick={handleQuantityIncrease}><AddIcon sx={{ fontSize: 15 }}/></IconButton>
+                                    </ButtonGroup>
+                                </Typography>
+                                <Typography>
+                                    <br />
+                                    <Button sx={{ ml: -.9 }} onClick={handleDeleteClick}>Remove from Cart<DeleteForeverRoundedIcon /></Button>
+                                </Typography>
+                            </Box>
+                        </CardContent>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', pl: 18 }}>
+                        <CardContent sx={{ flex: '1 0 auto' }}>
+                            <strong>${cartTattoo.quantity * cartTattoo.tattoo.price}</strong>
+                        </CardContent>
+                    </Box>
+                </Card>
+            </Grid>
         </div>
     )
 }
