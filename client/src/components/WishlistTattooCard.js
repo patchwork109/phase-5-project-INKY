@@ -1,6 +1,11 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import Card from '@mui/material/Card';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IconButton from '@mui/material/IconButton';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 function WishlistTattooCard ({id, name, category, description, size, price, image, handleRemoveFavoritedTattoo, setTattoos, tattoo_id, is_in_cart, setFavoritedTattoos}) {
 
@@ -25,7 +30,7 @@ function WishlistTattooCard ({id, name, category, description, size, price, imag
         handleRemoveFavoritedTattoo(id)
 
         setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
-            if (eachCurrentTattoo.id === id ) {
+            if (eachCurrentTattoo.id === tattoo_id ) {
                 const theCurrentTattoo = {
                     ...eachCurrentTattoo,
                     is_favorited: null
@@ -51,7 +56,7 @@ function WishlistTattooCard ({id, name, category, description, size, price, imag
                 console.log( "STATUS:", r.status)
                 r.json().then(r => {
                     console.log(r)
-                    
+
                     setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
                         if (eachCurrentTattoo.id === tattoo_id ) {
                             const theCurrentTattoo = {

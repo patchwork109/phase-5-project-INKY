@@ -5,6 +5,9 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
 
     const [quantity, setQuantity] = useState(cartTattoo.quantity)
 
+    console.log(cartTattoo)
+    console.log(cartTattoo.tattoo)
+
     const handleQuantityIncrease = () => {
         setQuantity(quantity => (quantity + 1))
 
@@ -59,7 +62,7 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
         handleRemoveItemInCart(cartTattoo.id)
 
         setTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
-            if (eachCurrentTattoo.id === cartTattoo.id ) {
+            if (eachCurrentTattoo.id === cartTattoo.tattoo.id ) {
                 const theCurrentTattoo = {
                     ...eachCurrentTattoo,
                     is_in_cart: null

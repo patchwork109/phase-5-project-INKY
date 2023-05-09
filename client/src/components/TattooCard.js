@@ -3,11 +3,17 @@ import { UserContext } from "../context/user";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IconButton from '@mui/material/IconButton';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 
 function TattooCard ({id, name, category, description, size, price, image, user, is_favorited, is_in_cart, setTattoos}) {
@@ -161,114 +167,43 @@ function TattooCard ({id, name, category, description, size, price, image, user,
 
     return (
         <div>
-                <Grid item xs={6} sm={4} md={3} sx={{ justifyContent: 'center', m: 2 }}>
-                    <Card sx={{ width: 345, height: 550}}>
-                            <CardMedia
-                                component="img"
-                                height="325"
-                                image={image}
-                                alt={name}
-                                sx={{ objectFit:'cover', width: 345}}
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5">
-                                    {name}
-                                </Typography>
-                                <Typography gutterBottom variant="h6">
-                                    {category}, {size}, ${price}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {description}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <div>
-                                    { (!is_favorited) ? (
-                                        <Button onClick={handleFavoriteClick}>Add to Wishlist!</Button>
-                                            ) : (
-                                        <Button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</Button>
-                                    )}
-                                </div>
-                                <div>
-                                    { (!is_in_cart) ? (
-                                        <Button onClick={handleAddToCartClick}>Add to Cart!</Button>
-                                            ) : (
-                                        <Button onClick={handleRemoveFromCartClick}>Remove from Cart</Button>
-                                    )}
-                                </div>
-                            </CardActions>
-                    </Card>
-                </Grid>
+            <Grid item xs={6} sm={4} md={3} sx={{ justifyContent: 'center', m: 2 }}>
+                <Card sx={{ width: 345, height: 540, textAlign: 'left'}}>
+                    <CardMedia
+                        component="img"
+                        height="325"
+                        image={image}
+                        alt={name}
+                        sx={{ objectFit:'cover', width: 345}}
+                    />
+                    <CardContent sx={{ flexDirection: 'column' }}>
+                        <Box  variant="h5">
+                            {<strong>{name}</strong>} 
+                            {(!is_favorited) ? (
+                                <IconButton sx={{ float: 'right', mt: -1 }} onClick={handleFavoriteClick}><FavoriteBorderIcon sx={{ fontSize: 30 }}/></IconButton>
+                                    ) : (
+                                <IconButton sx={{ float: 'right', mt: -1 }} onClick={handleRemoveFavoriteClick}><FavoriteIcon sx={{ fontSize: 30, color: '#ff0000' }}/></IconButton>
+                            )}
+                            {(!is_in_cart) ? (
+                                <IconButton sx={{ float: 'right', mt: -1 }} onClick={handleAddToCartClick}><AddShoppingCartIcon sx={{ fontSize: 30 }}/></IconButton>
+                                    ) : (
+                                <IconButton sx={{ float: 'right', mt: -1 }} onClick={handleRemoveFromCartClick}><RemoveShoppingCartIcon sx={{ fontSize: 30 }}/></IconButton>
+                            )}
+                        </Box>
+                        <br />
+                        <Typography gutterBottom>
+                            {category}, {size}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {description}
+                        </Typography>
+                        <Box sx={{ mt: 4}}>
+                            ${price}
+                        </Box>
+                    </CardContent>
+                </Card>
+            </Grid>
         </div>
-        
-
-// {/* <Grid container spacing={1} sx={{ border: 5 }}>
-//         <Grid item md={4}>
-//           <Paper>
-//           <h3>{name}</h3>
-//                 Category: {category}
-//                 <br/>
-//                 Description: {description}
-//                 <br/>
-//                 Size: {size}
-//                 <br/>
-//                 Price: ${price}
-//                 <br/>
-//                 <img src={image} alt={name} />
-//                 <br/>
-//                 <div>
-//                     { (!is_favorited) ? (
-//                         <button onClick={handleFavoriteClick}>Add to Wishlist!</button>
-//                     ) : (
-//                         <button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</button>
-//                     )}
-//                 </div>
-//                 <div>
-//                     { (!is_in_cart) ? (
-//                         <button onClick={handleAddToCartClick}>Add to Cart!</button>
-//                     ) : (
-//                         <button onClick={handleRemoveFromCartClick}>Remove from Cart</button>
-//                     )}
-//                 </div>
-//           </Paper>
-//         </Grid>
-//     </Grid> */}
-
-
-            // // {/* <Box sx={{ border: 5 }}> */}
-            //     {/* <Grid container spacing={2}>
-            //         <Grid xs={4}>
-            // <Card sx={{ maxWidth: 300 }} className="tattooCard">
-            //     <h3>{name}</h3>
-            //     Category: {category}
-            //     <br/>
-            //     Description: {description}
-            //     <br/>
-            //     Size: {size}
-            //     <br/>
-            //     Price: ${price}
-            //     <br/>
-            //     <img src={image} alt={name} />
-            //     <br/>
-            //     <div>
-            //         { (!is_favorited) ? (
-            //             <button onClick={handleFavoriteClick}>Add to Wishlist!</button>
-            //         ) : (
-            //             <button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</button>
-            //         )}
-            //     </div>
-            //     <div>
-            //         { (!is_in_cart) ? (
-            //             <button onClick={handleAddToCartClick}>Add to Cart!</button>
-            //         ) : (
-            //             <button onClick={handleRemoveFromCartClick}>Remove from Cart</button>
-            //         )}
-            //     </div>
-            // </Card>
-            // </Grid>
-            //     </Grid> */}
-            // {/* </Box> */}
-        
     )
 }
 

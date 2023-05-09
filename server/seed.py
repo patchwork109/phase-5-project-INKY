@@ -37,7 +37,7 @@ if __name__ == '__main__':
                       is_custom=False)
         
         nature4 = Tattoo(name="Wavy", 
-                      description="Go with the flow by sporting this wavy design.", 
+                      description="Always going with the flow? Show it by sporting this wavy design.", 
                       size="Large", category="Nature", price=randint(9, 18), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4286903287886_1574964939.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                       is_custom=False)
         
         nature6 = Tattoo(name="Sunny", 
-                      description="Radiate warmth and channel those sunny summer vibes all the time while rocking this sweet lil sunshine design.", 
+                      description="Radiate warmth and channel those sunny summer vibes while rocking this sweet design.", 
                       size="Medium", category="Nature", price=randint(5, 12), 
                       image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_16937_20200414061648_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -64,13 +64,13 @@ if __name__ == '__main__':
                       is_custom=False)
 
         dino2 = Tattoo(name="Stego", 
-                      description="It's been extinct since the Cretaceous Period, but this precious plant-eater remains one of the most recognizable dinos.", 
+                      description="It's been extinct since the Cretaceous Period, but this precious plant-eater is trending.", 
                       size="Small", category="Dinosaurs", price=randint(3, 9), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4805914460238_printable_1623704779.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
         
         dino3 = Tattoo(name="Apo", 
-                      description="Say hello to the Apatosaurus! If you're a fan of this herbivore, show off your devotion by rocking this adorable Apo design.", 
+                      description="If you're a fan of this herbivore, show off your devotion by rocking this adorable Apo design.", 
                       size="Small", category="Dinosaurs", price=randint(3, 9), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4805914067022_printable_1623704578.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -88,7 +88,7 @@ if __name__ == '__main__':
                       is_custom=False)
         
         dino6 = Tattoo(name="Not Today", 
-                      description="This dino is done for the day. Channel the IDGAF attitude of the tired triceratops while wearing this crazy cute tattoo.", 
+                      description="This dino is done for the day. Channel the IDGAF attitude of the tired triceratops.", 
                       size="Medium", category="Dinosaurs", price=randint(5, 12), 
                       image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_20624_20200707093945_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -103,7 +103,7 @@ if __name__ == '__main__':
                       is_custom=False)
 
         animal2 = Tattoo(name="Otters", 
-                      description="Let's stick together. A perfect tattoo for you and someone you're close to (or if you just love otters).", 
+                      description="Let's stick together. A perfect tattoo for you and someone special (or if you just love otters).", 
                       size="Small", category="Animals", price=randint(3, 9), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4286492934222_1574954546.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -115,7 +115,7 @@ if __name__ == '__main__':
                       is_custom=False)
         
         animal4 = Tattoo(name="Bear", 
-                      description="Peek-a-bear?", 
+                      description="Peek-a-bear? Say hello to this furry friend and crazy cute tattoo.", 
                       size="Large", category="Animals", price=randint(9, 18), 
                       image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_21456_20200730041042_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -136,20 +136,21 @@ if __name__ == '__main__':
                       is_custom=False)
         
         object3 = Tattoo(name="Balloon Animal", 
-                      description="Stay playful with this tattoo that's full of hot air.", 
+                      description="Stay playful with this small tattoo that's full of hot air.", 
                       size="Small", category="Objects", price=randint(3, 9), 
                       image="https://inkboxdesigns.imgix.net/artist_designs/DdWsV5EnzC0mAaZnipyry1bCheOngusyptcSdyoh.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
+                      is_custom=False)
+        
+        object4 = Tattoo(name="Pizza", 
+                      description="Pizza. All day, everyday, now on your bo-day. Show your love with this tasty tattoo.", 
+                      size="Large", category="Objects", price=randint(10, 18), 
+                      image="https://inkboxdesigns.imgix.net/artist_designs/MfsiEfGP9QIhZ49xqzJi1PlUBWMky5AMFnrtxJar.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
 
         objects = [object1, object2, object3]
 
-        all_tattoos = [nature1, dino3, animal4, nature4, object3, dino5, animal1, nature2, animal2, dino1, nature3, animal3, dino2, object1, nature5, dino4, object2, nature6, dino6]
+        all_tattoos = [nature1, dino3, animal4, nature4, object3, dino5, animal1, nature2, animal2, dino1, nature3, animal3, dino2, object1, nature5, dino4, object2, nature6, dino6, object4]
         db.session.add_all(all_tattoos)
-
-        # db.session.add_all(dinosaurs)
-        # db.session.add_all(nature)
-        # db.session.add_all(animals)
-        # db.session.add_all(objects)
         db.session.commit()
 
         print("Seed done!")
