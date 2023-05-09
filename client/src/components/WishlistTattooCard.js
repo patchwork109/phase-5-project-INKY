@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/user";
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
@@ -97,27 +101,39 @@ function WishlistTattooCard ({id, name, category, description, size, price, imag
 
     return (
         <div>
-            <Card sx={{  maxWidth: 345}} className="tattooCard">
-                <h3>{name}</h3>
-                Category: {category}
-                <br/>
-                Description: {description}
-                <br/>
-                Size: {size}
-                <br/>
-                Price: ${price}
-                <br/>
-                <img src={image} alt={name} />
-                <br/>
-                <button onClick={handleRemoveFavoriteClick}>Remove from Wishlist</button>
-                <div>
-                    { (!is_in_cart) ? (
-                        <button onClick={handleAddToCartClick}>Add to Cart!</button>
-                    ) : (
-                        null
-                    )}
-                </div>
-            </Card>
+            <Grid item xs={6} sm={4} md={3} sx={{ justifyContent: 'center', m: 2 }}>
+                <Card sx={{ width: 345, height: 540, textAlign: 'left'}}>
+                    <CardMedia
+                        component="img"
+                        height="325"
+                        image={image}
+                        alt={name}
+                        sx={{ objectFit:'cover', width: 345}}
+                    />
+                    <CardContent sx={{ flexDirection: 'column' }}>
+                        <Box variant="h5">
+                            {<strong>{name}</strong>} 
+                                <IconButton sx={{ float: 'right', mt: -1 }} onClick={handleRemoveFavoriteClick}><FavoriteIcon sx={{ fontSize: 30, color: '#ff0000' }}/></IconButton>
+                            {(!is_in_cart) ? (
+                                <IconButton sx={{ float: 'right', mt: -1 }} onClick={handleAddToCartClick}><AddShoppingCartIcon sx={{ fontSize: 30 }}/></IconButton>
+                                    ) : (
+                                null
+                                // <IconButton sx={{ float: 'right', mt: -1 }} onClick={handleRemoveFromCartClick}><RemoveShoppingCartIcon sx={{ fontSize: 30 }}/></IconButton>
+                            )}
+                        </Box>
+                        <br />
+                        <Typography gutterBottom>
+                            {category}, {size}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {description}
+                        </Typography>
+                        <Box sx={{ mt: 4}}>
+                            ${price}
+                        </Box>
+                    </CardContent>
+                </Card>
+            </Grid>
         </div>
     )
 }

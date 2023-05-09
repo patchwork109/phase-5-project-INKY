@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import WishlistTattooCard from "./WishlistTattooCard";
 import EmptyWishlist from "./EmptyWishlist";
 import Login from "./Login";
+import Grid from '@mui/material/Grid';
 
 function Wishlist ({user, onLogin, setTattoos}) {
 
@@ -67,7 +68,10 @@ function Wishlist ({user, onLogin, setTattoos}) {
             {(user === null) ? 
                 <div>Log in or create an account to start adding tattoos to your Wishlist!<Login onLogin={onLogin}/></div> : 
                 <div>
-                    { areWishlistTattoosFound ? renderFavoritedTattoos : <EmptyWishlist />}
+                    { areWishlistTattoosFound ? 
+                    <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5 }}>
+                        {renderFavoritedTattoos}
+                    </Grid> : <EmptyWishlist />}
                 </div>
             }
         </div>

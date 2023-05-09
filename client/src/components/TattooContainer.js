@@ -6,7 +6,7 @@ import Search from "./Search";
 import Filter from "./Filter";
 import Sort from "./Sort";
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 
 function TattooContainer ({user, onLogin, tattoos, 
                             searchedValue, filteredCategoryValue, 
@@ -48,7 +48,7 @@ function TattooContainer ({user, onLogin, tattoos,
                         <Sort sortData={sortData} sortOrder={sortOrder} setSortOrder={setSortOrder}/>
                         
                         
-                        <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', mt: 5, border: 5 }}>
+                        <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5, border: 5 }}>
                             {renderTattoos}
                         </Grid>
                         
