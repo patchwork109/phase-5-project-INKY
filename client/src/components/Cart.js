@@ -28,7 +28,7 @@ function Cart ({user, onLogin, setTattoos}) {
                     setAreTattoosFound(false)
                 } else {
                     console.log(cart)
-                    console.log(cart.tattoo)
+                    console.log(cart.tattoos)
 
                     let total = 0;
                     cart.cart_tattoos.forEach(cart_tattoo => {

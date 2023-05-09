@@ -22,7 +22,7 @@ function Sort({sortData, sortOrder, setSortOrder}) {
 
     return (
         <div>
-            <Box sx={{ maxWidth: 200 }}>
+            <Box sx={{ maxWidth: 200, border: 5, width: 200 }}>
                 <FormControl fullWidth>
                     <InputLabel>Sort:</InputLabel>
                     <Select

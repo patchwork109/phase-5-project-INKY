@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  /* padding: 0; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,10 +15,10 @@ body {
   font-size: 20px;
 }
 
-.tattooCard {
+/* .tattooCard {
   margin-bottom: 40px;
   margin-left: 100px;
-}
+} */
 
 .app {
   font-size: 20px;

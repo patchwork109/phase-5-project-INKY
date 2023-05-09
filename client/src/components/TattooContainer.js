@@ -5,6 +5,8 @@ import { UserContext } from "../context/user";
 import Search from "./Search";
 import Filter from "./Filter";
 import Sort from "./Sort";
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 function TattooContainer ({user, onLogin, tattoos, 
                             searchedValue, filteredCategoryValue, 
@@ -36,6 +38,7 @@ function TattooContainer ({user, onLogin, tattoos,
                 {(user === null) ? 
                     <Login onLogin={onLogin}/> : 
                     <div>
+                        All Tattoos
                         <Search searchedValue={searchedValue}/> 
                         <Filter 
                             filteredCategoryValue={filteredCategoryValue}
@@ -43,7 +46,12 @@ function TattooContainer ({user, onLogin, tattoos,
                             handleSizeInputChange={handleSizeInputChange}
                         />
                         <Sort sortData={sortData} sortOrder={sortOrder} setSortOrder={setSortOrder}/>
-                        {renderTattoos}
+                        
+                        
+                        <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', mt: 5, border: 5 }}>
+                            {renderTattoos}
+                        </Grid>
+                        
                         {checkIfCartIsNullAndPostNewCart(currentCart)}
                     </div>
                 }

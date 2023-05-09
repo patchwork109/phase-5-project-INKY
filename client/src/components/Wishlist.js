@@ -56,7 +56,9 @@ function Wishlist ({user, onLogin, setTattoos}) {
             image = {favoritedTattoo.tattoo.image}
             handleRemoveFavoritedTattoo = {handleRemoveFavoritedTattoo}
             setTattoos = {setTattoos}
-            is_favorited = {favoritedTattoo.tattoo.is_favorited}
+            setFavoritedTattoos = {setFavoritedTattoos}
+            tattoo_id = {favoritedTattoo.tattoo.id}
+            is_in_cart = {favoritedTattoo.tattoo.is_in_cart}
         />
     })
 
