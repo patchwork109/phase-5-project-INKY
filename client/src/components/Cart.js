@@ -5,6 +5,9 @@ import EmptyCart from "./EmptyCart";
 import Login from "./Login";
 import { UserContext } from "../context/user";
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
 
 function Cart ({user, onLogin, setTattoos}) {
 
@@ -103,18 +106,27 @@ function Cart ({user, onLogin, setTattoos}) {
     }
 
     return (
-        <div>
+        <div style={{ display: 'flex' }}>
             {(user === null) ?
                 <div>Log in or create an account to start adding tattoos to your cart!<Login onLogin={onLogin}/></div> :
                 <div>{areTattoosFound ? (
                     <div>
-                        <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5, border: 5 }}>
-                            {displayCartTattoos}
+                        <h2 style={{textAlign: 'left', marginLeft: 85, marginTop: 35}}>Your Cart</h2>
+                        <Grid container spacing={5} sx={{ justifyContent: 'left', ml: 9, mt: 1, mb: 5 }}>
+                                {displayCartTattoos}
+                            <Grid container item xs={1} sm={1} md={1} direction="column" sx={{ justifyItems: 'right', float: 'right', justifyContent: 'right' }}>
+                                <Card sx={{ width: 325, height: 200,  mt: 22, top: '0', position: 'fixed' }}>
+                                    <form onSubmit={handleOrderSubmit}>
+                                    <CardHeader sx={{ bgcolor: '#EEEEEE'}}
+                                        title={<strong>Order Summary</strong>}
+                                    >
+                                    </CardHeader>
+                                    <h4>Total: ${total.toFixed(2)}</h4>
+                                        <Button sx={{ width: 300 }}variant="contained" type="submit">PLACE YOUR ORDER</Button>
+                                    </form>
+                                </Card>
+                            </Grid>
                         </Grid>
-                        <h3>Total: ${total.toFixed(2)}</h3>
-                        <form onSubmit={handleOrderSubmit}>
-                            <button type="submit">PLACE YOUR ORDER</button>
-                        </form>
                     </div> ) : 
                     (<EmptyCart />)
                     }

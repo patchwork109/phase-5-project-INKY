@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Divider from '@mui/material/Divider';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-import { grey } from "@mui/material/colors";
 
 function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, setTattoos}) {
 
@@ -86,8 +86,8 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
 
     return (
         <div>
-            <Grid item xs={6} sm={4} md={3} sx={{ justifyContent: 'center', m: 2 }}>
-                <Card sx={{ display: 'flex', width: 850, height: 300, textAlign: 'left' }}>
+            <Grid container item xs={11} sm={11} md={11} direction="column" sx={{ m: 2 }}>
+                <Card sx={{ display: 'flex', width: 950, height: 300, textAlign: 'left' }}>
                     <CardMedia
                             component="img"
                             sx={{ width: 280 }}
@@ -96,7 +96,8 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
                         />
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: 350 }}>
                         <CardContent sx={{ flex: '1 0 auto' }}>
-                            {<strong>{cartTattoo.tattoo.name}</strong>} 
+                            {<strong>{cartTattoo.tattoo.name}</strong>}
+                            <Divider sx={{ mt: .5}}/>
                             <Typography sx={{ mt: 3 }}gutterBottom>
                                 {cartTattoo.tattoo.category}, {cartTattoo.tattoo.size}
                             </Typography>
@@ -120,7 +121,7 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
                             </Box>
                         </CardContent>
                     </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', pl: 18 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', pl: 29 }}>
                         <CardContent sx={{ flex: '1 0 auto' }}>
                             <strong>${cartTattoo.quantity * cartTattoo.tattoo.price}</strong>
                         </CardContent>
