@@ -18,6 +18,7 @@ function App() {
 	const [categoryValue, setCategoryValue] = useState("");
 	const [sizeValue, setSizeValue] = useState("");
 	const [sortOrder, setSortOrder] = useState('asc');
+	const [count, setCount] = useState(0);
 	const { currentCart, setCurrentCart } = useContext(UserContext);
 
 	console.log("I'm the current cart", currentCart)
@@ -112,7 +113,7 @@ function App() {
 		<div className="app">
 			<header className="App-header">
 				<Router>
-				<NavBar user={user} onLogout={onLogout}/>
+				<NavBar user={user} onLogout={onLogout} count={count}/>
 					<Switch>
 						<Route exact path="/">
 							<HomePage/>
@@ -130,10 +131,12 @@ function App() {
 								sortOrder={sortOrder}
 								setSortOrder={setSortOrder}
 								setTattoos={setTattoos}
+								count={count} 
+								setCount={setCount}
 							/>
 						</Route>
 						<Route exact path="/wishlist">
-							<Wishlist user={user} onLogin={setUser} setTattoos={setTattoos}/>
+							<Wishlist user={user} onLogin={setUser} setTattoos={setTattoos} count={count} setCount={setCount}/>
 						</Route>
 						<Route exact path="/customtattoos">
 							<CustomTattoo addNewTattooToState={addNewTattooToState}/>
@@ -142,7 +145,7 @@ function App() {
 							<OurStory/>
 						</Route>
                         <Route exact path="/cart">
-							<Cart user={user} onLogin={setUser} setTattoos={setTattoos}/>
+							<Cart user={user} onLogin={setUser} setTattoos={setTattoos} count={count} setCount={setCount}/>
 						</Route>
 						<Route exact path="/ordersuccess">
 							<OrderSuccess user={user}/>

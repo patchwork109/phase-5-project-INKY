@@ -13,7 +13,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 
-function TattooCard ({id, name, category, description, size, price, image, user, is_favorited, is_in_cart, setTattoos}) {
+function TattooCard ({id, name, category, description, size, price, image, user, is_favorited, is_in_cart, setTattoos, count, setCount}) {
 
     const { currentCart } = useContext(UserContext);
 
@@ -114,6 +114,8 @@ function TattooCard ({id, name, category, description, size, price, image, user,
                             return eachCurrentTattoo
                         }
                     }))
+                    // increment counter
+                    setCount(count + 1)
                 })
             } else {
                 console.error("STATUS:", r.status)
@@ -158,8 +160,10 @@ function TattooCard ({id, name, category, description, size, price, image, user,
             } else {
                 return eachCurrentTattoo
             }
-        })
-        )
+        }))
+
+        // decrement counter
+        setCount(count - 1)
     }
 
     return (

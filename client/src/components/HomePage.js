@@ -30,8 +30,8 @@ function HomePage () {
     return (
         <div>
             <h2>for now, not forever</h2>
-            <ImageList sx={{ overflow: 'scroll', height: 280}} cols={7} rowHeight={250}>
-                <ImageListItem>
+            <ImageList sx={{ overflow: 'scroll', height: 250, border: 10, borderColor: "rgb(43, 46, 49)", mb: 5}} cols={7} rowHeight={250}>
+                <ImageListItem className="homePageWhale">
                     <img
                         src={`${whale}?w=164&h=164&fit=crop&auto=format`}
                         srcSet={`${whale}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}

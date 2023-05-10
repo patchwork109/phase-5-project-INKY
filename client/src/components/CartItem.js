@@ -13,12 +13,14 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 
-function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, setTattoos}) {
+function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, setTattoos, count, setCount}) {
 
     const [quantity, setQuantity] = useState(cartTattoo.quantity)
 
     const handleQuantityIncrease = () => {
         setQuantity(quantity => (quantity + 1))
+
+        setCount(count + 1)
 
         const updatedQuantity = {
             quantity: (quantity + 1)
@@ -37,6 +39,8 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
 
         if (quantity > 1) {
             setQuantity(quantity => (quantity - 1))
+
+            setCount(count - 1)
 
             const updatedQuantity = {
                 quantity: (quantity - 1)
@@ -80,8 +84,10 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
             } else {
                 return eachCurrentTattoo
             }
-        })
-        )
+        }))
+
+        // decrement counter
+        setCount(count - 1)
     }
 
     return (

@@ -4,7 +4,7 @@ import EmptyWishlist from "./EmptyWishlist";
 import Login from "./Login";
 import Grid from '@mui/material/Grid';
 
-function Wishlist ({user, onLogin, setTattoos}) {
+function Wishlist ({user, onLogin, setTattoos, count, setCount}) {
 
     const [favoritedTattoos, setFavoritedTattoos] = useState([])
     const [areWishlistTattoosFound, setAreWishlistTattoosFound] = useState(false)
@@ -60,6 +60,8 @@ function Wishlist ({user, onLogin, setTattoos}) {
             setFavoritedTattoos = {setFavoritedTattoos}
             tattoo_id = {favoritedTattoo.tattoo.id}
             is_in_cart = {favoritedTattoo.tattoo.is_in_cart}
+            count = {count}
+            setCount = {setCount}
         />
     })
 

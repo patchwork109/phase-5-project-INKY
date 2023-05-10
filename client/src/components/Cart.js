@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 
-function Cart ({user, onLogin, setTattoos}) {
+function Cart ({user, onLogin, setTattoos, count, setCount}) {
 
     const [tattoosInCart, setTattoosInCart] = useState([]);
     const [areTattoosFound, setAreTattoosFound] = useState(false);
@@ -93,6 +93,8 @@ function Cart ({user, onLogin, setTattoos}) {
                 handleEditTattooInCart={handleEditTattooInCart}
                 handleRemoveItemInCart={handleRemoveItemInCart}
                 setTattoos={setTattoos}
+                count={count}
+                setCount={setCount}
             />
         )
     })
@@ -101,6 +103,9 @@ function Cart ({user, onLogin, setTattoos}) {
     const handleOrderSubmit = (e) => {
         e.preventDefault()
         history.push("/ordersuccess");
+
+        // set badge count to 0 
+        setCount(0)
 
         setCurrentCart(null)
     }

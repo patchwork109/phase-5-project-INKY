@@ -11,7 +11,8 @@ import Grid from '@mui/material/Grid';
 function TattooContainer ({user, onLogin, tattoos, 
                             searchedValue, filteredCategoryValue, 
                             handleCategoryInputChange, handleSizeInputChange, 
-                            checkIfCartIsNullAndPostNewCart, sortData, sortOrder, setSortOrder, setTattoos
+                            checkIfCartIsNullAndPostNewCart, sortData, sortOrder, setSortOrder, setTattoos,
+                            count, setCount
                         }) {
 
     const { currentCart } = useContext(UserContext);
@@ -29,6 +30,8 @@ function TattooContainer ({user, onLogin, tattoos,
             is_favorited = {tattoo.is_favorited}
             is_in_cart = {tattoo.is_in_cart}
             setTattoos = {setTattoos}
+            count = {count}
+            setCount = {setCount}
         />
     })
 

@@ -7,8 +7,9 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Badge from '@mui/material/Badge';
 
-function NavBar ({user, onLogout}) {
+function NavBar ({user, onLogout, count}) {
 
     const handleLogoutClick = () => {
         fetch("/logout", {
@@ -41,7 +42,9 @@ function NavBar ({user, onLogout}) {
                         </NavLink>
                         <NavLink exact to="/cart"> 
                             <IconButton>
-                                <ShoppingCartIcon sx={{ color: "white", justifyContent: "right" }}/>
+                                <Badge color="error" badgeContent={count}>  
+                                    <ShoppingCartIcon sx={{ color: "white", justifyContent: "right" }}/>
+                                </Badge>
                             </IconButton>
                         </NavLink>
                         <NavLink exact to="/" onClick={handleLogoutClick}> 
