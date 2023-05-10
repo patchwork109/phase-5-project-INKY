@@ -68,7 +68,7 @@ function Wishlist ({user, onLogin, setTattoos, count, setCount}) {
     return (
         <div>
             {(user === null) ? 
-                <div>Log in or create an account to start adding tattoos to your Wishlist!<Login onLogin={onLogin}/></div> : 
+                <div><Login onLogin={onLogin}/></div> : 
                 <div>
                     { areWishlistTattoosFound ?
                         (<div>

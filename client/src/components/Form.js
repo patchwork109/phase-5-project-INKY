@@ -8,14 +8,34 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import Modal from '@mui/material/Modal';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function Form({addNewTattooToState}) {
 
+    const [open, setOpen] = useState(false);
     const [tattooName, setTattooName] = useState("")
     const [tattooDescription, setTattooDescription] = useState("")
     const [tattooSize, setTattooSize] = useState("")
     const [tattooCategory, setTattooCategory] = useState("")
     const [tattooImage, setTattooImage] = useState("")
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        height: 200,
+        color: 'black',
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        borderRadius: '15px',
+        boxShadow: 24,
+        p: 4,
+      };
+
+    const handleClose = () => setOpen(false);
 
     const handleTattooNameChange = (e) => {
         setTattooName(e.target.value);
@@ -39,6 +59,8 @@ function Form({addNewTattooToState}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setOpen(true);
 
         const newTattoo = {
             name: tattooName,
@@ -67,30 +89,11 @@ function Form({addNewTattooToState}) {
         })
         .then(r => handleNewTattooResponse(r))
 
-        // const newFavorite = {
-        //     is_favorited: true,
-        //     // need to figure out how to update the tattoo_id field
-        //     // user_id: user.id,
-        //     // tattoo_id: id
-        // }
-
-        // const handleNewFavoriteResponse = r => {
-        //     if (r.ok) {
-        //         console.log( "STATUS:", r.status)
-        //         // update to the new favorite function
-        //         r.json().then(addNewTattooToState)
-        //     } else {
-        //         console.error("STATUS:", r.status)
-        //         r.text().then(console.warn)
-        //     }
-        // }
-    
-        // fetch("/favorites", {
-        //     method: "POST",
-        //     headers: {"Content-Type":"application/json"},
-        //     body: JSON.stringify(newFavorite)
-        // })
-        // .then(r => handleNewFavoriteResponse(r))
+        setTattooName("")
+        setTattooDescription("")
+        setTattooSize("")
+        setTattooCategory("")
+        setTattooImage("")
     }
 
     return (
@@ -104,6 +107,7 @@ function Form({addNewTattooToState}) {
                                 <TextField
                                     type="text"
                                     name="name"
+                                    value={tattooName}
                                     label="Name"
                                     variant="outlined"
                                     placeholder="What should we call this tattoo?"
@@ -114,6 +118,7 @@ function Form({addNewTattooToState}) {
                                 <TextField
                                     type="text"
                                     name="description"
+                                    value={tattooDescription}
                                     label="Description"
                                     variant="outlined"
                                     placeholder="Describe the tattoo."
@@ -150,6 +155,7 @@ function Form({addNewTattooToState}) {
                                 <TextField
                                     type="text"
                                     name="image"
+                                    value={tattooImage}
                                     label="Image"
                                     variant="outlined"
                                     placeholder="Enter an image URL."
@@ -161,6 +167,21 @@ function Form({addNewTattooToState}) {
                     </Stack>
                 </form>
             </Box>
+
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <CheckCircleIcon sx={{ fontSize: 80 }}/>
+                    <br />
+                    <h3>Thank you for contributing your tattoo design!</h3>
+                    <p>Your tattoo will now be available to the INKY community.</p>
+                </Box>
+            </Modal>
         </div>
     );
 }

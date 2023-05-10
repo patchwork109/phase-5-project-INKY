@@ -120,7 +120,7 @@ function Cart ({user, onLogin, setTattoos, count, setCount, tattoos}) {
     return (
         <div>
             {(user === null) ?
-                <div>Log in or create an account to start adding tattoos to your cart!<Login onLogin={onLogin}/></div> :
+                <div><Login onLogin={onLogin}/></div> :
                 <div>{areTattoosFound ? (
                     <div>
                         <h2 style={{textAlign: 'left', marginLeft: 85, marginTop: 35}}>Your Cart</h2>

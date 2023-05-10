@@ -18,6 +18,14 @@ body {
   font-size: 20px;
 }
 
+.tattooCard {
+  transition: transform .5s ease;
+}
+
+.tattooCard:hover {
+  transform: scale(1.05);
+}
+
 /* on-hover effect for homepage images */
 
 .homePageWhale {

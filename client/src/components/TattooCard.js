@@ -169,6 +169,7 @@ function TattooCard ({id, name, category, description, size, price, image, user,
             <Grid item xs={6} sm={4} md={3} sx={{ justifyContent: 'center', m: 2 }}>
                 <Card sx={{ width: 345, height: 540, textAlign: 'left'}}>
                     <CardMedia
+                        className='tattooCard'
                         component="img"
                         height="325"
                         image={image}
