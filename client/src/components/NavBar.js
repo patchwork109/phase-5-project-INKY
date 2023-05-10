@@ -14,7 +14,7 @@ function NavBar ({user, onLogout, count}) {
     const handleLogoutClick = () => {
         fetch("/logout", {
             method: "DELETE",
-        }).then(() => onLogout());
+        }).then(() => onLogout())
     }
 
     return (

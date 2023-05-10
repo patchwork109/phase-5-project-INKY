@@ -114,7 +114,6 @@ function TattooCard ({id, name, category, description, size, price, image, user,
                             return eachCurrentTattoo
                         }
                     }))
-                    // increment counter
                     setCount(count + 1)
                 })
             } else {
@@ -162,7 +161,6 @@ function TattooCard ({id, name, category, description, size, price, image, user,
             }
         }))
 
-        // decrement counter
         setCount(count - 1)
     }
 

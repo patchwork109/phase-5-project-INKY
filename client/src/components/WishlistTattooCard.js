@@ -74,17 +74,17 @@ function WishlistTattooCard ({id, name, category, description, size,
                         }
                     }))
 
-                    setFavoritedTattoos(currentTattoos => currentTattoos.map(eachCurrentTattoo => {
-                        if (eachCurrentTattoo.id === tattoo_id ) {
-                            const theCurrentTattoo = {
-                                ...eachCurrentTattoo,
-                                is_in_cart: r
-                            }
-                            return theCurrentTattoo
-                        } else {
-                            return eachCurrentTattoo
-                        }
-                    }))
+                    // setFavoritedTattoos(currentFaves => currentFaves.map(eachCurrentFave => {
+                    //     if (eachCurrentFave.id === id ) {
+                    //         const theCurrentFave = {
+                    //             ...eachCurrentFave,
+                    //             is_in_cart: r
+                    //         }
+                    //         return theCurrentFave
+                    //     } else {
+                    //         return eachCurrentFave
+                    //     }
+                    // }))
                     
                     // increment counter
                     setCount(count + 1)

@@ -86,7 +86,7 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
             }
         }))
 
-        setCount(count - 1)
+        setCount(count - quantity)
     }
 
     return (

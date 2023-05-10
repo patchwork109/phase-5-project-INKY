@@ -118,7 +118,7 @@ function Cart ({user, onLogin, setTattoos, count, setCount, tattoos}) {
     }
 
     return (
-        <div style={{ display: 'flex' }}>
+        <div>
             {(user === null) ?
                 <div>Log in or create an account to start adding tattoos to your cart!<Login onLogin={onLogin}/></div> :
                 <div>{areTattoosFound ? (
