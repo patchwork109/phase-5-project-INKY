@@ -86,7 +86,6 @@ function CartItem ({cartTattoo, handleEditTattooInCart, handleRemoveItemInCart, 
             }
         }))
 
-        // decrement counter
         setCount(count - 1)
     }
 

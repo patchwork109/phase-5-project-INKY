@@ -145,7 +145,7 @@ function App() {
 							<OurStory/>
 						</Route>
                         <Route exact path="/cart">
-							<Cart user={user} onLogin={setUser} setTattoos={setTattoos} count={count} setCount={setCount}/>
+							<Cart user={user} onLogin={setUser} setTattoos={setTattoos} count={count} setCount={setCount} tattoos={searchedAndFilteredTattoos} />
 						</Route>
 						<Route exact path="/ordersuccess">
 							<OrderSuccess user={user}/>

@@ -22,36 +22,56 @@ body {
 
 .homePageWhale {
   transition: transform .5s ease;
-  width: '100%';
-  height: '100%'
 }
 
 .homePageWhale:hover {
   transform: scale(1.1);
-  width: '80%';
-  height: '80%'
 }
 
-.homePageHandCrafted {
+.homePageLemon {
   transition: transform .5s ease;
 }
 
-.homePageHandCrafted:hover {
-  transform: scale(1.2);
+.homePageLemon:hover {
+  transform: scale(1.1);
 }
 
-.homePageGuaranteedFresh {
+.homePageDragonfly {
   transition: transform .5s ease;
 }
 
-.homePageGuaranteedFresh:hover {
-  transform: scale(1.2);
+.homePageDragonfly:hover {
+  transform: scale(1.1);
 }
 
-.homePageOutOfThisWord {
+.homePagePalm {
   transition: transform .5s ease;
 }
 
-.homePageOutOfThisWord:hover {
-  transform: scale(1.2);
+.homePagePalm:hover {
+  transform: scale(1.1);
+}
+
+.homePageTurtle {
+  transition: transform .5s ease;
+}
+
+.homePageTurtle:hover {
+  transform: scale(1.1);
+}
+
+.homePageEarth {
+  transition: transform .5s ease;
+}
+
+.homePageEarth:hover {
+  transform: scale(1.1);
+}
+
+.homePagePizza {
+  transition: transform .5s ease;
+}
+
+.homePagePizza:hover {
+  transform: scale(1.1);
 }

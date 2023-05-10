@@ -39,7 +39,7 @@ function HomePage () {
                         loading="lazy"
                     />
                 </ImageListItem>
-                <ImageListItem>
+                <ImageListItem className="homePageLemon">
                     <img
                         src={`${lemon}?w=164&h=164&fit=crop&auto=format`}
                         srcSet={`${lemon}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -47,7 +47,7 @@ function HomePage () {
                         loading="lazy"
                     />
                 </ImageListItem>
-                <ImageListItem>
+                <ImageListItem className="homePageDragonfly">
                     <img
                         src={`${dragonfly}?w=164&h=164&fit=crop&auto=format`}
                         srcSet={`${dragonfly}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -55,7 +55,7 @@ function HomePage () {
                         loading="lazy"
                     />
                 </ImageListItem>
-                <ImageListItem>
+                <ImageListItem className="homePagePalm">
                     <img
                         src={`${palmtree}?w=164&h=164&fit=crop&auto=format`}
                         srcSet={`${palmtree}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -63,7 +63,7 @@ function HomePage () {
                         loading="lazy"
                     />
                 </ImageListItem>
-                <ImageListItem>
+                <ImageListItem className="homePageTurtle">
                     <img
                         src={`${turtle}?w=164&h=164&fit=crop&auto=format`}
                         srcSet={`${turtle}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -71,7 +71,7 @@ function HomePage () {
                         loading="lazy"
                     />
                 </ImageListItem>
-                <ImageListItem>
+                <ImageListItem className="homePageEarth">
                     <img
                         src={`${earth}?w=164&h=164&fit=crop&auto=format`}
                         srcSet={`${earth}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -79,7 +79,7 @@ function HomePage () {
                         loading="lazy"
                     />
                 </ImageListItem>
-                <ImageListItem>
+                <ImageListItem className="homePagePizza">
                     <img
                         src={`${pizza}?w=164&h=164&fit=crop&auto=format`}
                         srcSet={`${pizza}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
