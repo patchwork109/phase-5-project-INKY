@@ -101,8 +101,8 @@ function WishlistTattooCard ({id, name, category, description, size, price, imag
 
     return (
         <div>
-            <Grid item xs={6} sm={4} md={3} sx={{ justifyContent: 'center', m: 2 }}>
-                <Card sx={{ width: 345, height: 540, textAlign: 'left'}}>
+            <Grid item xs={6} sm={6} md={6} sx={{ justifyContent: 'center', m: 2 }}>
+                <Card sx={{ width: 325, height: 540, textAlign: 'left'}}>
                     <CardMedia
                         component="img"
                         height="325"

@@ -68,10 +68,14 @@ function Wishlist ({user, onLogin, setTattoos}) {
             {(user === null) ? 
                 <div>Log in or create an account to start adding tattoos to your Wishlist!<Login onLogin={onLogin}/></div> : 
                 <div>
-                    { areWishlistTattoosFound ? 
-                    <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5 }}>
-                        {renderFavoritedTattoos}
-                    </Grid> : <EmptyWishlist />}
+                    { areWishlistTattoosFound ?
+                        (<div>
+                            <h2 style={{textAlign: 'left', marginLeft: 85, marginTop: 35, marginBottom: 50}}>Your Wishlist</h2> 
+                            <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', pl: 1.5 }}>
+                                {renderFavoritedTattoos}
+                            </Grid> 
+                        </div> ) : (
+                        <EmptyWishlist />)}
                 </div>
             }
         </div>
