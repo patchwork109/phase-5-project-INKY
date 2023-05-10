@@ -11,8 +11,8 @@ function Filter({handleCategoryInputChange, handleSizeInputChange}) {
 
     return (
         <div>
-            <Box sx={{ display: 'flex', border: 5, width: 200 }}>
-                <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+            <Box sx={{ display: 'flex', width: 200, ml: 6, mt: 2 }}>
+                <FormControl sx={{ m: 2 }} component="fieldset" variant="standard">
                 <FormLabel component="legend">Choose a category:</FormLabel>
                     <FormGroup>
                         <FormControlLabel control={
@@ -59,8 +59,8 @@ function Filter({handleCategoryInputChange, handleSizeInputChange}) {
                 </FormControl>
             </Box>
 
-            <Box sx={{ display: 'flex', border: 5, width: 200 }}>
-                <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+            <Box sx={{ display: 'flex', width: 200, ml: 6 }}>
+                <FormControl sx={{ m: 2 }} component="fieldset" variant="standard">
                 <FormLabel component="legend">Choose a size:</FormLabel>
                     <FormGroup>
                         <FormControlLabel control={

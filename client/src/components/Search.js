@@ -11,12 +11,12 @@ function Search({searchedValue}) {
     return (
         <div>
             <Box sx={{ mt: 5, mr: 4, display: 'flex', justifyContent: "right" }}>
-            <TextField
-                sx={{ width: '40ch' }}
-                label="Search tattoos"
-                placeholder="Type a tattoo to search..."
-                onChange={handleSearchInputChange}
-            />
+                <TextField
+                    sx={{ width: '40ch' }}
+                    label="Search tattoos"
+                    placeholder="Type a tattoo to search..."
+                    onChange={handleSearchInputChange}
+                />
             </Box>
         </div>
     );
