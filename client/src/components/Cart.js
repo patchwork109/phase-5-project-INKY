@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../themes/cartcontainer";
 
 function Cart ({user, onLogin, setTattoos, count, setCount, tattoos}) {
 
@@ -118,23 +120,24 @@ function Cart ({user, onLogin, setTattoos, count, setCount, tattoos}) {
     }
 
     return (
+        <ThemeProvider theme={theme}>
         <div>
             {(user === null) ?
                 <div><Login onLogin={onLogin}/></div> :
                 <div>{areTattoosFound ? (
                     <div>
                         <h2 style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 50, textAlign: 'left', marginLeft: 48, marginTop: 50, marginBottom: 50}}>Your Cart</h2>
-                        <Grid container spacing={5} sx={{ justifyContent: 'left', ml: 9, mt: 1, mb: 5 }}>
+                        <Grid container spacing={5} sx={{ justifyContent: 'left', ml: 9, mb: 5 }}>
                                 {displayCartTattoos}
                             <Grid container item xs={1} sm={1} md={1} direction="column" sx={{ justifyItems: 'right', float: 'right', justifyContent: 'right' }}>
-                                <Card sx={{ width: 325, height: 200,  mt: 22, top: '0', position: 'fixed' }}>
+                                <Card sx={{ fontFamily: 'Roboto Mono', width: 325, height: 220,  mt: 25, top: '0', position: 'fixed', bgcolor: '#f6f3d9' }}>
                                     <form onSubmit={handleOrderSubmit}>
-                                    <CardHeader sx={{ bgcolor: '#EEEEEE'}}
+                                    <CardHeader sx={{ bgcolor: '#1F8A70', m: -1, color: '#E1EEDD'}}
                                         title={<strong>Order Summary</strong>}
                                     >
                                     </CardHeader>
-                                    <h4>Total: ${total.toFixed(2)}</h4>
-                                        <Button sx={{ width: 300 }}variant="contained" type="submit">PLACE YOUR ORDER</Button>
+                                    <h4 style={{ fontSize: 24}}>Total: ${total.toFixed(2)}</h4>
+                                        <Button sx={{ width: 300 }}variant="contained" type="submit">Place Your Order</Button>
                                     </form>
                                 </Card>
                             </Grid>
@@ -145,6 +148,7 @@ function Cart ({user, onLogin, setTattoos, count, setCount, tattoos}) {
                 </div>
             }
         </div>
+        </ThemeProvider>
     )
 }
 

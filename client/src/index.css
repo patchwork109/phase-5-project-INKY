@@ -32,7 +32,7 @@ body {
 
 .tattooCardImage {
   transition: transform .5s ease;
-  filter: sepia(60%);
+  filter: sepia(20%);
 }
 
 .tattooCardImage:hover {
