@@ -1,32 +1,66 @@
+/* font-family: 'Bebas Neue', sans-serif;
+font-family: 'Calistoga', cursive;
+font-family: 'Braah One', sans-serif;
+font-family: 'Calligraffitti', cursive;
+font-family: 'Lalezar', cursive;
+font-family: 'Pirata One', cursive;
+font-family: 'Roboto Mono', monospace; 
+
+#f6f3d9 background off white
+#fd5323 orange
+#a80a44 deep pink
+#aceca0 light green
+#ffd83d normal yellow
+#ebf842 bright yellow
+
+rgb(43, 46, 49);
+*/
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(43, 46, 49);
-  color: white;
+  background-color: #00425A;
+  /* color: white; */
   text-align: center;
-}
-
-.navBar {
-  color: white;
-  margin: 10px;
-  font-size: 20px;
 }
 
 .app {
   font-size: 20px;
 }
 
-.tattooCard {
+.tattooCardImage {
   transition: transform .5s ease;
+  filter: sepia(60%);
 }
 
-.tattooCard:hover {
+.tattooCardImage:hover {
   transform: scale(1.05);
 }
 
+.homePageImages {
+  filter: sepia(60%);
+  border-color: "#00425A"
+}
+
 /* on-hover effect for homepage images */
+
+#hpNature:hover {
+  background-color: #BFDB38;
+}
+
+#hpDinosaurs:hover {
+  background-color: #BFDB38;
+}
+
+#hpAnimals:hover {
+  background-color: #BFDB38;
+}
+
+#hpObjects:hover {
+  background-color: #BFDB38;
+}
 
 .homePageWhale {
   transition: transform .5s ease;

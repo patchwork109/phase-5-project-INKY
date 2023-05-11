@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
@@ -23,14 +24,18 @@ import dino from '../images/dino_homepage.png';
 import anchor from '../images/anchor_homepage.png';
 import flamingo from '../images/flamingo_homepage.png';
 import planet from '../images/planet_homepage.png';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../themes/theme";
+
 
 function HomePage () {
 
 
     return (
+        <ThemeProvider theme={theme}>
         <div>
-            <h2>for now, not forever</h2>
-            <ImageList sx={{ overflow: 'scroll', height: 250, border: 10, borderColor: "rgb(43, 46, 49)", mb: 5}} cols={7} rowHeight={250}>
+            <h2 style={{ fontFamily: 'Calistoga', fontStyle: 'italic', fontSize: 38, color: '#f6f3d9'}}>for now, not forever</h2>
+            <ImageList className="homePageImages" sx={{ overflow: 'scroll', height: 250, mb: 5}} cols={7} rowHeight={250}>
                 <ImageListItem className="homePageWhale">
                     <img
                         src={`${whale}?w=164&h=164&fit=crop&auto=format`}
@@ -89,56 +94,56 @@ function HomePage () {
                 </ImageListItem>
              </ImageList>
 
-            <Box sx={{ bgcolor: '#cfe8fc', height: '43vh'}}>
+            <Box sx={{ bgcolor: '#1F8A70', height: '53vh'}}>
                 <br/>
-                <Typography variant="h4">Popular categories</Typography>
-                <Box sx={{ bgcolor: '#cfe8fc', height: '28vh', display: 'flex', justifyContent: 'center'}}>
+                <h2 style={{ fontFamily: 'Bebas Neue', fontSize: 50, marginTop: 3, marginBottom: 3, color: '#f6f3d9' }}>Popular categories</h2>
+                <Box sx={{ bgcolor: '#1F8A70', height: '30vh', display: 'flex', justifyContent: 'center' }}>
                     <ImageList sx={{ width: 900 }} cols={4} rowHeight={200} gap={36}>
-                        <ImageListItem>
-                            <img
+                        <ImageListItem sx={{color: '#00425A'}}> 
+                            <img style={{ borderRadius: 15 }} className="homePageImages"
                                 src={`${planet}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${planet}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 alt="planet"
                                 loading="lazy"
                             />
-                            <ImageListItemBar title="Nature"/>
+                            <ImageListItemBar id="hpNature" sx={{ bgcolor: '#aceca0', textAlign: 'right', color: '#00425A'}} title="Nature"/>
                         </ImageListItem>
                         <ImageListItem>
-                            <img
+                            <img style={{ borderRadius: 15 }} className="homePageImages"
                                 src={`${dino}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${dino}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 alt="dino"
                                 loading="lazy"
                             />
-                            <ImageListItemBar title="Dinosaurs"/>
+                            <ImageListItemBar id="hpDinosaurs" sx={{ bgcolor: '#aceca0', textAlign: 'right', color: '#00425A'}} title="Dinosaurs"/>
                         </ImageListItem>
                         <ImageListItem>
-                            <img
+                            <img style={{ borderRadius: 15 }} className="homePageImages"
                                 src={`${flamingo}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${flamingo}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 alt="flamingo"
                                 loading="lazy"
                             />
-                            <ImageListItemBar title="Animals"/>
+                            <ImageListItemBar id="hpAnimals" sx={{ bgcolor: '#aceca0', textAlign: 'right', color: '#00425A'}} title="Animals"/>
                         </ImageListItem>
                         <ImageListItem>
-                            <img
+                            <img style={{ borderRadius: 15 }} className="homePageImages"
                                 src={`${anchor}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${anchor}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 alt="anchor"
                                 loading="lazy"
                             />
-                            <ImageListItemBar title="Objects"/>
+                            <ImageListItemBar id="hpObjects" sx={{ bgcolor: '#aceca0', textAlign: 'right', color: '#00425A'}} title="Objects"/>
                         </ImageListItem>
                     </ImageList>
                 </Box>
                 <Link to="/tattoos">
-                    <Button variant="contained">Explore Tattoos</Button>
+                    <Button sx={{ mt: 1 }} variant="contained">Explore Tattoos</Button>
                 </Link>
             </Box>
 
             <br/>
-            <h3>See what people are saying</h3>
+            <h2 style={{ fontFamily: 'Bebas Neue', fontSize: 50, marginTop: 30, marginBottom: 3, color: '#f6f3d9' }}>See what people are saying</h2>
             <HomePageCarousel/>
             <br/>
 
@@ -148,10 +153,10 @@ function HomePage () {
             
             <br/>
             <br/>
-            <h4>Questions? We have answers.</h4>
-            <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+            <h4 style={{ fontFamily: 'Bebas Neue', fontSize: 50, marginTop: 50, marginBottom: 20, color: '#BFDB38' }}>Questions? We have answers.</h4>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 5}}>
                 <Stack spacing={2}>
-                    <Accordion sx={{ width: 900 }}>
+                    <Accordion sx={{ width: 900, bgcolor: '#E1EEDD' }}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
@@ -160,14 +165,14 @@ function HomePage () {
                         <Typography>How long does an INKY tattoo last?</Typography>
                         </AccordionSummary>
                         <AccordionDetails >
-                            <Typography>
+                            <Typography sx={{ color: '#a80a44', fontSize: 18, fontFamily: 'Roboto Mono', textAlign: 'left'}}>
                                 Our tattoos last 1-2 weeks. The length is highly dependent on 
                                 where you apply your tattoo and your daily activities. Our ink 
                                 gradually fades away as your skin naturally regenerates.
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion sx={{ width: 900 }}>
+                    <Accordion sx={{ width: 900, bgcolor: '#E1EEDD' }}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel2a-content"
@@ -176,21 +181,21 @@ function HomePage () {
                         <Typography>What tattoo sizes are available?</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
+                            <Typography sx={{ color: '#a80a44', fontSize: 18, fontFamily: 'Roboto Mono', textAlign: 'left'}}>
                                 Our tattoos come in Small 1 x 1", Medium 3 x 3", and Large 5 x 5" sizes.
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion sx={{ width: 900 }}>
+                    <Accordion sx={{ width: 900, bgcolor: '#E1EEDD' }}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel3a-content"
                             id="panel3a-header"
                         >
-                        <Typography>Where do you ship to?</Typography>
+                        <Typography sx={{  }}>Where do you ship to?</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
+                            <Typography sx={{ color: '#a80a44', fontSize: 18, fontFamily: 'Roboto Mono', textAlign: 'left'}}>
                                 Nowhere...👀
                             </Typography>
                         </AccordionDetails>
@@ -199,6 +204,7 @@ function HomePage () {
             </Box>
             <br/>
         </div>
+        </ThemeProvider>
     )
 }
 

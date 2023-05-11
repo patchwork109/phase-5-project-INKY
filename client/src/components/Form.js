@@ -9,7 +9,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Modal from '@mui/material/Modal';
+import Paper from '@mui/material/Paper';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../themes/formtheme";
 
 function Form({addNewTattooToState}) {
 
@@ -97,14 +100,16 @@ function Form({addNewTattooToState}) {
     }
 
     return (
+        <ThemeProvider theme={theme}>
         <div>
-            <h3>Add a tattoo!</h3>
+            <h2 style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 50, textAlign: 'left', marginLeft: 48, marginTop: 50, marginBottom: 50}}>Add a Custom Tattoo</h2>
+            <Paper sx={{ bgcolor: '#f6f3d9',  }}>
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
                 <form onSubmit={handleSubmit}>
                     <Stack spacing={3}>
                         <FormGroup>
-                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
-                                <TextField
+                            <FormControl sx={{ m: 1, width: '40ch', fontFamily: 'Roboto Mono' }} variant="outlined">
+                                <TextField sx={{ fontFamily: 'Roboto Mono' }}
                                     type="text"
                                     name="name"
                                     value={tattooName}
@@ -162,11 +167,12 @@ function Form({addNewTattooToState}) {
                                     onChange={handleTattooImageChange}
                                 />
                             </FormControl>
-                            <Button sx={{ m: 1, width: '56ch' }} type="submit" variant="contained">Submit a New Tattoo</Button>
+                            <Button sx={{ m: 1, width: '23ch' }} type="submit" variant="contained">Submit a New Tattoo</Button>
                         </FormGroup>
                     </Stack>
                 </form>
             </Box>
+            </Paper>
 
 
             <Modal
@@ -183,6 +189,7 @@ function Form({addNewTattooToState}) {
                 </Box>
             </Modal>
         </div>
+        </ThemeProvider>
     );
 }
 

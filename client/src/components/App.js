@@ -36,13 +36,13 @@ function App() {
 		if (user) {
 			fetch('/tattoos')
 			.then(response => response.json())
-			// .then(setTattoos)
-			.then(setTattoos((currentTattoos) =>
-    		currentTattoos.map((eachCurrentTattoo) => ({
-      			...eachCurrentTattoo,
-      			is_in_cart: null,
-    		}))
-		))
+			.then(setTattoos)
+		// 	.then(setTattoos((currentTattoos) =>
+    	// 	currentTattoos.map((eachCurrentTattoo) => ({
+      	// 		...eachCurrentTattoo,
+      	// 		is_in_cart: null,
+    	// 	}))
+		// ))
 		}
     }, [user])
 

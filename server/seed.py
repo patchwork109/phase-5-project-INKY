@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
         # Nature
         nature1 = Tattoo(name="Cloud", 
-                       description="A very fluffy cloud that's all smiles? I think yes. Let this tattoo be your silver lining.", 
+                       description="A fluffy cloud that's all smiles? I think yes. Let this tattoo be your silver lining.", 
                        size="Small", category="Nature", price=randint(3, 6), 
                        image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_21461_20200730041744_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=355&fit=max&auto=compress,format&q=50&dpr=2",
                        is_custom=False)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                       is_custom=False)
         
         nature6 = Tattoo(name="Sunny", 
-                      description="Radiate warmth and channel those sunny summer vibes while rocking this sweet design.", 
+                      description="Channel those sunny summer vibes while rocking this sweet design.", 
                       size="Medium", category="Nature", price=randint(7, 12), 
                       image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_16937_20200414061648_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -58,19 +58,19 @@ if __name__ == '__main__':
 
         #Dinosaurs
         dino1 = Tattoo(name="T-Rex", 
-                      description="Rawr! A little tattoo with big personality. Show off your love for T-Rexes with this ink.", 
+                      description="Rawr! A little tattoo with big personality.", 
                       size="Small", category="Dinosaurs", price=randint(3, 6), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4805914361934_printable_1623704515.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=355&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
 
         dino2 = Tattoo(name="Stego", 
-                      description="It's been extinct since the Cretaceous Period, but this precious plant-eater is trending.", 
+                      description="It's been extinct since the Cretaceous Period, but this tattoo is trending.", 
                       size="Small", category="Dinosaurs", price=randint(3, 6), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4805914460238_printable_1623704779.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
         
         dino3 = Tattoo(name="Apo", 
-                      description="If you're a fan of this herbivore, show off your devotion by rocking this adorable Apo design.", 
+                      description="If you're a fan of this herbivore, show off your devotion by rocking this design.", 
                       size="Small", category="Dinosaurs", price=randint(3, 6), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4805914067022_printable_1623704578.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -103,7 +103,7 @@ if __name__ == '__main__':
                       is_custom=False)
 
         animal2 = Tattoo(name="Otters", 
-                      description="Let's stick together. A perfect tattoo for you and someone special (or if you just love otters).", 
+                      description="Let's stick together. Perfect for you and someone special (or if you just love otters).", 
                       size="Small", category="Animals", price=randint(3, 6), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4286492934222_1574954546.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -142,7 +142,7 @@ if __name__ == '__main__':
                       is_custom=False)
         
         object4 = Tattoo(name="Pizza", 
-                      description="Pizza. All day, everyday, now on your bo-day. Show your love with this tasty tattoo.", 
+                      description="Pizza. All day, everyday, now on your bo-day. Show your love with this tattoo.", 
                       size="Large", category="Objects", price=randint(13, 18), 
                       image="https://inkboxdesigns.imgix.net/artist_designs/MfsiEfGP9QIhZ49xqzJi1PlUBWMky5AMFnrtxJar.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)

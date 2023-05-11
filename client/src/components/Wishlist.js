@@ -72,7 +72,7 @@ function Wishlist ({user, onLogin, setTattoos, count, setCount}) {
                 <div>
                     { areWishlistTattoosFound ?
                         (<div>
-                            <h2 style={{textAlign: 'left', marginLeft: 85, marginTop: 35, marginBottom: 50}}>Your Wishlist</h2> 
+                            <h2 style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 50, textAlign: 'left', marginLeft: 48, marginTop: 50, marginBottom: 50}}>Your Wishlist</h2> 
                             <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', pl: 1.5 }}>
                                 {renderFavoritedTattoos}
                             </Grid> 

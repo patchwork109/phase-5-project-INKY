@@ -123,7 +123,7 @@ function Cart ({user, onLogin, setTattoos, count, setCount, tattoos}) {
                 <div><Login onLogin={onLogin}/></div> :
                 <div>{areTattoosFound ? (
                     <div>
-                        <h2 style={{textAlign: 'left', marginLeft: 85, marginTop: 35}}>Your Cart</h2>
+                        <h2 style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 50, textAlign: 'left', marginLeft: 48, marginTop: 50, marginBottom: 50}}>Your Cart</h2>
                         <Grid container spacing={5} sx={{ justifyContent: 'left', ml: 9, mt: 1, mb: 5 }}>
                                 {displayCartTattoos}
                             <Grid container item xs={1} sm={1} md={1} direction="column" sx={{ justifyItems: 'right', float: 'right', justifyContent: 'right' }}>

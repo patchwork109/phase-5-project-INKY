@@ -20,35 +20,35 @@ function NavBar ({user, onLogout, count}) {
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar>
+                <AppBar sx={{ bgcolor: '#E14D2A' }}>
                     <Toolbar>
                         <NavLink exact to="/">
-                            <Button sx={{ color: "white" }}><strong>INKY</strong></Button>
+                            <Button sx={{ color: '#f6f3d9', fontFamily: 'Pirata One', fontSize: 50, mt: -2, mb: -2 }}><strong>INKY</strong></Button>
                         </NavLink>
                         <NavLink exact to="/tattoos">
-                            <Button sx={{ color: "white" }}>Explore Tattoos</Button>
+                            <Button sx={{ color: '#f6f3d9', fontFamily: 'Bebas Neue', fontSize: 22 }}>Explore Tattoos</Button>
                         </NavLink>
                         <NavLink exact to="/customtattoos">
-                            <Button sx={{ color: "white" }}>Custom Tattoos</Button>
+                            <Button sx={{ color: '#f6f3d9', fontFamily: 'Bebas Neue', fontSize: 22 }}>Custom Tattoos</Button>
                         </NavLink>
                         <NavLink exact to="/ourstory">
-                            <Button sx={{ color: "white", justifyContent: "right" }}>Our Story</Button>
+                            <Button sx={{ color: '#f6f3d9', justifyContent: "right", fontFamily: 'Bebas Neue', fontSize: 22 }}>Our Story</Button>
                         </NavLink>
                         <Box flexGrow={1} />
                         <NavLink exact to="/wishlist">
                             <IconButton>
-                                <FavoriteBorderIcon sx={{ color: "white", justifyContent: "right" }}/>
+                                <FavoriteBorderIcon sx={{ color: '#f6f3d9', justifyContent: "right" }}/>
                             </IconButton>
                         </NavLink>
                         <NavLink exact to="/cart"> 
                             <IconButton>
                                 <Badge color="error" badgeContent={count}>  
-                                    <ShoppingCartIcon sx={{ color: "white", justifyContent: "right" }}/>
+                                    <ShoppingCartIcon sx={{ color: '#f6f3d9', justifyContent: "right" }}/>
                                 </Badge>
                             </IconButton>
                         </NavLink>
                         <NavLink exact to="/" onClick={handleLogoutClick}> 
-                            {(user===null)? "" : <Button sx={{ color: "white", justifyContent: "right" }}>Log Out</Button>}
+                            {(user===null)? "" : <Button sx={{ color: '#f6f3d9', justifyContent: "right", fontFamily: 'Bebas Neue', fontSize: 22 }}>Log Out</Button>}
                         </NavLink>
                     </Toolbar>
                 </AppBar>

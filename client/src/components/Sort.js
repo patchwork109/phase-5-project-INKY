@@ -4,6 +4,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../themes/tattoopage";
 
 function Sort({sortData, sortOrder, setSortOrder}) {
 
@@ -21,8 +23,9 @@ function Sort({sortData, sortOrder, setSortOrder}) {
     }
 
     return (
+        <ThemeProvider theme={theme}>
         <div>
-            <Box sx={{ maxWidth: 200, width: 200, ml: 8, mt: 3 }}>
+            <Box sx={{ maxWidth: 200, width: 200, ml: 3, mt: 1, mb: 4 }}>
                 <FormControl fullWidth>
                     <InputLabel>Sort:</InputLabel>
                     <Select
@@ -36,6 +39,7 @@ function Sort({sortData, sortOrder, setSortOrder}) {
                 </FormControl>
             </Box>
         </div>
+        </ThemeProvider>
     );
 }
 

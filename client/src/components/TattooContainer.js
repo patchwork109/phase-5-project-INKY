@@ -46,7 +46,7 @@ function TattooContainer ({user, onLogin, tattoos,
                     
                     <Grid container spacing={2} >
                         <Grid container item xs={3} sm={3} md={3} direction="column" >
-                            <Box><h2 style={{textAlign: 'left', marginLeft: 48, marginTop: 50, marginBottom: 50}}>All Tattoos</h2></Box>
+                            <Box><h2 style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 50, textAlign: 'left', marginLeft: 48, marginTop: 50, marginBottom: 50}}>All Tattoos</h2></Box>
                         </Grid>
                         <Grid container item xs={9} sm={9} md={9} direction="column" >
                             <Search searchedValue={searchedValue}/> 
@@ -56,7 +56,7 @@ function TattooContainer ({user, onLogin, tattoos,
 
                     <Grid container spacing={2}>
                         <Grid container item xs={3} sm={3} md={3} direction="column" >
-                            <Box sx={{ position: 'fixed' }}>
+                            <Box sx={{borderRadius: 10, ml: 5, pr: 3, mt: -1, bgcolor: '#f6f3d9', position: 'fixed' }}>
                                 <Filter 
                                     filteredCategoryValue={filteredCategoryValue}
                                     handleCategoryInputChange={handleCategoryInputChange}
@@ -66,7 +66,7 @@ function TattooContainer ({user, onLogin, tattoos,
                             </Box>
                         </Grid>
                         <Grid container item xs={9} sm={9} md={9} direction="column" >
-                            <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', ml: -10, mt: 2, mb: 5 }}>
+                            <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', ml: -10, mb: 5 }}>
                                 {renderTattoos}
                             </Grid>
                         </Grid>
