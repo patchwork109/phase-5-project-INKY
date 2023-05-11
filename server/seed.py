@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
         # Nature
         nature1 = Tattoo(name="Cloud", 
-                       description="A fluffy cloud that's all smiles? I think yes. Let this tattoo be your silver lining.", 
+                       description="A cloud that's all smiles? I think yes. Let this tattoo be your silver lining.", 
                        size="Small", category="Nature", price=randint(3, 6), 
                        image="https://inkboxdesigns.imgix.net/new_designs/cyan/cut_21461_20200730041744_cyan.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=355&fit=max&auto=compress,format&q=50&dpr=2",
                        is_custom=False)
@@ -31,7 +31,7 @@ if __name__ == '__main__':
                       is_custom=False)
         
         nature3 = Tattoo(name="Rainy Day", 
-                      description="If you relish in running through the rain, you'll definitely love this delicate little rain cloud.", 
+                      description="If you relish in running through the rain, you'll love this ink.", 
                       size="Small", category="Nature", price=randint(3, 6), 
                       image="https://inkboxdesigns.imgix.net/product/lifestyle/Gg8yL2Wk1GHFW4GhVnRGF2D2XLGWfGU4FKVSpEaR.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
@@ -103,7 +103,7 @@ if __name__ == '__main__':
                       is_custom=False)
 
         animal2 = Tattoo(name="Otters", 
-                      description="Let's stick together. Perfect for you and someone special (or if you just love otters).", 
+                      description="A perfect tattoo for you and someone special (or if you just love otters).", 
                       size="Small", category="Animals", price=randint(3, 6), 
                       image="https://inkboxdesigns.imgix.net/product_stencils/4286492934222_1574954546.jpg?auto=compress,format&con=100&gam=100&pad=20&bg=F4F5F7&fit=fill&duotone=000000,F4F5F7&w=625&fit=max&auto=compress,format&q=50&dpr=2",
                       is_custom=False)
