@@ -12,6 +12,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Stack from '@mui/system/Stack';
 import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
 
 function LoginForm({onLogin}) {
 
@@ -64,8 +65,13 @@ function LoginForm({onLogin}) {
 
     return (
         <div>
-        <h3>Nice to see you again!</h3>
-        <p>Log into your INKY account to continue.</p>
+        <br />
+        <h3 style={{ color: '#aceca0', fontFamily: 'Roboto Mono', fontSize: 30 }}>Nice to see you again!</h3>
+        <p style={{ color: '#f6f3d9', fontFamily: 'Roboto Mono', fontSize: 22, marginTop: -20, marginBottom: 9 }}>Log into your INKY account to continue.</p>
+        
+        <Box sx={{ display: 'flex', justifyContent: 'center', m: 3 }}>
+            <Paper sx={{ bgcolor: '#f6f3d9', justifyContent: 'center', pl: 6, pr: 6 }}>
+        
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
             <form onSubmit={formik.handleSubmit}>
                 <Stack spacing={3}>
@@ -105,12 +111,14 @@ function LoginForm({onLogin}) {
                                 }}
                             />
                         </FormControl>
-                        <Button sx={{ m: 1, width: '42ch' }} type="submit" variant="contained">Log In</Button>
+                        <Button sx={{ m: 1 }} type="submit" variant="contained">Log In</Button>
                     </FormGroup>
                 </Stack>
                 <br/>
                 {logInErrorMessage && <p style={{ color: "red" }}>{logInErrorMessage}</p>}
             </form>
+        </Box>
+        </Paper>
         </Box>
         </div>
     );

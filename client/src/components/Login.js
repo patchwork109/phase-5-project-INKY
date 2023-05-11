@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import Button from '@mui/material/Button';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../themes/formtheme";
 
 function Login({user, onLogin}) {
     const [showLogin, setShowLogin] = useState(true);
@@ -15,22 +17,24 @@ function Login({user, onLogin}) {
     }
 
     return (
+        <ThemeProvider theme={theme}>
        <div>
             {showLogin ? (
                 <>
                     <LoginForm user={user} onLogin={onLogin}/>
-                    <p>New to INKY? Sign up.</p>
-                    <Button variant="contained" onClick={handleNoAccountSignUpClick}>Sign Up!</Button>
+                    <p style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 30, marginBottom: 10}}>New to INKY? Sign up.</p>
+                    <Button variant="contained" onClick={handleNoAccountSignUpClick}>Sign Up</Button>
                 </>
             ) : (
                 <>
                     <SignUpForm onLogin={onLogin}/>
-                    <p>Already an INKY member?</p>
-                    <Button variant="contained" onClick={handleAlreadyHaveAccountClick}>Log In!</Button>
+                    <p style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 30, marginBottom: 10 }}>Already an INKY member?</p>
+                    <Button variant="contained" onClick={handleAlreadyHaveAccountClick}>Log In</Button>
                 </>
             )
             }
        </div>
+       </ThemeProvider>
     );
 }
 

@@ -29,10 +29,11 @@ function Form({addNewTattooToState}) {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 400,
-        height: 200,
+        height: 220,
         color: 'black',
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
+        fontFamily: 'Roboto Mono',
+        bgcolor: '#E1EEDD',
+        border: '2px solid #E14D2A',
         borderRadius: '15px',
         boxShadow: 24,
         p: 4,
@@ -102,14 +103,14 @@ function Form({addNewTattooToState}) {
     return (
         <ThemeProvider theme={theme}>
         <div>
-            <h2 style={{ color: '#aceca0', fontFamily: 'Bebas Neue', fontSize: 50, textAlign: 'left', marginLeft: 48, marginTop: 50, marginBottom: 50}}>Add a Custom Tattoo</h2>
-            <Paper sx={{ bgcolor: '#f6f3d9',  }}>
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', m: 6 }}>
+            <Paper sx={{ bgcolor: '#f6f3d9', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', m: 4 }}>
                 <form onSubmit={handleSubmit}>
                     <Stack spacing={3}>
                         <FormGroup>
-                            <FormControl sx={{ m: 1, width: '40ch', fontFamily: 'Roboto Mono' }} variant="outlined">
-                                <TextField sx={{ fontFamily: 'Roboto Mono' }}
+                            <FormControl sx={{ m: 1, width: '60ch' }} variant="outlined">
+                                <TextField 
                                     type="text"
                                     name="name"
                                     value={tattooName}
@@ -119,7 +120,7 @@ function Form({addNewTattooToState}) {
                                     onChange={handleTattooNameChange}
                                 />
                             </FormControl>
-                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                            <FormControl sx={{ m: 1, width: '60ch' }} variant="outlined">
                                 <TextField
                                     type="text"
                                     name="description"
@@ -130,7 +131,7 @@ function Form({addNewTattooToState}) {
                                     onChange={handleTattooDescriptionChange}
                                 />
                             </FormControl>
-                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                            <FormControl sx={{ m: 1, width: '60ch' }} variant="outlined">
                                 <InputLabel>Size</InputLabel>
                                 <Select
                                     value={tattooSize}
@@ -142,7 +143,7 @@ function Form({addNewTattooToState}) {
                                     <MenuItem value='Large'>Large</MenuItem>
                                 </Select>       
                             </FormControl>
-                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                            <FormControl sx={{ m: 1, width: '60ch' }} variant="outlined">
                                 <InputLabel>Category</InputLabel>
                                 <Select
                                     value={tattooCategory}
@@ -156,7 +157,7 @@ function Form({addNewTattooToState}) {
                                     <MenuItem value='Other'>Other</MenuItem>
                                 </Select>       
                             </FormControl>
-                            <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
+                            <FormControl sx={{ m: 1, width: '60ch' }} variant="outlined">
                                 <TextField
                                     type="text"
                                     name="image"
@@ -167,12 +168,13 @@ function Form({addNewTattooToState}) {
                                     onChange={handleTattooImageChange}
                                 />
                             </FormControl>
-                            <Button sx={{ m: 1, width: '23ch' }} type="submit" variant="contained">Submit a New Tattoo</Button>
+                            <Button sx={{ m: 1 }} type="submit" variant="contained">Add Tattoo</Button>
                         </FormGroup>
                     </Stack>
                 </form>
             </Box>
             </Paper>
+            </Box>
 
 
             <Modal
@@ -182,10 +184,11 @@ function Form({addNewTattooToState}) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <CheckCircleIcon sx={{ fontSize: 80 }}/>
+                    <CheckCircleIcon sx={{ fontSize: 80, color: '#1F8A70' }}/>
                     <br />
                     <h3>Thank you for contributing your tattoo design!</h3>
                     <p>Your tattoo will now be available to the INKY community.</p>
+                    <br />
                 </Box>
             </Modal>
         </div>

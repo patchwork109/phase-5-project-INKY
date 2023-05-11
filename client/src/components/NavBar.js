@@ -37,13 +37,13 @@ function NavBar ({user, onLogout, count}) {
                         <Box flexGrow={1} />
                         <NavLink exact to="/wishlist">
                             <IconButton>
-                                <FavoriteBorderIcon sx={{ color: '#f6f3d9', justifyContent: "right" }}/>
+                                <FavoriteBorderIcon sx={{ color: '#f6f3d9', justifyContent: "right", fontSize: 28 }}/>
                             </IconButton>
                         </NavLink>
                         <NavLink exact to="/cart"> 
                             <IconButton>
-                                <Badge color="error" badgeContent={count}>  
-                                    <ShoppingCartIcon sx={{ color: '#f6f3d9', justifyContent: "right" }}/>
+                                <Badge color="success" badgeContent={count}>  
+                                    <ShoppingCartIcon sx={{ color: '#f6f3d9', justifyContent: "right", fontSize: 28 }}/>
                                 </Badge>
                             </IconButton>
                         </NavLink>

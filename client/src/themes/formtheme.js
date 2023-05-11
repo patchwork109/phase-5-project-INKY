@@ -15,12 +15,15 @@ const theme = createTheme({
     ].join(','),
 
     fontSize: [
-        20, 
+        16, 
     ].join(','),
 
     button: {
         textTransform: 'none',
         fontFamily: 'Calistoga',
+        fontSize: 22,
+        main: '#a80a44',
+        contrastText: '#f6f3d9',
       }
   },
 });

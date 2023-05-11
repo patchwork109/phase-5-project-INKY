@@ -12,6 +12,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Stack from '@mui/system/Stack';
 import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
 
 
 function SignUpForm({onLogin}) {
@@ -67,8 +68,12 @@ function SignUpForm({onLogin}) {
 
     return (
         <div>
-        <h3>Create your account</h3>
-        <p>Start finding tattoos that make you <em>you.</em></p>
+        <h3 style={{ color: '#aceca0', fontFamily: 'Roboto Mono', fontSize: 30 }}>Create your account</h3>
+        <p style={{ color: '#f6f3d9', fontFamily: 'Roboto Mono', fontSize: 22, marginTop: -20, marginBottom: 9 }}>Start finding tattoos that make you <em>you.</em></p>
+        
+        <Box sx={{ display: 'flex', justifyContent: 'center', m: 3 }}>
+            <Paper sx={{ bgcolor: '#f6f3d9', justifyContent: 'center', pl: 6, pr: 6 }}>
+        
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
             <form onSubmit={formik.handleSubmit}>
                 <Stack spacing={3}>
@@ -118,12 +123,14 @@ function SignUpForm({onLogin}) {
                                 }}
                             />
                         </FormControl>
-                        <Button sx={{ m: 1, width: '42ch' }} type="submit" variant="contained">Sign Up</Button>
+                        <Button sx={{ m: 1 }} type="submit" variant="contained">Sign Up</Button>
                     </FormGroup>
                 </Stack>
                 <br/>
                 {signInErrorMessage && <p style={{ color: "red" }}>{signInErrorMessage}</p>}
             </form>
+        </Box>
+        </Paper>
         </Box>
         </div>
     );
