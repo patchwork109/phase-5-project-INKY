@@ -18,7 +18,7 @@ Ever considered getting a tattoo, but you weren't quite ready to make the commit
 
 ## Getting Started
 - Fork and Clone the repo
-`git clone https://github.com/patchwork109/phase-4-project`
+`git clone https://github.com/patchwork109/phase-5-project-INKY`
 - Install your environment dependencies and enter virtual environment:
 `pipenv install`
 `pipenv shell`
