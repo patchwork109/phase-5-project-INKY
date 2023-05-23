@@ -34,7 +34,7 @@ Ever considered getting a tattoo, but you weren't quite ready to make the commit
 INKY is a discovery platform and online store front for ordering temporary tattoos. Users can learn about INKY through the homepage and read about us on the Our Story page. 
 <img width="1504" alt="Screenshot 2023-05-22 at 7 58 55 PM" src="https://github.com/patchwork109/phase-5-project-INKY/assets/115511311/021264f5-559d-4b10-93a2-9e837d7183f3">
 
-If they'd like to check out tattoos, create a wishlist, or add tattoos to their cart, they'll be prompted to login or sign up. 
+If they'd like to check out tattoos, create a wishlist, or add tattoos to their cart, they'll be prompted to login or sign up.
 <img width="659" alt="Screenshot 2023-05-22 at 7 59 24 PM" src="https://github.com/patchwork109/phase-5-project-INKY/assets/115511311/8b58e852-f9af-4070-a2f8-d8160c81f843">
 
 After logging in or creating a new account, they'll be able to view all of the tattoos on INKY. To help them find the right tattoo for them, they can filter by Category or by Size, sort by Price (low to high and high to low), and search tattoos by Name. 
