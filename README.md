@@ -17,17 +17,29 @@ Ever considered getting a tattoo, but you weren't quite ready to make the commit
 
 
 ## Getting Started
-- Fork and Clone the repo
-`git clone https://github.com/patchwork109/phase-5-project-INKY`
-- Install your environment dependencies and enter virtual environment:
-`pipenv install`
-`pipenv shell`
-- From the client directory, install client dependencies
-`npm install`
-- From the client directory, start the front end
-`npm start`
-- From the server directory, start the back end
-`python app.py`
+1. Fork and clone the repo:
+  ```sh
+  git clone https://github.com/patchwork109/phase-5-project-INKY
+  ```
+2. Install your environment dependencies and enter virtual environment:
+```sh
+pipenv install
+```
+```sh
+pipenv shell
+```
+3. From the client directory, install client dependencies:
+```sh
+npm install
+```
+4. From the client directory, start the front end:
+```sh
+npm start
+```
+5. From the server directory, start the back end:
+```sh
+python app.py
+```
 
 
 ## How to Use this Application 
