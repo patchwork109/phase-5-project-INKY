@@ -11,6 +11,7 @@ Ever considered getting a tattoo, but you weren't quite ready to make the commit
 ## Built With
 - ReactJS
 - Flask
+- Python
 - Material UI
 - SQLAlchemy
 - Formik
