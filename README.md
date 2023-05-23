@@ -1,5 +1,5 @@
 # INKY
-## Flatiron School: Phase 5 FullStack Application Project
+### Flatiron School Phase 5 FullStack Application 
 ### Developed by: Sam Genevay
 
 <img width="1506" alt="Screenshot 2023-05-22 at 7 58 32 PM" src="https://github.com/patchwork109/phase-5-project-INKY/assets/115511311/cb184916-d12d-43d5-8b84-7700043a2017">
@@ -17,20 +17,16 @@ Ever considered getting a tattoo, but you weren't quite ready to make the commit
 
 
 ## Getting Started
-Fork and Clone the repo
+- Fork and Clone the repo
 `git clone https://github.com/patchwork109/phase-4-project`
-
-Install your environment dependencies and enter virtual environment:
+- Install your environment dependencies and enter virtual environment:
 `pipenv install`
 `pipenv shell`
-
-From the client directory, install client dependencies
+- From the client directory, install client dependencies
 `npm install`
-
-From the client directory, start the front end
+- From the client directory, start the front end
 `npm start`
-
-From the server directory, start the back end
+- From the server directory, start the back end
 `python app.py`
 
 
